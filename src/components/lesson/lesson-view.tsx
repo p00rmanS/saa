@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Lightbulb,
   Sparkles,
@@ -64,6 +65,41 @@ export function LessonView({
   const toggleLessonComplete = useProgressStore((s) => s.toggleLessonComplete);
   const toggleBookmark = useProgressStore((s) => s.toggleBookmark);
   const mounted = useHasMounted();
+  const router = useRouter();
+
+  // Swipe left -> next lesson, swipe right -> previous lesson. Tracked via refs
+  // (not state) since touch coordinates don't need to trigger re-renders.
+  const touchStart = React.useRef<{ x: number; y: number } | null>(null);
+  const SWIPE_MIN_DISTANCE = 60;
+  const SWIPE_MAX_VERTICAL_RATIO = 0.6;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    // Skip swipe tracking when the gesture starts inside a horizontally
+    // scrollable element (e.g. the architecture diagram) so scrolling that
+    // content doesn't get hijacked into a lesson navigation.
+    if ((e.target as HTMLElement).closest("[data-no-swipe-nav]")) {
+      touchStart.current = null;
+      return;
+    }
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Math.abs(dx) < SWIPE_MIN_DISTANCE) return;
+    if (Math.abs(dy) > Math.abs(dx) * SWIPE_MAX_VERTICAL_RATIO) return;
+    if (dx < 0 && nextLesson) {
+      router.push(`/course/${nextLesson.id}`);
+    } else if (dx > 0 && prevLesson) {
+      router.push(`/course/${prevLesson.id}`);
+    }
+  };
   // Server (and each client's pre-hydration render) can't see persisted
   // settings, so fall back to defaults until mounted to avoid a mismatch.
   const settings = mounted ? settingsFromStore : DEFAULT_SETTINGS;
@@ -127,7 +163,11 @@ export function LessonView({
   );
 
   return (
-    <div className="flex flex-col gap-8 pb-16">
+    <div
+      className="flex flex-col gap-8 pb-16"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Header */}
       <div>
         <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -342,6 +382,11 @@ export function LessonView({
           <span />
         )}
       </nav>
+      {(prevLesson || nextLesson) && (
+        <p className="-mt-6 text-center text-xs text-muted-foreground sm:hidden">
+          Swipe left/right to jump between lessons
+        </p>
+      )}
     </div>
   );
 }

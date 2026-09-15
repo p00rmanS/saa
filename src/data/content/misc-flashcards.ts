@@ -51,14 +51,54 @@ export const miscFlashcards: Flashcard[] = [
   { id: "fc-aws-device-farm-1", serviceId: "aws-device-farm", domain: 3, category: "Front-End Web and Mobile", front: "What is AWS Device Farm for?", back: "Testing mobile and web apps on real physical devices in the cloud." },
   { id: "fc-aws-device-farm-2", serviceId: "aws-device-farm", domain: 3, category: "Front-End Web and Mobile", front: "Why use Device Farm instead of buying devices?", back: "On-demand access to many real Android/iOS devices without buying/maintaining a physical device lab." },
 
-  { id: "fc-machine-learning-services-overview-1", serviceId: "machine-learning-services-overview", domain: 3, category: "Machine Learning", front: "Match: Rekognition, Polly, Transcribe, Translate, Comprehend, Textract, Lex, SageMaker AI.", back: "Rekognition=image/video analysis. Polly=text-to-speech. Transcribe=speech-to-text. Translate=language translation. Comprehend=NLP/sentiment. Textract=extract text from documents. Lex=chatbots. SageMaker AI=build/train/deploy custom ML models." },
-  { id: "fc-machine-learning-services-overview-2", serviceId: "machine-learning-services-overview", domain: 3, category: "Machine Learning", front: "Taglish: Paano mo maiiba ang Polly sa Transcribe?", back: "Polly: text papuntang audio (text-to-speech). Transcribe: audio papuntang text (speech-to-text) — magkabaligtad sila." },
+  { id: "fc-amazon-comprehend-1", serviceId: "amazon-comprehend", domain: 3, category: "Machine Learning", front: "What does Amazon Comprehend do?", back: "Uses NLP to detect sentiment, entities, key phrases, language, and PII in text." },
+  { id: "fc-amazon-comprehend-2", serviceId: "amazon-comprehend", domain: 3, category: "Machine Learning", front: "Taglish: Ano ang gawain ng Comprehend?", back: "Binabasa at inuunawa nito ang damdamin (sentiment) at kahulugan ng text — hindi ito nagsasalin o nagpapatugtog ng audio." },
 
-  { id: "fc-media-services-overview-1", serviceId: "media-services-overview", domain: 3, category: "Media Services", front: "Elastic Transcoder vs Kinesis Video Streams?", back: "Elastic Transcoder: converts/transcodes media files. Kinesis Video Streams: ingests/processes live video streams." },
-  { id: "fc-media-services-overview-2", serviceId: "media-services-overview", domain: 3, category: "Media Services", front: "Which service fits ingesting live camera feeds from thousands of devices?", back: "Amazon Kinesis Video Streams." },
+  { id: "fc-amazon-lex-1", serviceId: "amazon-lex", domain: 3, category: "Machine Learning", front: "What is Amazon Lex used for?", back: "Building conversational chatbots and voice interfaces — the same tech behind Alexa." },
+  { id: "fc-amazon-lex-2", serviceId: "amazon-lex", domain: 3, category: "Machine Learning", front: "What AWS service commonly fulfills a Lex intent?", back: "AWS Lambda." },
 
-  { id: "fc-management-governance-extras-1", serviceId: "management-governance-extras", domain: 4, category: "Management and Governance", front: "What is the AWS Well-Architected Tool for?", back: "A self-service review of your architecture against AWS's best-practice pillars." },
-  { id: "fc-management-governance-extras-2", serviceId: "management-governance-extras", domain: 4, category: "Management and Governance", front: "What is Amazon Managed Grafana / Managed Prometheus for?", back: "Managed dashboards (Grafana) and managed metrics (Prometheus) without self-hosting either." },
-  { id: "fc-management-governance-extras-3", serviceId: "management-governance-extras", domain: 4, category: "Management and Governance", front: "What shows AWS service health and planned maintenance events?", back: "AWS Health Dashboard." },
-  { id: "fc-management-governance-extras-4", serviceId: "management-governance-extras", domain: 4, category: "Management and Governance", front: "What tracks software license usage/compliance across AWS?", back: "AWS License Manager." },
+  { id: "fc-amazon-polly-1", serviceId: "amazon-polly", domain: 3, category: "Machine Learning", front: "Polly vs Transcribe direction?", back: "Polly: text -> speech. Transcribe: speech -> text (opposite directions)." },
+  { id: "fc-amazon-polly-2", serviceId: "amazon-polly", domain: 3, category: "Machine Learning", front: "What markup language gives fine control over Polly's speech output?", back: "SSML (Speech Synthesis Markup Language)." },
+
+  { id: "fc-amazon-rekognition-1", serviceId: "amazon-rekognition", domain: 3, category: "Machine Learning", front: "What does Amazon Rekognition analyze?", back: "Images and video — for objects, scenes, faces, text, and inappropriate content." },
+  { id: "fc-amazon-rekognition-2", serviceId: "amazon-rekognition", domain: 3, category: "Machine Learning", front: "Rekognition vs Textract — which handles scanned forms/invoices?", back: "Textract — Rekognition is for general image/video analysis, not structured document extraction." },
+
+  { id: "fc-amazon-sagemaker-ai-1", serviceId: "amazon-sagemaker-ai", domain: 3, category: "Machine Learning", front: "When should you choose SageMaker AI over a pre-built AI service?", back: "Only when the problem needs a genuinely custom-trained model that no pre-built service (Comprehend, Rekognition, etc.) already solves." },
+  { id: "fc-amazon-sagemaker-ai-2", serviceId: "amazon-sagemaker-ai", domain: 3, category: "Machine Learning", front: "Taglish: Bakit hindi laging SageMaker AI ang sagot?", back: "Kasi kung may ready-made na service na (tulad ng Comprehend) na sakto sa problema, sayang lang ang oras at effort na mag-train ng sariling model." },
+
+  { id: "fc-amazon-textract-1", serviceId: "amazon-textract", domain: 3, category: "Machine Learning", front: "What does Amazon Textract extract beyond raw OCR text?", back: "Key-value form pairs and table structure (rows/columns), plus handwriting." },
+  { id: "fc-amazon-textract-2", serviceId: "amazon-textract", domain: 3, category: "Machine Learning", front: "'Extract data from scanned invoices/forms' points to which service?", back: "Amazon Textract." },
+
+  { id: "fc-amazon-transcribe-1", serviceId: "amazon-transcribe", domain: 3, category: "Machine Learning", front: "What is Amazon Transcribe for?", back: "Converting spoken audio into text (speech-to-text), with optional speaker labeling." },
+  { id: "fc-amazon-transcribe-2", serviceId: "amazon-transcribe", domain: 3, category: "Machine Learning", front: "Can Transcribe label which speaker said what?", back: "Yes — via automatic speaker diarization." },
+
+  { id: "fc-amazon-translate-1", serviceId: "amazon-translate", domain: 3, category: "Machine Learning", front: "What is Amazon Translate for?", back: "Machine translation of text between languages." },
+  { id: "fc-amazon-translate-2", serviceId: "amazon-translate", domain: 3, category: "Machine Learning", front: "How do you get translated content spoken aloud?", back: "Chain Amazon Translate (translate the text) with Amazon Polly (convert to speech)." },
+
+  { id: "fc-amazon-elastic-transcoder-1", serviceId: "amazon-elastic-transcoder", domain: 3, category: "Media Services", front: "What is Amazon Elastic Transcoder for?", back: "Converting/transcoding existing video files into different formats and resolutions." },
+  { id: "fc-amazon-elastic-transcoder-2", serviceId: "amazon-elastic-transcoder", domain: 3, category: "Media Services", front: "Elastic Transcoder vs Kinesis Video Streams?", back: "Elastic Transcoder converts existing files; Kinesis Video Streams ingests live video streams." },
+
+  { id: "fc-amazon-kinesis-video-streams-1", serviceId: "amazon-kinesis-video-streams", domain: 3, category: "Media Services", front: "What is Amazon Kinesis Video Streams for?", back: "Ingesting, processing, and durably storing live (or batch) video from devices like cameras." },
+  { id: "fc-amazon-kinesis-video-streams-2", serviceId: "amazon-kinesis-video-streams", domain: 3, category: "Media Services", front: "Kinesis Video Streams vs Kinesis Data Streams?", back: "Video Streams is video/time-encoded media specific; Data Streams handles generic real-time data records." },
+
+  { id: "fc-aws-cli-1", serviceId: "aws-cli", domain: 4, category: "Management and Governance", front: "What is the AWS CLI for?", back: "Scriptable, text-based command-line access to virtually every AWS service — great for automation." },
+  { id: "fc-aws-cli-2", serviceId: "aws-cli", domain: 4, category: "Management and Governance", front: "CLI vs Console — which is better for repeatable, auditable operations?", back: "The CLI (or infrastructure as code) — the Console is better for visual, one-off exploration." },
+
+  { id: "fc-aws-management-console-1", serviceId: "aws-management-console", domain: 4, category: "Management and Governance", front: "What is the AWS Management Console?", back: "The browser-based, visual interface for exploring and managing AWS resources." },
+  { id: "fc-aws-management-console-2", serviceId: "aws-management-console", domain: 4, category: "Management and Governance", front: "What browser-based CLI environment is built into the Console?", back: "AWS CloudShell." },
+
+  { id: "fc-aws-health-dashboard-1", serviceId: "aws-health-dashboard", domain: 2, category: "Management and Governance", front: "What does the personalized AWS Health view show that the public Service Health Dashboard doesn't?", back: "Account-specific events — like scheduled maintenance actually affecting your own resources." },
+  { id: "fc-aws-health-dashboard-2", serviceId: "aws-health-dashboard", domain: 2, category: "Management and Governance", front: "Health Dashboard vs CloudWatch?", back: "Health Dashboard: AWS-side service health/maintenance. CloudWatch: your own application/infrastructure monitoring." },
+
+  { id: "fc-aws-license-manager-1", serviceId: "aws-license-manager", domain: 4, category: "Management and Governance", front: "What is AWS License Manager for?", back: "Tracking and enforcing software license usage/entitlements, including bring-your-own-license (BYOL)." },
+  { id: "fc-aws-license-manager-2", serviceId: "aws-license-manager", domain: 4, category: "Management and Governance", front: "Can License Manager block a non-compliant instance launch?", back: "Yes — it can prevent launches that would exceed a defined license entitlement." },
+
+  { id: "fc-amazon-managed-grafana-1", serviceId: "amazon-managed-grafana", domain: 3, category: "Management and Governance", front: "What is Amazon Managed Grafana for?", back: "Fully managed, Grafana-compatible dashboards for visualizing operational data — no self-hosted Grafana servers." },
+  { id: "fc-amazon-managed-grafana-2", serviceId: "amazon-managed-grafana", domain: 3, category: "Management and Governance", front: "Managed Grafana vs Managed Service for Prometheus?", back: "Grafana visualizes; Prometheus stores and queries the underlying metrics — they're commonly paired together." },
+
+  { id: "fc-amazon-managed-service-for-prometheus-1", serviceId: "amazon-managed-service-for-prometheus", domain: 3, category: "Management and Governance", front: "What is Amazon Managed Service for Prometheus for?", back: "Fully managed, Prometheus-compatible metrics storage and querying, commonly for containerized workloads." },
+  { id: "fc-amazon-managed-service-for-prometheus-2", serviceId: "amazon-managed-service-for-prometheus", domain: 3, category: "Management and Governance", front: "Taglish: Bakit gagamit ng Managed Service for Prometheus?", back: "Kapag gumagamit ka na ng Prometheus/PromQL, pero ayaw mo nang magpatakbo at mag-maintain ng sarili mong Prometheus server." },
+
+  { id: "fc-aws-well-architected-tool-1", serviceId: "aws-well-architected-tool", domain: 2, category: "Management and Governance", front: "What are the six Well-Architected Framework pillars?", back: "Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, Sustainability." },
+  { id: "fc-aws-well-architected-tool-2", serviceId: "aws-well-architected-tool", domain: 2, category: "Management and Governance", front: "Does the Well-Architected Tool fix architecture problems automatically?", back: "No — it only surfaces risks and recommendations; your team must act on them." },
 ];

@@ -827,234 +827,1005 @@ export const miscLessons: Lesson[] = [
     questionIds: ["q-aws-device-farm-1", "q-aws-device-farm-2"],
   },
   {
-    id: "machine-learning-services-overview",
+    id: "amazon-comprehend",
     moduleId: "phase-misc",
     category: "Machine Learning",
-    title: "AWS Machine Learning Services (Overview)",
-    shortName: "ML Services",
-    tier: 3,
-    domains: [3],
-    examImportance: "medium",
-    oneLiner:
-      "AWS offers a family of pre-built, pre-trained AI services you call via a simple API for a specific task (language, speech, vision, documents), plus Amazon SageMaker AI for building and training your own custom models when the pre-built services don't fit.",
-    englishExplanation:
-      "Most of these services follow the same pattern: you send data in, AWS's pre-trained model processes it, and you get a structured result back — no ML expertise or model training required. Amazon Comprehend performs natural language processing tasks like sentiment analysis and entity extraction on text. Amazon Lex powers conversational chatbots and voice interfaces (the same technology behind Alexa). Amazon Polly converts text into lifelike synthesized speech. Amazon Rekognition analyzes images and video for objects, faces, text, and inappropriate content. Amazon Textract extracts text, forms, and tables from scanned documents. Amazon Transcribe converts speech (audio) into text. Amazon Translate translates text between languages. Amazon SageMaker AI is the odd one out: instead of a single pre-built task, it is a full platform for building, training, tuning, and deploying your own custom machine learning models when none of the pre-built services fit your specific problem.\n\nFor the exam at this recognition level, the goal is simply to match a described use case (\"convert speech to text,\" \"extract text from scanned invoices,\" \"analyze sentiment in customer reviews\") to the correct service name, and to recognize SageMaker AI as the answer whenever the scenario specifically requires training a custom model rather than using an existing capability.",
-    taglishExplanation:
-      "Karamihan sa mga service na ito ay may parehong pattern: nagpapadala ka ng data, may pre-trained na model na ng AWS ang nagpoproseso, at bumabalik sa'yo ang resulta — hindi mo na kailangang alamin kung paano mag-train ng sariling ML model. Comprehend — sentiment/entity analysis sa text. Lex — conversational chatbot (parang teknolohiya sa likod ng Alexa). Polly — text-to-speech. Rekognition — pag-analyze ng litrato/video. Textract — pag-extract ng text/data mula sa scanned documents. Transcribe — speech-to-text. Translate — pagsasalin ng wika. SageMaker AI — kakaiba dahil hindi ito isang specific na tool lang, kundi buong platform para bumuo, mag-train, at mag-deploy ng sarili mong custom ML model kapag hindi kasya ang mga ready-made service. Para sa exam, ang laman lang na kailangan mong malaman dito ay itugma ang use case sa tamang service.",
-    analogy:
-      "These services are like a toolbox of specialized AI assistants: one reads sentiment in text, one turns speech into text, one speaks text out loud, one looks at images, one reads scanned paperwork, one translates languages, and one lets you build a brand-new custom assistant from scratch when none of the ready-made ones fit the job.",
-    whyItExists:
-      "Training a custom ML model for tasks like sentiment analysis, speech recognition, or image labeling requires significant data, expertise, and time. These pre-built services exist so developers without ML expertise can add proven AI capabilities to an app through a simple API call, while SageMaker AI remains available for the cases that truly need a custom model.",
-    flow: "App sends data (text/image/audio/document) -> the matching AI service processes it with a pre-trained model -> app receives a structured result (sentiment, labels, transcript, translated text, extracted fields)",
-    withoutIt: [
-      "Teams would need to build, train, and host their own machine learning models from scratch for each task",
-      "Adding AI capabilities like sentiment analysis or image recognition would require dedicated ML expertise and much longer development time",
-    ],
-    bestUseCases: [
-      "Adding sentiment analysis or entity extraction to customer feedback (Comprehend)",
-      "Building a conversational chatbot or voice interface (Lex)",
-      "Converting text to natural-sounding speech for accessibility or IVR systems (Polly)",
-      "Moderating or analyzing image/video content at scale (Rekognition)",
-      "Extracting structured data from scanned forms, invoices, or IDs (Textract)",
-      "Transcribing recorded audio or live calls into text (Transcribe)",
-      "Translating content between languages for a global audience (Translate)",
-      "Training a fully custom model for a problem none of the above services solve (SageMaker AI)",
-    ],
-    poorUseCases: [
-      "Using SageMaker AI when a pre-built service already solves the exact problem — that adds unnecessary time and ML expertise overhead",
-      "Expecting these pre-built services to solve a highly specialized, domain-specific problem outside their trained scope — that is when custom modeling with SageMaker AI becomes necessary",
-    ],
-    alternatives: [
-      { need: "Analyze sentiment/entities in text", choose: "Amazon Comprehend" },
-      { need: "Build a conversational chatbot", choose: "Amazon Lex" },
-      { need: "Convert text to speech", choose: "Amazon Polly" },
-      { need: "Analyze images or video content", choose: "Amazon Rekognition" },
-      { need: "Build, train, and deploy a custom ML model", choose: "Amazon SageMaker AI" },
-      { need: "Extract text/data from documents or forms", choose: "Amazon Textract" },
-      { need: "Convert speech to text", choose: "Amazon Transcribe" },
-      { need: "Translate text between languages", choose: "Amazon Translate" },
-    ],
-    keyFeatures: [
-      "Amazon Comprehend: natural language processing — sentiment, entities, key phrases in text",
-      "Amazon Lex: build conversational chatbots and voice interfaces",
-      "Amazon Polly: convert text into lifelike synthesized speech",
-      "Amazon Rekognition: analyze images and video for objects, faces, text, and content moderation",
-      "Amazon SageMaker AI: build, train, tune, and deploy your own custom ML models",
-      "Amazon Textract: extract text, forms, and tables from scanned documents",
-      "Amazon Transcribe: convert speech (audio) into text",
-      "Amazon Translate: translate text between languages",
-    ],
-    availability:
-      "These are fully managed AI services with regional availability that can vary by service; you call an API endpoint and AWS handles all underlying scaling and redundancy.",
-    security:
-      "Access to each service's API is controlled via IAM; since these services may process sensitive text, images, or audio, consider data residency and compliance requirements for whatever content you send to them.",
-    pricingLogic:
-      "Each service is billed per unit of usage (for example, per character translated, per image analyzed, per minute of audio processed), with no upfront cost — pricing details vary per service and should be checked on the current AWS pricing pages rather than memorized as fixed numbers.",
-    examKeywords: [
-      "sentiment analysis -> Comprehend",
-      "chatbot -> Lex",
-      "text-to-speech -> Polly",
-      "image/video analysis -> Rekognition",
-      "custom ML model -> SageMaker AI",
-      "extract text from documents -> Textract",
-      "speech-to-text -> Transcribe",
-      "translate language -> Translate",
-    ],
-    examTraps: [
-      "These are typically quick, recognition-level, service-to-use-case matching questions — don't overthink the underlying ML theory.",
-      "SageMaker AI is the odd one out: choose it specifically when the scenario needs a custom-trained model, not an existing capability.",
-    ],
-    architectureDiagram:
-      "Input (text / image / audio / document)\n  |\nMatching AI service (Comprehend / Lex / Polly / Rekognition / Textract / Transcribe / Translate)\n  |\nStructured output (sentiment / bot response / speech / labels / extracted fields / transcript / translation)\n\n(No existing service fits?) -> Amazon SageMaker AI (build/train/deploy custom model)",
-    architectureCaption:
-      "Match the described input/task to the matching pre-built AI service; fall back to SageMaker AI only for a genuinely custom model need.",
-    mentorTip:
-      "Build a one-line mental flashcard per service and drill the matching, not the internals — that is exactly the level this topic is tested at on the SAA-C03.",
-    questionIds: ["q-machine-learning-services-overview-1", "q-machine-learning-services-overview-2"],
-  },
-  {
-    id: "media-services-overview",
-    moduleId: "phase-misc",
-    category: "Media Services",
-    title: "AWS Media Services (Overview)",
-    shortName: "Media Services",
+    title: "Amazon Comprehend",
+    shortName: "Comprehend",
     tier: 3,
     domains: [3],
     examImportance: "low",
     oneLiner:
-      "Amazon Elastic Transcoder converts video files between formats and resolutions, while Amazon Kinesis Video Streams ingests, processes, and stores live video streams — two different, recognition-level media services.",
+      "Amazon Comprehend uses natural language processing (NLP) to detect sentiment, entities, key phrases, language, and PII in text — without you training any model.",
     englishExplanation:
-      "Amazon Elastic Transcoder is a media transcoding service: you give it a source video file and it converts it into the formats and resolutions needed for different devices (phones, tablets, browsers, smart TVs), without you having to run and manage your own transcoding servers. Amazon Kinesis Video Streams is a different kind of service entirely — it is built for ingesting, processing, and durably storing live or batch video streams (for example, from security cameras or IoT devices) so the video can be played back or fed into further processing, including machine learning-based video analysis.",
+      "Comprehend reads text you send it and returns structured insight: overall sentiment (positive/negative/neutral/mixed), named entities (people, places, organizations, dates), key phrases, the detected language, and even PII detection. It is fully pre-trained — you call an API with raw text and get JSON back within moments. Comprehend Medical, a specialized variant, extracts medical information from clinical text, but for the SAA-C03 the general service is what to recognize.",
     taglishExplanation:
-      "Si Elastic Transcoder ay parang video conversion plant — binibigay mo ang orihinal na video file at kino-convert nito sa iba't ibang format/resolution para sa iba't ibang device, hindi mo na kailangang magpatakbo ng sarili mong transcoding server. Si Kinesis Video Streams naman ay iba — parang conveyor belt na tumatanggap ng live video stream (halimbawa mula sa security camera o IoT device), pinoproseso, at itinatago ito nang maayos para maibalik o mai-analyze pa.",
+      "Si Comprehend ay parang tagabasa na sanay na sanay sa pag-unawa ng damdamin at kahulugan ng text. Padadalhan mo lang ng text (halimbawa customer review), at ibabalik nito kung positive, negative, o neutral ang sentiment, kung sino/ano ang mga entity (pangalan, lugar, petsa), at kung anong wika ginamit — hindi mo na kailangang mag-train ng sarili mong model.",
     analogy:
-      "Elastic Transcoder is like a video conversion shop that takes your master video file and produces copies in every format your customers' devices need. Kinesis Video Streams is like a continuous conveyor belt that catches a live video feed as it happens, safely stores it, and hands it off wherever it needs to go next.",
+      "Comprehend is like handing a stack of customer letters to an assistant who instantly tells you the mood of each letter, who and what is mentioned, and what language it's written in — without you training that assistant yourself.",
     whyItExists:
-      "Video transcoding across many device formats is computationally heavy and tedious to manage yourself, and reliably capturing and storing continuous live video streams at scale requires purpose-built durability and processing pipelines. These two managed services remove that operational burden.",
-    flow: "Elastic Transcoder: source video file -> transcoded into target formats/resolutions -> stored/delivered\nKinesis Video Streams: camera/IoT live video -> ingested and stored -> played back or fed into analytics/ML",
+      "Building a custom NLP model to detect sentiment or extract entities from text requires labeled training data, ML expertise, and ongoing maintenance. Comprehend exists so any application can add this capability through a simple API call.",
+    flow: "Text (reviews, support tickets, documents) -> Amazon Comprehend API -> structured JSON output (sentiment, entities, key phrases, language, PII)",
     withoutIt: [
-      "Teams would need to build and scale their own custom video transcoding pipelines",
-      "Reliably ingesting and storing continuous live video streams at scale would require significant custom infrastructure",
+      "Teams would need to train and maintain their own NLP models for sentiment/entity extraction",
+      "Analyzing large volumes of unstructured text for insight would require significant manual effort or custom ML work",
     ],
     bestUseCases: [
-      "Elastic Transcoder: converting uploaded video files into multiple formats/resolutions for different devices",
-      "Kinesis Video Streams: ingesting live video from cameras or IoT devices for storage, playback, or ML-based analysis",
+      "Analyzing sentiment in customer reviews, support tickets, or social media mentions at scale",
+      "Extracting entities (names, dates, organizations) from unstructured documents",
+      "Detecting personally identifiable information (PII) in text before storage or sharing",
     ],
     poorUseCases: [
-      "Elastic Transcoder is not for ingesting live streaming video — use Kinesis Video Streams (or AWS Elemental MediaLive) for that",
-      "Kinesis Video Streams is not a batch file-format converter for existing video files — that is Elastic Transcoder's job",
+      "Converting speech to text — that is Amazon Transcribe's job, not Comprehend's",
+      "Training a fully custom NLP model for a highly specialized domain — that calls for SageMaker AI",
+    ],
+    alternatives: [
+      { need: "Analyze sentiment/entities in text", choose: "Amazon Comprehend" },
+      { need: "Build a custom NLP model from scratch", choose: "Amazon SageMaker AI" },
+    ],
+    keyFeatures: [
+      "Sentiment analysis (positive/negative/neutral/mixed)",
+      "Entity recognition (people, places, organizations, dates, quantities)",
+      "Key phrase extraction and dominant language detection",
+      "PII detection and redaction",
+    ],
+    availability:
+      "A fully managed, regionally available API service; AWS handles all scaling of the underlying model infrastructure.",
+    security:
+      "API calls are authorized via IAM; sensitive text sent to Comprehend should be evaluated for data residency and compliance requirements.",
+    pricingLogic:
+      "Billed per unit of text processed (typically per 100-character unit), with no upfront cost — check current AWS pricing for exact rates.",
+    examKeywords: [
+      "sentiment analysis -> Comprehend",
+      "extract entities from text -> Comprehend",
+      "detect PII in text -> Comprehend",
+    ],
+    examTraps: [
+      "Don't confuse Comprehend (understands existing text) with Lex (builds conversational interfaces) or Translate (translates between languages) — each targets a different NLP task.",
+    ],
+    architectureDiagram:
+      "Unstructured text (reviews / tickets / documents)\n  |\nAmazon Comprehend\n  |\nSentiment + entities + key phrases + language + PII flags",
+    architectureCaption: "Comprehend turns raw text into structured, actionable insight.",
+    mentorTip: "If the scenario says 'understand/analyze the meaning or sentiment of text,' think Comprehend.",
+    questionIds: ["q-amazon-comprehend-1", "q-amazon-comprehend-2"],
+  },
+  {
+    id: "amazon-lex",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Lex",
+    shortName: "Lex",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Lex builds conversational chatbots and voice interfaces using the same natural-language-understanding technology behind Alexa.",
+    englishExplanation:
+      "Lex takes user input (text or voice) and understands intent — what the user is trying to accomplish — then maps it to a Lambda function or backend logic that fulfills the request. You define 'intents' (e.g., 'BookHotel'), sample utterances users might say, and 'slots' (parameters like check-in date), and Lex handles the conversational flow, including asking follow-up questions for missing information.",
+    taglishExplanation:
+      "Si Lex ang gamit mo kung gusto mong gumawa ng chatbot o voice assistant — kapareho ng teknolohiya sa likod ng Alexa. Nagde-define ka ng mga 'intent' (halimbawa 'MagBookHotel'), mga halimbawang sasabihin ng user, at mga 'slot' na kailangang malaman (petsa ng check-in). Ang Lex na ang bahalang mag-unawa ng sinasabi ng user at magtanong kung may kulang.",
+    analogy:
+      "Lex is like a trained receptionist who understands what a caller wants even if they phrase it differently each time, asks for any missing details, and then routes the request to the right department (your backend logic) to get it done.",
+    whyItExists:
+      "Building a natural-language chatbot from scratch requires speech recognition, intent classification, and dialogue management — all nontrivial ML problems. Lex packages all of this so developers can define intents and let Lex handle the conversational understanding.",
+    flow: "User speaks/types a request -> Lex identifies intent and required slots -> Lex asks for any missing information -> fulfillment (often via AWS Lambda) -> response returned to user",
+    withoutIt: [
+      "Teams would need to build their own speech recognition and natural-language-understanding pipeline",
+      "Handling varied phrasing and multi-turn conversations would require significant custom dialogue-management code",
+    ],
+    bestUseCases: [
+      "Building a customer service chatbot for a website or app",
+      "Creating a voice-activated interface for an IVR (interactive voice response) phone system",
+    ],
+    poorUseCases: [
+      "Converting a block of text to speech — that is Amazon Polly's job",
+      "One-way translation of text between languages — that is Amazon Translate's job",
+    ],
+    alternatives: [
+      { need: "Build a conversational chatbot/voice bot", choose: "Amazon Lex" },
+      { need: "Convert text into speech", choose: "Amazon Polly" },
+    ],
+    keyFeatures: [
+      "Automatic speech recognition (ASR) and natural language understanding (NLU)",
+      "Intent and slot-based conversation design",
+      "Built-in integration with AWS Lambda for fulfillment",
+      "Multi-channel support (voice, chat, messaging platforms)",
+    ],
+    availability:
+      "A fully managed, regionally available service; AWS scales the underlying speech/NLU models automatically.",
+    security:
+      "Access controlled via IAM; conversations can carry sensitive user input, so apply the same data-handling care as any user-facing input channel.",
+    pricingLogic:
+      "Billed per text or speech request processed — check current AWS pricing for exact per-request rates.",
+    examKeywords: [
+      "conversational chatbot -> Lex",
+      "voice interface / IVR -> Lex",
+      "same technology as Alexa -> Lex",
+    ],
+    examTraps: [
+      "Lex is for understanding and responding to conversation, not converting text to speech (that's Polly) or translating languages (that's Translate) — don't mix these up.",
+    ],
+    architectureDiagram:
+      "User (voice/text) -> Amazon Lex (intent + slot recognition) -> AWS Lambda (fulfillment logic) -> Response back to user",
+    architectureCaption: "Lex handles the conversational understanding; Lambda typically handles the actual fulfillment logic.",
+    mentorTip: "'Chatbot' or 'voice bot' in a scenario almost always means Lex.",
+    questionIds: ["q-amazon-lex-1", "q-amazon-lex-2"],
+  },
+  {
+    id: "amazon-polly",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Polly",
+    shortName: "Polly",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner: "Amazon Polly converts written text into lifelike, natural-sounding speech (text-to-speech).",
+    englishExplanation:
+      "Polly takes text as input and returns an audio stream or file of that text spoken aloud, using deep-learning-based voices across many languages and accents. It supports SSML (Speech Synthesis Markup Language) for fine control over pronunciation, pauses, and emphasis, and offers both standard and more realistic 'Neural' voices.",
+    taglishExplanation:
+      "Si Polly ay simpleng text-to-speech — binibigay mo ang text, at ibabalik nito ang audio ng pagbigkas nito sa natural na paraan, may iba't ibang wika at accent. May 'Neural' voices pa para mas makatotohanan ang tunog.",
+    analogy:
+      "Polly is like a highly skilled voice actor who instantly reads any script you hand over out loud, in a natural-sounding voice, in whatever language or accent you choose.",
+    whyItExists:
+      "Building natural-sounding speech synthesis from scratch requires deep learning models trained on large voice datasets. Polly exists so any application can add spoken audio output through a simple API call.",
+    flow: "Text (with optional SSML markup) -> Amazon Polly -> synthesized speech audio (stream or file)",
+    withoutIt: [
+      "Applications would have no easy way to convert text content into natural spoken audio",
+      "Accessibility features that read content aloud would require expensive custom voice-synthesis development",
+    ],
+    bestUseCases: [
+      "Reading content aloud for accessibility (screen-reader-like experiences)",
+      "Voice responses in an IVR system or virtual assistant",
+      "Generating narrated audio for e-learning or video content",
+    ],
+    poorUseCases: [
+      "Converting spoken audio into text — that is Amazon Transcribe's job, the opposite direction",
+      "Understanding the meaning/intent of speech — that is Amazon Lex's job",
+    ],
+    alternatives: [
+      { need: "Convert text to speech", choose: "Amazon Polly" },
+      { need: "Convert speech to text", choose: "Amazon Transcribe" },
+    ],
+    keyFeatures: [
+      "Deep-learning-based, lifelike voices across many languages/accents",
+      "SSML support for pronunciation, pauses, and emphasis control",
+      "Standard and higher-fidelity Neural voice engines",
+      "Streaming or file-based audio output",
+    ],
+    availability: "A fully managed, regionally available API service with automatic scaling.",
+    security:
+      "API access controlled via IAM; generated audio can be encrypted in transit and at rest like any other stored media.",
+    pricingLogic:
+      "Billed per character of text converted to speech, with Neural voices priced higher than standard voices — check current AWS pricing for exact rates.",
+    examKeywords: ["text-to-speech -> Polly", "natural-sounding voice output -> Polly"],
+    examTraps: [
+      "Remember the direction: Polly is text -> speech. Transcribe is speech -> text. Mixing these two up is the most common exam trap for this pair.",
+    ],
+    architectureDiagram: "Text + SSML markup\n  |\nAmazon Polly\n  |\nSynthesized speech audio (stream/file)",
+    architectureCaption: "Polly turns written text into natural-sounding spoken audio.",
+    mentorTip: "Text going IN, audio coming OUT = Polly. Keep that direction fixed in memory.",
+    questionIds: ["q-amazon-polly-1", "q-amazon-polly-2"],
+  },
+  {
+    id: "amazon-rekognition",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Rekognition",
+    shortName: "Rekognition",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Rekognition analyzes images and video to detect objects, scenes, faces, text, and inappropriate content, using pre-trained computer vision models.",
+    englishExplanation:
+      "Rekognition accepts an image or video (from S3 or a live stream) and returns labels for detected objects/scenes, facial analysis (attributes, comparison, and recognition against a stored collection), text found in the image, and content moderation flags for unsafe content. It also supports custom labels for detecting objects specific to your own use case when the built-in labels aren't enough.",
+    taglishExplanation:
+      "Si Rekognition ay parang taong may matalim na paningin — binibigay mo ang litrato o video, at kaya nitong tukuyin ang mga bagay, tao/mukha, text na nakasulat, at kahit content na hindi angkop ipakita (content moderation). May Custom Labels pa kung gusto mong turuan itong kumilala ng sarili mong specific na bagay.",
+    analogy:
+      "Rekognition is like handing a photo or video clip to someone with expert visual analysis skills, who instantly tells you what objects and people are in it, reads any visible text, and flags anything inappropriate.",
+    whyItExists:
+      "Building custom computer-vision models for object detection, facial analysis, or content moderation requires large labeled image datasets and deep ML expertise. Rekognition exists so applications can add these capabilities through a simple API call.",
+    flow: "Image/video (from S3 or live stream) -> Amazon Rekognition -> labels, facial analysis, text detection, or moderation flags",
+    withoutIt: [
+      "Teams would need to train and host their own computer vision models for image/video analysis",
+      "Detecting inappropriate content or specific faces at scale would require significant custom ML infrastructure",
+    ],
+    bestUseCases: [
+      "Moderating user-uploaded images/video for inappropriate content at scale",
+      "Facial verification for identity checks (comparing a live photo to a stored ID photo)",
+      "Searchable media libraries tagged automatically by detected objects/scenes",
+    ],
+    poorUseCases: [
+      "Extracting structured text/data from scanned forms or invoices — that is Amazon Textract's more specialized job",
+      "Analyzing the sentiment of written text — that is Amazon Comprehend's job",
+    ],
+    alternatives: [
+      { need: "Analyze images/video for objects, faces, or moderation", choose: "Amazon Rekognition" },
+      { need: "Extract structured text/data from documents", choose: "Amazon Textract" },
+    ],
+    keyFeatures: [
+      "Object and scene detection with confidence scores",
+      "Facial analysis, comparison, and recognition against a stored face collection",
+      "Text detection within images",
+      "Content moderation and Custom Labels for domain-specific objects",
+    ],
+    availability:
+      "A fully managed, regionally available API service with automatic scaling for image/video processing.",
+    security:
+      "Access controlled via IAM; facial recognition features carry privacy/compliance implications that should be reviewed against applicable regulations before use.",
+    pricingLogic:
+      "Billed per image analyzed or per minute of video processed, with different rates per feature (labels vs. facial analysis vs. moderation) — check current AWS pricing for exact rates.",
+    examKeywords: [
+      "image/video analysis -> Rekognition",
+      "facial recognition/comparison -> Rekognition",
+      "content moderation for images -> Rekognition",
+    ],
+    examTraps: [
+      "Don't confuse Rekognition (visual content: images/video) with Textract (structured text/data extraction from documents) — a scanned invoice question points to Textract, not Rekognition.",
+    ],
+    architectureDiagram:
+      "Image/video (S3 or live stream)\n  |\nAmazon Rekognition\n  |\nLabels + faces + text-in-image + moderation flags",
+    architectureCaption: "Rekognition applies computer vision to images and video without you training a model.",
+    mentorTip: "'Photo/video' + 'detect/recognize/moderate' = Rekognition. 'Scanned document' + 'extract' = Textract.",
+    questionIds: ["q-amazon-rekognition-1", "q-amazon-rekognition-2"],
+  },
+  {
+    id: "amazon-sagemaker-ai",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon SageMaker AI",
+    shortName: "SageMaker AI",
+    tier: 3,
+    domains: [3],
+    examImportance: "medium",
+    oneLiner:
+      "Amazon SageMaker AI is a full platform for building, training, tuning, and deploying your own custom machine learning models, for the cases none of AWS's pre-built AI services fit.",
+    englishExplanation:
+      "Unlike Comprehend, Lex, Polly, Rekognition, Textract, Transcribe, and Translate — which are single-purpose, pre-trained services — SageMaker AI is a general-purpose platform: it provides managed Jupyter notebooks for experimentation, managed training infrastructure (including distributed training and Spot-instance-based cost savings), model tuning, and managed hosting/endpoints for deploying a trained model into production. You use SageMaker AI when your problem is specific enough that no existing pre-built AWS AI service already solves it.",
+    taglishExplanation:
+      "Kung ang ibang ML service ng AWS ay parang mga ready-made na kagamitan, si SageMaker AI naman ay ang buong pabrika — dito ka gagawa, magte-train, at magde-deploy ng sarili mong ML model kapag wala talagang existing service na bagay sa specific na problema mo. May managed notebooks, managed training, at managed hosting/endpoints ito.",
+    analogy:
+      "If Comprehend, Rekognition, and the rest are ready-made specialist tools, SageMaker AI is the fully equipped workshop where you build, test, and manufacture a brand-new custom tool from scratch when none of the ready-made ones fit the job.",
+    whyItExists:
+      "Not every ML problem fits one of the pre-built, single-purpose AWS AI services. SageMaker AI exists to give data scientists and ML engineers a fully managed environment for the entire custom model lifecycle — without having to provision and manage their own training/hosting infrastructure.",
+    flow: "Prepare/label training data -> build & experiment in a SageMaker notebook -> train the model on managed training infrastructure -> tune hyperparameters -> deploy to a managed SageMaker endpoint -> serve real-time or batch predictions",
+    withoutIt: [
+      "Teams would need to provision, manage, and scale their own ML training and hosting infrastructure",
+      "Building a reproducible ML pipeline (data prep, training, tuning, deployment) would require significant custom engineering",
+    ],
+    bestUseCases: [
+      "Training a genuinely custom model for a problem specific to the business (e.g., custom fraud-detection scoring, custom demand forecasting)",
+      "Needing full control over model architecture, training data, and deployment — beyond what a pre-built AI service offers",
+    ],
+    poorUseCases: [
+      "Common, well-defined tasks like sentiment analysis, text-to-speech, or document text extraction — using SageMaker AI here means unnecessary time and ML expertise overhead versus a pre-built service",
+      "Quick prototyping when a pre-built API already solves the exact problem",
+    ],
+    alternatives: [
+      { need: "Solve a common, well-defined AI task (sentiment, speech, vision, translation)", choose: "The matching pre-built AI service (Comprehend/Polly/Rekognition/Translate/etc.)" },
+      { need: "Build/train/deploy a genuinely custom ML model", choose: "Amazon SageMaker AI" },
+    ],
+    keyFeatures: [
+      "Managed Jupyter notebooks for ML experimentation",
+      "Managed, scalable model training (including distributed and Spot-based training)",
+      "Automatic model tuning (hyperparameter optimization)",
+      "Managed real-time and batch inference endpoints for deployment",
+    ],
+    availability:
+      "A fully managed platform; training and hosting infrastructure scale on demand within your chosen instance types and regions.",
+    security:
+      "IAM controls access to notebooks, training jobs, and endpoints; training data and models can be encrypted at rest and accessed only within your VPC when configured for private networking.",
+    pricingLogic:
+      "Billed based on the compute resources consumed for notebooks, training jobs, and hosting endpoints — you pay only while these resources are running, similar to EC2-style compute billing.",
+    examKeywords: ["build/train a custom ML model -> SageMaker AI", "no existing service fits the ML need -> SageMaker AI"],
+    examTraps: [
+      "The exam trap is choosing SageMaker AI when a simpler, pre-built AI service already solves the described problem — always check whether Comprehend/Lex/Polly/Rekognition/Textract/Transcribe/Translate already covers the exact use case first.",
+    ],
+    architectureDiagram:
+      "Training data -> SageMaker notebook (experiment) -> SageMaker training job -> tuned model -> SageMaker endpoint -> real-time/batch predictions",
+    architectureCaption: "SageMaker AI covers the full custom-model lifecycle when no pre-built AI service fits.",
+    mentorTip: "SageMaker AI is the answer only when the scenario explicitly needs a custom-trained model — otherwise, look for the matching pre-built service first.",
+    questionIds: ["q-amazon-sagemaker-ai-1", "q-amazon-sagemaker-ai-2"],
+  },
+  {
+    id: "amazon-textract",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Textract",
+    shortName: "Textract",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Textract automatically extracts text, handwriting, forms, and tables from scanned documents — going beyond simple optical character recognition (OCR).",
+    englishExplanation:
+      "Textract doesn't just read raw text like basic OCR — it understands document structure: it can identify form fields and their values (key-value pairs), extract table data preserving rows/columns, and detect handwriting alongside printed text. You send it a scanned image or PDF (often from S3), and it returns structured, machine-readable data instead of a flat block of text.",
+    taglishExplanation:
+      "Si Textract ay parang sobrang husay na tagabasa ng dokumento — hindi lang basic OCR, kundi naiintindihan din nito ang istruktura: alam nitong ito ay 'field' at ang katapat na 'value,' o ito ay talahanayan/table. Padadalhan mo ng scanned na dokumento (mula sa S3), at ibabalik nito ang organized/structured na data, hindi lang plain text.",
+    analogy:
+      "If basic OCR is like someone who can only read the words on a page out loud, Textract is like an assistant who reads a form and hands you back a neatly organized spreadsheet of exactly which field had which value, and which numbers belonged to which row and column.",
+    whyItExists:
+      "Manually keying data from scanned forms, invoices, and IDs is slow and error-prone, and basic OCR alone loses the document's structure (which text belongs to which field or table cell). Textract exists to automate structured data extraction from scanned documents at scale.",
+    flow: "Scanned document/PDF (often in S3) -> Amazon Textract -> structured output: raw text, key-value form pairs, and table data",
+    withoutIt: [
+      "Teams would need manual data entry to digitize scanned forms, invoices, or IDs",
+      "Basic OCR alone would lose the structural relationship between form fields, labels, and table cells",
+    ],
+    bestUseCases: [
+      "Automating data entry from scanned invoices, receipts, or tax forms",
+      "Extracting structured table data from scanned reports",
+      "Processing identity documents (IDs, passports) for verification workflows",
+    ],
+    poorUseCases: [
+      "Analyzing sentiment or meaning within already-digital text — that is Amazon Comprehend's job",
+      "Detecting objects, scenes, or faces in general photos — that is Amazon Rekognition's job",
+    ],
+    alternatives: [
+      { need: "Extract structured text/data from scanned documents", choose: "Amazon Textract" },
+      { need: "Analyze general images for objects/faces", choose: "Amazon Rekognition" },
+    ],
+    keyFeatures: [
+      "Key-value pair extraction from forms",
+      "Table extraction preserving row/column structure",
+      "Handwriting and printed text recognition",
+      "Integration with S3 for batch document processing",
+    ],
+    availability:
+      "A fully managed, regionally available API service with automatic scaling for document processing volume.",
+    security:
+      "Access controlled via IAM; documents often contain sensitive personal or financial data, so encryption at rest/in transit and least-privilege access are especially important.",
+    pricingLogic:
+      "Billed per page processed, with different rates for basic text detection versus forms/table analysis — check current AWS pricing for exact rates.",
+    examKeywords: [
+      "extract text/data from scanned forms -> Textract",
+      "extract tables from documents -> Textract",
+      "OCR plus structure -> Textract",
+    ],
+    examTraps: [
+      "If a scenario only needs plain text from an image with no structure (no forms/tables), Rekognition's basic text detection could technically apply — but 'forms,' 'tables,' or 'key-value pairs' point specifically to Textract.",
+    ],
+    architectureDiagram: "Scanned document/PDF (S3)\n  |\nAmazon Textract\n  |\nRaw text + key-value form pairs + table data",
+    architectureCaption: "Textract extracts structured data, not just raw text, from scanned documents.",
+    mentorTip: "'Scanned form/invoice' + 'extract structured data' = Textract, every time.",
+    questionIds: ["q-amazon-textract-1", "q-amazon-textract-2"],
+  },
+  {
+    id: "amazon-transcribe",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Transcribe",
+    shortName: "Transcribe",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Transcribe converts spoken audio into written text (speech-to-text), including support for real-time streaming and multiple speakers.",
+    englishExplanation:
+      "Transcribe takes an audio file or live audio stream and returns a text transcript, with optional speaker labeling (identifying who said what), custom vocabulary for domain-specific terms, and automatic punctuation. Amazon Transcribe Medical is a specialized variant for medical dictation and conversation, but the general service is what matters for the SAA-C03.",
+    taglishExplanation:
+      "Si Transcribe ay ang kabaligtaran ng Polly — binibigay mo ang audio (recorded o live stream), at ibabalik nito ang text ng sinabi. Kaya rin nitong tukuyin kung sinong speaker ang nagsalita, at tumatanggap ng custom vocabulary para sa mga specific na termino ng industriya mo.",
+    analogy:
+      "Transcribe is like a professional stenographer who listens to a recording or live call and instantly types out exactly what was said, even noting which speaker said which part.",
+    whyItExists:
+      "Manually transcribing audio recordings or live calls into text is slow and labor-intensive. Transcribe exists so applications can automatically convert spoken audio into searchable, analyzable text.",
+    flow: "Audio file or live audio stream -> Amazon Transcribe -> text transcript (with optional speaker labels and punctuation)",
+    withoutIt: [
+      "Teams would need manual transcription of recorded audio or live calls",
+      "Searching, analyzing, or archiving spoken content as text would require significant manual effort",
+    ],
+    bestUseCases: [
+      "Transcribing customer service call recordings for analysis or compliance archiving",
+      "Generating live captions for video streams or meetings",
+      "Creating searchable text transcripts of podcasts or recorded meetings",
+    ],
+    poorUseCases: [
+      "Converting text back into spoken audio — that is Amazon Polly's job, the opposite direction",
+      "Understanding the intent/meaning behind a conversation to trigger an action — that is Amazon Lex's job",
+    ],
+    alternatives: [
+      { need: "Convert speech to text", choose: "Amazon Transcribe" },
+      { need: "Convert text to speech", choose: "Amazon Polly" },
+    ],
+    keyFeatures: [
+      "Batch and real-time streaming transcription",
+      "Automatic speaker diarization (labeling who spoke when)",
+      "Custom vocabulary support for domain-specific terms",
+      "Automatic punctuation and formatting",
+    ],
+    availability:
+      "A fully managed, regionally available API service supporting both batch and real-time streaming transcription.",
+    security:
+      "Access controlled via IAM; transcribed audio content (which may include sensitive conversations) should be handled with the same data-protection care as its source recordings.",
+    pricingLogic:
+      "Billed per second (or minute) of audio processed, with streaming transcription typically priced differently from batch — check current AWS pricing for exact rates.",
+    examKeywords: ["speech-to-text -> Transcribe", "call recording transcription -> Transcribe", "live captioning -> Transcribe"],
+    examTraps: [
+      "Remember the direction: Transcribe is speech -> text. Polly is text -> speech. This exact pair is a favorite recognition-level exam trap.",
+    ],
+    architectureDiagram: "Audio file / live stream\n  |\nAmazon Transcribe\n  |\nText transcript (+ speaker labels, punctuation)",
+    architectureCaption: "Transcribe turns spoken audio into a written transcript.",
+    mentorTip: "Audio going IN, text coming OUT = Transcribe. Keep that direction fixed opposite of Polly.",
+    questionIds: ["q-amazon-transcribe-1", "q-amazon-transcribe-2"],
+  },
+  {
+    id: "amazon-translate",
+    moduleId: "phase-misc",
+    category: "Machine Learning",
+    title: "Amazon Translate",
+    shortName: "Translate",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner: "Amazon Translate provides fast, fluent machine translation of text between languages using neural machine translation.",
+    englishExplanation:
+      "Translate accepts text in a source language and returns it translated into a target language, supporting dozens of languages and both real-time (synchronous) and batch (asynchronous, for large document sets) translation. It uses neural machine translation, which produces more natural, context-aware translations than older rule-based approaches.",
+    taglishExplanation:
+      "Si Translate ay simpleng tagasalin ng wika — ibinibigay mo ang text sa isang wika, at ibabalik nito ito nang naisalin sa target na wika. May real-time translation ito para sa maliliit na text, at batch translation naman para sa maraming dokumento nang sabay-sabay.",
+    analogy:
+      "Translate is like having a professional interpreter instantly rewrite any document or message into another language, keeping the meaning natural rather than a stiff word-for-word conversion.",
+    whyItExists:
+      "Building a high-quality machine translation model requires massive multilingual training data and ongoing model improvement. Translate exists so applications can add fluent, near-instant translation between languages through a simple API call.",
+    flow: "Text in source language -> Amazon Translate -> translated text in target language",
+    withoutIt: [
+      "Applications serving a global audience would need a third-party or custom translation solution",
+      "Localizing large volumes of content into multiple languages would be slow and costly to do manually",
+    ],
+    bestUseCases: [
+      "Translating user-generated content or support tickets for a global user base",
+      "Localizing application content or documentation into multiple languages at scale",
+      "Real-time translation of chat messages between users speaking different languages",
+    ],
+    poorUseCases: [
+      "Understanding the sentiment or intent of text — that is Amazon Comprehend's or Lex's job, not Translate's",
+      "Converting text to spoken audio — that is Amazon Polly's job",
+    ],
+    alternatives: [
+      { need: "Translate text between languages", choose: "Amazon Translate" },
+      { need: "Analyze sentiment/meaning of text", choose: "Amazon Comprehend" },
+    ],
+    keyFeatures: [
+      "Neural machine translation across dozens of language pairs",
+      "Real-time (synchronous) translation for short text",
+      "Batch (asynchronous) translation for large document sets",
+      "Custom terminology support for domain-specific vocabulary",
+    ],
+    availability:
+      "A fully managed, regionally available API service with automatic scaling for both real-time and batch translation workloads.",
+    security:
+      "Access controlled via IAM; translated content should follow the same data-handling and residency considerations as the original source text.",
+    pricingLogic:
+      "Billed per character of text translated, with batch translation of large volumes typically following the same per-character model — check current AWS pricing for exact rates.",
+    examKeywords: ["translate text between languages -> Translate", "localize content for global users -> Translate"],
+    examTraps: [
+      "Translate only changes language — it does not analyze meaning (Comprehend) or generate speech (Polly). A scenario needing both translation and voice output requires chaining Translate with Polly.",
+    ],
+    architectureDiagram: "Text (source language)\n  |\nAmazon Translate\n  |\nText (target language)\n\n(Need spoken output too?) -> chain with Amazon Polly",
+    architectureCaption: "Translate converts text between languages; chain with Polly for translated speech.",
+    mentorTip: "'Translate between languages' = Translate. If the scenario also wants it spoken aloud, that's Translate + Polly together.",
+    questionIds: ["q-amazon-translate-1", "q-amazon-translate-2"],
+  },
+  {
+    id: "amazon-elastic-transcoder",
+    moduleId: "phase-misc",
+    category: "Media Services",
+    title: "Amazon Elastic Transcoder",
+    shortName: "Elastic Transcoder",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Elastic Transcoder converts (transcodes) video and audio files from their source format into the formats and resolutions needed for different devices.",
+    englishExplanation:
+      "You upload a source media file (commonly to S3), define one or more output 'presets' (format, resolution, bitrate) matching the devices you need to support (phones, tablets, browsers, smart TVs), and Elastic Transcoder converts the file into each target format without you running your own transcoding servers.",
+    taglishExplanation:
+      "Si Elastic Transcoder ay parang video conversion shop — nag-a-upload ka ng orihinal na video file, pinipili mo ang mga output format/resolution na kailangan mo para sa iba't ibang device, at kino-convert nito ang file nang hindi mo kailangang magpatakbo ng sarili mong transcoding server.",
+    analogy:
+      "Elastic Transcoder is like a print shop that takes your one master photo and produces perfectly sized prints for every frame size a customer might want — except here it's video files and device formats instead of photo prints.",
+    whyItExists:
+      "Different devices and players require different video formats, resolutions, and bitrates, and running your own fleet of transcoding servers to handle this is expensive and operationally heavy. Elastic Transcoder exists to remove that operational burden.",
+    flow: "Source video/audio file (S3) -> Elastic Transcoder job with output presets -> transcoded files in target formats/resolutions (S3)",
+    withoutIt: [
+      "Teams would need to build and scale their own custom video transcoding pipeline",
+      "Supporting many device formats/resolutions would require significant custom infrastructure and maintenance",
+    ],
+    bestUseCases: [
+      "Converting uploaded video files into multiple formats/resolutions for web, mobile, and smart-TV playback",
+      "Batch-converting a media library into a new standard format",
+    ],
+    poorUseCases: [
+      "Ingesting or processing live, real-time video streams — that is Amazon Kinesis Video Streams' job, not Elastic Transcoder's",
+      "Analyzing video content for objects or moderation — that is Amazon Rekognition's job",
     ],
     alternatives: [
       { need: "Convert video files between formats/resolutions", choose: "Amazon Elastic Transcoder" },
       { need: "Ingest and store live video streams", choose: "Amazon Kinesis Video Streams" },
     ],
     keyFeatures: [
-      "Elastic Transcoder: converts source video into multiple output formats/resolutions",
-      "Kinesis Video Streams: ingests, processes, and durably stores live or batch video streams, with playback and ML-analysis integration",
+      "Converts source media into multiple output formats/resolutions/bitrates in one job",
+      "Predefined and custom transcoding presets",
+      "Reads from and writes to Amazon S3",
+      "Pay only for the media actually transcoded",
     ],
     availability:
-      "Both are fully managed AWS services; you do not provision or scale transcoding or ingestion infrastructure yourself.",
+      "A fully managed, regionally available service; AWS handles the underlying transcoding compute infrastructure and its scaling.",
     security:
-      "Access to both services is controlled via IAM; stored/streamed media can be encrypted at rest and in transit.",
+      "Access controlled via IAM; source and output files stored in S3 can use standard S3 encryption and bucket policies.",
     pricingLogic:
-      "Elastic Transcoder bills per minute of video transcoded; Kinesis Video Streams bills based on data ingested and stored — check current AWS pricing for exact rates rather than assuming a fixed figure.",
-    examKeywords: [
-      "transcode video -> Elastic Transcoder",
-      "ingest live video streams -> Kinesis Video Streams",
-    ],
+      "Billed per minute of output media transcoded, with pricing varying by output resolution/definition (SD vs HD vs 4K) — check current AWS pricing for exact rates.",
+    examKeywords: ["transcode/convert video files -> Elastic Transcoder", "batch video format conversion -> Elastic Transcoder"],
     examTraps: [
-      "Don't confuse Kinesis Video Streams (video-specific ingestion) with Kinesis Data Streams (generic real-time data records) — they are different services for different data types.",
+      "Don't confuse Elastic Transcoder (batch conversion of existing files) with Kinesis Video Streams (ingesting live video) — 'convert/transcode a file' points here; 'ingest a live camera feed' points to Kinesis Video Streams.",
     ],
     architectureDiagram:
-      "Elastic Transcoder:\nSource video file -> Elastic Transcoder -> multiple output formats/resolutions\n\nKinesis Video Streams:\nCamera/IoT device -> Kinesis Video Streams -> stored/played back/analyzed",
-    architectureCaption:
-      "Two distinct media services: one converts existing video files, the other ingests and stores live video streams.",
-    mentorTip:
-      "Recognition-level only: \"convert/transcode a video file\" points to Elastic Transcoder; \"ingest/store a live video feed from a camera or device\" points to Kinesis Video Streams.",
-    questionIds: ["q-media-services-overview-1", "q-media-services-overview-2"],
+      "Source video file (S3)\n  |\nAmazon Elastic Transcoder (output presets)\n  |\nTranscoded files: multiple formats/resolutions (S3)",
+    architectureCaption: "Elastic Transcoder batch-converts existing media files into the formats each device needs.",
+    mentorTip: "'Convert/transcode an existing video file' = Elastic Transcoder. 'Ingest a live video feed' = Kinesis Video Streams.",
+    questionIds: ["q-amazon-elastic-transcoder-1", "q-amazon-elastic-transcoder-2"],
   },
   {
-    id: "management-governance-extras",
+    id: "amazon-kinesis-video-streams",
     moduleId: "phase-misc",
-    category: "Management and Governance",
-    title: "Management & Governance Extras",
-    shortName: "Mgmt & Gov Extras",
+    category: "Media Services",
+    title: "Amazon Kinesis Video Streams",
+    shortName: "Kinesis Video Streams",
     tier: 3,
-    domains: [4],
-    examImportance: "medium",
+    domains: [3],
+    examImportance: "low",
     oneLiner:
-      "A recognition-level round-up of everyday AWS management and governance tools: the CLI and Management Console as interfaces, the Health Dashboard for service health, License Manager for software license tracking, Managed Grafana and Managed Service for Prometheus for observability, and the Well-Architected Tool for self-service architecture review.",
+      "Amazon Kinesis Video Streams securely ingests, processes, and durably stores live or batch video (and other time-encoded media) from devices like cameras, for playback or further analysis.",
     englishExplanation:
-      "The AWS CLI and the AWS Management Console are the two everyday interfaces to AWS: the CLI lets you script and automate operations from a terminal (and is the natural fit for repeatable, auditable, infrastructure-as-code-friendly workflows), while the Console is the visual, browser-based interface most people start with. The AWS Health Dashboard shows the operational status of AWS services and any planned changes or maintenance that could affect your account, distinct from just \"is a service generally up\" — it can surface account-specific events relevant to your own resources. AWS License Manager helps you track and manage software licenses (including bring-your-own-license scenarios) across your AWS resources, so you stay within your license entitlements. Amazon Managed Grafana provides managed, Grafana-compatible dashboards for visualizing operational data from many sources, without you having to run and patch your own Grafana servers. Amazon Managed Service for Prometheus provides managed, Prometheus-compatible metrics storage and querying for monitoring containerized and other workloads, without you having to operate your own Prometheus infrastructure. The AWS Well-Architected Tool is a free, self-service tool that walks you through reviewing a workload against the six pillars of the AWS Well-Architected Framework (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability), surfacing risks and recommendations without requiring a live human-led review.",
+      "Kinesis Video Streams is built for capturing streaming video (and audio, RADAR, LIDAR, or other time-encoded data) from thousands of connected devices — such as security cameras, doorbells, or IoT sensors — durably storing it, and making it available for playback, batch processing, or feeding into machine-learning-based analysis (including integration with Rekognition Video). It is a different tool from Kinesis Data Streams, which handles generic real-time data records rather than video specifically.",
     taglishExplanation:
-      "Ang AWS CLI at Management Console ay ang dalawang pangunahing paraan para makipag-ugnayan sa AWS — ang CLI para sa pag-a-automate/scripting, ang Console naman ang visual, browser-based na interface. Ang Health Dashboard ay nagpapakita ng status ng mga AWS service at ng mga planadong pagbabago/maintenance na baka makaapekto sa account mo. Ang License Manager ay tumutulong mag-track ng software licenses (kasama ang bring-your-own-license) sa mga resources mo. Ang Managed Grafana ay nagbibigay ng managed dashboards na compatible sa Grafana, hindi mo na kailangang magpatakbo ng sarili mong Grafana server. Ang Managed Service for Prometheus naman ay managed storage/query ng metrics na compatible sa Prometheus, karaniwang para sa containerized workloads. At ang Well-Architected Tool ay libreng self-service na tool para susuriin ang architecture mo laban sa anim na pillars ng AWS Well-Architected Framework, at magbibigay ng mga risk at recommendation nang hindi na kailangan ng live na human review.",
+      "Si Kinesis Video Streams ay parang conveyor belt na kumukuha ng live video feed mula sa libu-libong device (security camera, IoT sensor), maayos itong itinatago, at magagamit mo ito para sa playback o para pang-analysis (kasama na ang pag-integrate sa Rekognition Video). Iba ito sa Kinesis Data Streams na para sa generic real-time data records, hindi specifically video.",
     analogy:
-      "This lesson is a toolbox of different management gadgets: a keyboard-driven remote control (CLI), a visual dashboard with buttons (Console), a weather report for AWS itself (Health Dashboard), a filing cabinet for software licenses (License Manager), two different observability dashboards for watching your systems (Managed Grafana and Managed Service for Prometheus), and a self-guided checklist for reviewing how well-built your house is against six safety standards (Well-Architected Tool).",
+      "Kinesis Video Streams is like a bank of continuously running security-camera recorders that capture, store, and organize footage from every camera in a large building network, ready for you to review or analyze later.",
     whyItExists:
-      "Running AWS well requires more than just launching resources — you need ways to interact with AWS both visually and programmatically, visibility into AWS's own service health, control over software license compliance, observability into your own workloads, and a structured way to periodically self-assess your architecture against best practices. Each of these tools covers one of those operational needs.",
-    flow: "Choose the right tool for the task: automate via AWS CLI -> manage visually via the Console -> check AWS-side incidents/maintenance via Health Dashboard -> track license compliance via License Manager -> visualize metrics via Managed Grafana -> store/query metrics via Managed Service for Prometheus -> periodically self-review architecture via the Well-Architected Tool",
+      "Reliably capturing and durably storing continuous live video streams from many devices at scale requires purpose-built ingestion and storage infrastructure. Kinesis Video Streams exists to remove that operational burden and provide a foundation for video analytics.",
+    flow: "Camera/IoT device streams live video -> Kinesis Video Streams ingests and durably stores it -> video played back, batch-processed, or fed into ML-based analysis (e.g., Rekognition Video)",
     withoutIt: [
-      "Harder to automate and script repeatable AWS operations without the CLI",
-      "No visibility into AWS-side planned maintenance or incidents affecting your resources without the Health Dashboard",
-      "Manual, error-prone tracking of software license compliance without License Manager",
-      "No managed observability stack, requiring you to run and patch your own Grafana/Prometheus infrastructure",
-      "No structured way to catch architectural risks early without the Well-Architected Tool",
+      "Reliably ingesting and storing continuous live video from many devices at scale would require significant custom infrastructure",
+      "Feeding live video into machine-learning-based analysis pipelines would be far more complex to build from scratch",
     ],
     bestUseCases: [
-      "Scripting and automating repeatable AWS operations (AWS CLI)",
-      "Visual, exploratory management of AWS resources (AWS Management Console)",
-      "Checking for AWS service issues or upcoming planned changes affecting your account (AWS Health Dashboard)",
-      "Tracking and staying within software license entitlements, including bring-your-own-license (AWS License Manager)",
-      "Managed, Grafana-compatible operational dashboards without running your own Grafana servers (Amazon Managed Grafana)",
-      "Managed, Prometheus-compatible metrics for monitoring containerized workloads (Amazon Managed Service for Prometheus)",
-      "Periodic, structured architecture self-review against AWS best practices (AWS Well-Architected Tool)",
+      "Ingesting live video from security cameras or doorbell devices at scale",
+      "Building a pipeline that feeds live video into ML-based analysis (e.g., detecting objects or people)",
+      "Storing time-encoded sensor data (RADAR, LIDAR) alongside video for autonomous-vehicle or robotics use cases",
     ],
     poorUseCases: [
-      "Relying on the Console alone for large-scale, repeatable automation — the CLI (or infrastructure as code) is a better fit",
-      "Treating the Well-Architected Tool's output as a guarantee of a perfect architecture — it surfaces risks and recommendations, it does not fix anything automatically",
+      "Converting existing video files between formats — that is Amazon Elastic Transcoder's job, not Kinesis Video Streams'",
+      "Processing generic real-time data records (like clickstreams or IoT telemetry) unrelated to video — that is Kinesis Data Streams' job",
+    ],
+    alternatives: [
+      { need: "Ingest and store live video streams", choose: "Amazon Kinesis Video Streams" },
+      { need: "Process generic real-time data records", choose: "Amazon Kinesis Data Streams" },
+    ],
+    keyFeatures: [
+      "Ingests live or batch video (and other time-encoded media) from many devices at once",
+      "Durable storage with configurable retention",
+      "Playback via a built-in HLS-based streaming API",
+      "Integrates with Rekognition Video and other ML services for analysis",
+    ],
+    availability:
+      "A fully managed, regionally available service that scales automatically to handle many concurrent device streams.",
+    security:
+      "Access controlled via IAM; streams can be encrypted at rest and in transit, which matters given the sensitivity of video/surveillance data.",
+    pricingLogic:
+      "Billed based on data ingested, stored, and retrieved (played back or consumed for processing) — check current AWS pricing for exact rates.",
+    examKeywords: ["ingest live video from cameras/IoT -> Kinesis Video Streams", "video analytics pipeline -> Kinesis Video Streams"],
+    examTraps: [
+      "Don't confuse Kinesis Video Streams (video-specific ingestion) with Kinesis Data Streams (generic real-time data records) — the exam tests this distinction directly.",
+    ],
+    architectureDiagram:
+      "Cameras/IoT devices (live video)\n  |\nAmazon Kinesis Video Streams\n  |\nDurable storage -> playback / Rekognition Video analysis",
+    architectureCaption: "Kinesis Video Streams ingests and stores live video for playback or ML-based analysis.",
+    mentorTip: "'Live video/camera feed ingestion' = Kinesis Video Streams. 'Generic real-time data records' = Kinesis Data Streams.",
+    questionIds: ["q-amazon-kinesis-video-streams-1", "q-amazon-kinesis-video-streams-2"],
+  },
+  {
+    id: "aws-cli",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "AWS CLI",
+    shortName: "AWS CLI",
+    tier: 3,
+    domains: [4],
+    examImportance: "low",
+    oneLiner:
+      "The AWS Command Line Interface (CLI) lets you control AWS services by typing commands in a terminal, making AWS operations scriptable and automatable.",
+    englishExplanation:
+      "The AWS CLI is a unified tool that lets you interact with virtually every AWS service using text commands instead of clicking through the Management Console. Because commands can be saved in scripts, the CLI is the natural choice for repeatable, auditable operations, and it underpins many infrastructure-as-code and CI/CD workflows that need to call AWS programmatically without a human clicking buttons.",
+    taglishExplanation:
+      "Ang AWS CLI ay parang remote control gamit ang keyboard — sa halip na mag-click sa Console, nagta-type ka ng command para kontrolin ang AWS services mo. Dahil puwede itong isulat sa script, perfect ito para sa mga paulit-ulit na gawain na gusto mong i-automate.",
+    analogy:
+      "The CLI is like giving instructions to AWS by typing exact commands instead of clicking around a control panel — slower to learn at first, but far faster and more repeatable once you know the commands, especially when you need to do the same thing hundreds of times.",
+    whyItExists:
+      "Manually clicking through the Console does not scale for repeatable, auditable, or automated operations. The CLI exists to give developers and operators a scriptable, programmatic way to manage AWS resources.",
+    flow: "Write/run a CLI command (or script of commands) -> CLI calls the underlying AWS API -> AWS service performs the requested action -> CLI returns the result",
+    withoutIt: [
+      "Every AWS operation would require manually clicking through the Management Console",
+      "Automating repeatable tasks (backups, deployments, cleanup) would be far harder without a scriptable interface",
+    ],
+    bestUseCases: [
+      "Scripting repeatable AWS operations (deployments, backups, resource cleanup)",
+      "Integrating AWS actions into CI/CD pipelines or automation scripts",
+      "Quickly querying or modifying resources without leaving the terminal",
+    ],
+    poorUseCases: [
+      "One-off, exploratory browsing of resources when you're unfamiliar with what exists — the Console's visual browsing is often faster for that",
+      "Complex, stateful infrastructure provisioning better suited to CloudFormation or another infrastructure-as-code tool",
     ],
     alternatives: [
       { need: "Script/automate AWS operations", choose: "AWS CLI" },
-      { need: "Manage AWS resources visually", choose: "AWS Management Console" },
-      { need: "Check AWS service health and planned maintenance", choose: "AWS Health Dashboard" },
-      { need: "Track software license usage/compliance", choose: "AWS License Manager" },
-      { need: "Managed Grafana-compatible dashboards", choose: "Amazon Managed Grafana" },
-      { need: "Managed Prometheus-compatible metrics", choose: "Amazon Managed Service for Prometheus" },
-      { need: "Self-assess architecture against AWS best practices", choose: "AWS Well-Architected Tool" },
+      { need: "Visually browse and manage AWS resources", choose: "AWS Management Console" },
     ],
     keyFeatures: [
-      "AWS CLI: command-line, scriptable access to virtually every AWS service",
-      "AWS Management Console: browser-based visual interface for managing AWS resources",
-      "AWS Health Dashboard: service health status plus account-specific planned changes/events",
-      "AWS License Manager: centralized tracking of software licenses, including bring-your-own-license",
-      "Amazon Managed Grafana: managed, Grafana-compatible dashboards across many data sources",
-      "Amazon Managed Service for Prometheus: managed, Prometheus-compatible metrics storage and querying",
-      "AWS Well-Architected Tool: free, self-service review against the six Well-Architected pillars",
+      "Text-based commands covering virtually every AWS service and API action",
+      "Scriptable — commands can be chained or saved as reusable scripts",
+      "Supports named profiles for multiple AWS accounts/credentials",
+      "Cross-platform (Windows, macOS, Linux)",
     ],
     availability:
-      "The CLI and Console are globally available management interfaces; Health Dashboard, License Manager, and the Well-Architected Tool are account-level services; Managed Grafana and Managed Service for Prometheus are regional managed services with their own built-in resilience.",
+      "A client-side tool you install locally (or use via CloudShell); it calls the same underlying AWS APIs available in every Region.",
     security:
-      "IAM permissions govern who can use the CLI, access the Console, view Health Dashboard events, manage licenses, or access Grafana/Prometheus dashboards; License Manager also has compliance implications since exceeding license entitlements can be a legal/contractual issue, not just a technical one.",
+      "CLI actions are authorized by the IAM credentials/profile configured on the machine running it — the same least-privilege principles apply as anywhere else in AWS.",
     pricingLogic:
-      "The CLI, Management Console, Health Dashboard, License Manager, and Well-Architected Tool are free to use. Amazon Managed Grafana and Amazon Managed Service for Prometheus charge based on usage (such as active users/workspaces for Grafana, and metrics ingested/queried for Prometheus) — check current AWS pricing for exact figures.",
-    examKeywords: [
-      "AWS CLI -> automation/scripting",
-      "AWS Health Dashboard -> service health and planned changes",
-      "AWS License Manager -> track software licenses",
-      "Amazon Managed Grafana -> managed dashboards",
-      "Amazon Managed Service for Prometheus -> managed metrics",
-      "AWS Well-Architected Tool -> self-service architecture review against six pillars",
-    ],
+      "The CLI itself is free; you are only billed for the AWS resources/actions it triggers, exactly as if you'd performed them another way.",
+    examKeywords: ["scriptable AWS access -> CLI", "automate repeatable operations -> CLI"],
     examTraps: [
-      "The Well-Architected Tool does not automatically fix architectural problems — it is a self-service questionnaire that surfaces risks and recommendations for you to act on.",
-      "Don't confuse Managed Grafana (visualization/dashboards) with Managed Service for Prometheus (metrics storage/querying) — they are complementary, not interchangeable.",
+      "The CLI is just an interface — it doesn't change what a service costs or how it behaves; don't assume 'using the CLI' by itself makes something cheaper or more scalable.",
+    ],
+    architectureDiagram: "Terminal command (or script)\n  |\nAWS CLI\n  |\nAWS API\n  |\nAWS service performs the action",
+    architectureCaption: "The CLI is a scriptable interface to the same AWS APIs behind the Console.",
+    mentorTip: "'Automate/script a repeatable AWS task' points to the CLI (or infrastructure as code); 'click around visually' points to the Console.",
+    questionIds: ["q-aws-cli-1", "q-aws-cli-2"],
+  },
+  {
+    id: "aws-management-console",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "AWS Management Console",
+    shortName: "Console",
+    tier: 3,
+    domains: [4],
+    examImportance: "low",
+    oneLiner: "The AWS Management Console is the web-based, visual interface for browsing, configuring, and managing AWS resources.",
+    englishExplanation:
+      "The Console is the browser-based dashboard most people use when they first start with AWS: point-and-click navigation across every AWS service, visual resource configuration, and built-in dashboards and wizards. It is ideal for exploration, one-off configuration changes, and visually understanding relationships between resources, but it doesn't scale well for repeatable or bulk operations the way scripting does.",
+    taglishExplanation:
+      "Ang Management Console ay ang visual, browser-based na paraan ng pamamahala sa AWS — dito ka mag-cli-click para tingnan o baguhin ang mga resources mo. Maganda ito para sa unang pagsubok, exploratory browsing, at mabilis na one-off na pagbabago, pero hindi ito ang pinakamainam para sa paulit-ulit o maramihang operasyon.",
+    analogy:
+      "The Console is like a car's dashboard with visual dials and buttons you can see and click, versus the CLI which is like giving verbal driving instructions — both drive the same car (AWS), but one is visual and exploratory, the other is scriptable and repeatable.",
+    whyItExists:
+      "Not every AWS interaction needs to be scripted — many tasks benefit from visual exploration, dashboards, and point-and-click configuration, especially for people new to a service or doing a one-off change. The Console exists to serve that need.",
+    flow: "Log in to the Console -> navigate to a service -> visually configure/view resources -> changes take effect via the same underlying AWS APIs",
+    withoutIt: [
+      "New users would have no visual, beginner-friendly way to explore AWS services",
+      "Understanding relationships between resources (e.g., which subnet belongs to which VPC) would be harder without a visual interface",
+    ],
+    bestUseCases: [
+      "Exploring an unfamiliar AWS service for the first time",
+      "One-off configuration changes or troubleshooting",
+      "Visually reviewing dashboards, billing, or resource relationships",
+    ],
+    poorUseCases: [
+      "Automating a repeatable operation across many resources — script it with the CLI or infrastructure as code instead",
+      "Auditable, version-controlled infrastructure changes — that calls for infrastructure as code (e.g., CloudFormation), not manual console clicks",
+    ],
+    alternatives: [
+      { need: "Visually browse and manage AWS resources", choose: "AWS Management Console" },
+      { need: "Script/automate AWS operations", choose: "AWS CLI" },
+    ],
+    keyFeatures: [
+      "Point-and-click, browser-based access to every AWS service",
+      "Built-in dashboards, wizards, and visual resource relationship views",
+      "Integrated billing, IAM, and support dashboards",
+      "Includes AWS CloudShell, a browser-based CLI environment",
+    ],
+    availability:
+      "A web-based interface accessible from any browser; it calls the same underlying AWS APIs available in every Region.",
+    security:
+      "Console access is authorized by IAM (including MFA); the same least-privilege access-control principles apply as any other AWS interface.",
+    pricingLogic:
+      "The Console itself is free; you are only billed for the AWS resources/actions it triggers, exactly as if you'd performed them another way.",
+    examKeywords: ["visual/browser-based AWS management -> Console", "point-and-click resource management -> Console"],
+    examTraps: [
+      "The Console being 'easy to use' doesn't make it the right tool for large-scale or repeatable operations — the exam favors automation (CLI/CloudFormation) for those scenarios.",
+    ],
+    architectureDiagram: "Browser -> AWS Management Console -> AWS API -> AWS service performs the action",
+    architectureCaption: "The Console is a visual interface to the same AWS APIs behind the CLI.",
+    mentorTip: "Console = visual and exploratory. CLI/CloudFormation = scriptable and repeatable. Match the scenario's need to the right one.",
+    questionIds: ["q-aws-management-console-1", "q-aws-management-console-2"],
+  },
+  {
+    id: "aws-health-dashboard",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "AWS Health Dashboard",
+    shortName: "Health Dashboard",
+    tier: 3,
+    domains: [2],
+    examImportance: "low",
+    oneLiner:
+      "The AWS Health Dashboard shows the operational status of AWS services and any planned changes, maintenance, or issues specifically affecting your own account's resources.",
+    englishExplanation:
+      "The AWS Health Dashboard has two views: the Service Health Dashboard (public, general status of AWS services) and the personalized AWS Health view (private, account-specific events like scheduled maintenance on your EC2 instances, or an issue affecting resources you actually use). The personalized view is what makes Health more useful operationally than just checking whether a service is generally 'up' — it tells you if something actually affects you.",
+    taglishExplanation:
+      "Ang Health Dashboard ay may dalawang bersyon: yung pangkalahatang status ng mga AWS service (public), at yung personalized na view na nagpapakita kung may issue o planadong maintenance na direktang makaka-apekto sa mga resources ng account mo mismo — mas mahalaga ito kesa sa basta pangkalahatang status lang.",
+    analogy:
+      "The Health Dashboard is like a weather report that goes beyond 'is it raining somewhere in the country' and tells you specifically whether it's about to rain on your own house's roof.",
+    whyItExists:
+      "Knowing AWS is 'generally healthy' isn't enough operationally — teams need to know whether an issue or planned change specifically affects the resources they run. The Health Dashboard exists to surface that account-specific visibility.",
+    flow: "AWS detects a service issue or schedules maintenance -> Health Dashboard surfaces it publicly (general) and personally (if it affects your account's resources) -> your team reacts/plans around it",
+    withoutIt: [
+      "Teams would have no proactive, account-specific warning of AWS-side issues or planned maintenance affecting their resources",
+      "Outages or scheduled changes might be discovered only after they cause an impact",
+    ],
+    bestUseCases: [
+      "Checking whether an ongoing AWS-side issue affects your specific account's resources",
+      "Planning around scheduled maintenance events (e.g., an EC2 instance retirement notice)",
+    ],
+    poorUseCases: [
+      "Monitoring your own application's health/metrics — that is Amazon CloudWatch's job, not the Health Dashboard's",
+      "Tracking software license compliance — that is AWS License Manager's job",
+    ],
+    alternatives: [
+      { need: "Check AWS service health and planned maintenance", choose: "AWS Health Dashboard" },
+      { need: "Monitor your own application/infrastructure metrics", choose: "Amazon CloudWatch" },
+    ],
+    keyFeatures: [
+      "Public Service Health Dashboard for general AWS service status",
+      "Personalized AWS Health view scoped to your account's actual resources",
+      "Proactive notifications for scheduled changes (e.g., instance retirements)",
+      "Can integrate with EventBridge for automated responses to Health events",
+    ],
+    availability:
+      "An account-level, cross-Region view; the personalized view reflects only the Regions/resources your account actually uses.",
+    security:
+      "Access to the personalized Health view is controlled via IAM, since it can reveal details about your account's specific resources.",
+    pricingLogic:
+      "The basic AWS Health Dashboard is free; AWS Health also offers an optional paid tier (Business/Enterprise support-linked) with additional proactive and organizational features.",
+    examKeywords: ["AWS service health -> Health Dashboard", "account-specific planned maintenance -> Health Dashboard"],
+    examTraps: [
+      "Don't confuse the Health Dashboard (AWS-side service health/maintenance) with CloudWatch (your own application/infrastructure monitoring) — they answer different questions.",
     ],
     architectureDiagram:
-      "Task -> right tool:\nAutomate -> AWS CLI\nManage visually -> AWS Management Console\nCheck AWS service health -> AWS Health Dashboard\nTrack licenses -> AWS License Manager\nVisualize metrics -> Amazon Managed Grafana\nStore/query metrics -> Amazon Managed Service for Prometheus\nSelf-review architecture -> AWS Well-Architected Tool",
-    architectureCaption:
-      "Match the described management/governance need to the right tool.",
-    mentorTip:
-      "These are quick recognition-level matches on the exam — build a one-line mental flashcard per tool rather than studying deep configuration detail.",
-    questionIds: ["q-management-governance-extras-1", "q-management-governance-extras-2"],
+      "AWS-side issue or planned maintenance\n  |\nAWS Health Dashboard\n  |\nPublic status (general) + personalized view (your account's affected resources)",
+    architectureCaption: "Health Dashboard tells you not just that AWS has an issue, but whether it affects you.",
+    mentorTip: "'Is this AWS issue affecting MY resources specifically?' = Health Dashboard. 'Is MY application healthy?' = CloudWatch.",
+    questionIds: ["q-aws-health-dashboard-1", "q-aws-health-dashboard-2"],
+  },
+  {
+    id: "aws-license-manager",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "AWS License Manager",
+    shortName: "License Manager",
+    tier: 3,
+    domains: [4],
+    examImportance: "low",
+    oneLiner:
+      "AWS License Manager helps you track, manage, and enforce software license usage across your AWS (and on-premises) resources, including bring-your-own-license (BYOL) scenarios.",
+    englishExplanation:
+      "Many commercial software products (databases, operating systems) are licensed by metrics like per-core or per-instance counts, and exceeding your entitlement can be a legal/contractual compliance problem, not just a technical one. License Manager lets you define licensing rules (e.g., 'this software allows N cores total'), tracks consumption as EC2 instances or on-premises servers launch, and can even prevent launches that would violate the rule.",
+    taglishExplanation:
+      "Marami sa mga commercial software (database, OS) ay may license na naka-base sa bilang ng core o instance, at kapag lumampas ka dito, puwedeng maging legal o contractual na problema, hindi lang technical. Ang License Manager ay tumutulong mag-track ng paggamit ng license sa mga resources mo, kasama ang mga bring-your-own-license (BYOL) scenario, at puwede pa nga itong pumigil sa paglunsad ng bagong instance kung lalabag ito sa itinakdang limitasyon.",
+    analogy:
+      "License Manager is like a librarian who keeps count of exactly how many copies of a licensed book are checked out at once, and stops handing out a new copy the moment you'd exceed what you're allowed to have in circulation.",
+    whyItExists:
+      "Manually tracking software license entitlements across a growing fleet of EC2 instances or on-premises servers is error-prone, and unintentionally exceeding license terms creates legal and cost exposure. License Manager exists to automate that tracking and enforcement.",
+    flow: "Define a licensing rule (e.g., BYOL limit) -> License Manager tracks consumption as instances/servers launch -> alerts (or blocks) launches that would exceed the entitlement",
+    withoutIt: [
+      "Software license compliance would rely on manual, error-prone tracking across a growing fleet",
+      "Teams could unintentionally exceed license entitlements, creating legal/contractual exposure",
+    ],
+    bestUseCases: [
+      "Tracking and enforcing BYOL entitlements for commercial software running on EC2",
+      "Centralizing license visibility across multiple AWS accounts or on-premises servers",
+    ],
+    poorUseCases: [
+      "Tracking AWS's own service costs/usage — that is Cost Explorer's or Budgets' job, not License Manager's",
+      "Monitoring AWS service health — that is the Health Dashboard's job",
+    ],
+    alternatives: [
+      { need: "Track/enforce software license compliance", choose: "AWS License Manager" },
+      { need: "Track AWS spend/usage", choose: "AWS Cost Explorer" },
+    ],
+    keyFeatures: [
+      "Define custom licensing rules based on cores, instances, or vCPUs",
+      "Tracks license consumption automatically as resources launch",
+      "Can prevent non-compliant instance launches",
+      "Supports both AWS-purchased and bring-your-own-license (BYOL) software",
+    ],
+    availability:
+      "An account/organization-level management service; it can track resources across multiple accounts when integrated with AWS Organizations.",
+    security:
+      "IAM controls who can define or modify licensing rules; License Manager itself doesn't store the software, only tracks its licensed usage.",
+    pricingLogic:
+      "AWS License Manager is free to use for tracking your own license rules; you continue to pay for the underlying software licenses and AWS resources as usual.",
+    examKeywords: ["track software license compliance -> License Manager", "bring-your-own-license (BYOL) tracking -> License Manager"],
+    examTraps: [
+      "License Manager tracks and can enforce licensing rules, but it does not itself grant or sell you software licenses — you still need to actually own/purchase the license entitlement it's tracking.",
+    ],
+    architectureDiagram:
+      "Licensing rule defined (e.g., BYOL core limit)\n  |\nAWS License Manager\n  |\nTracks consumption across EC2/on-prem -> alerts or blocks over-limit launches",
+    architectureCaption: "License Manager keeps software license usage within entitlements automatically.",
+    mentorTip: "'BYOL' or 'track/enforce software license compliance' in a scenario = License Manager.",
+    questionIds: ["q-aws-license-manager-1", "q-aws-license-manager-2"],
+  },
+  {
+    id: "amazon-managed-grafana",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "Amazon Managed Grafana",
+    shortName: "Managed Grafana",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Managed Grafana provides fully managed, Grafana-compatible dashboards for visualizing operational data from many sources, without you having to run and patch your own Grafana servers.",
+    englishExplanation:
+      "Grafana is a popular open-source tool for building visual dashboards from metrics, logs, and traces across many data sources (CloudWatch, Prometheus, and others). Amazon Managed Grafana gives you that same dashboarding experience as a fully managed AWS service — AWS handles provisioning, scaling, patching, and availability, and integrates with IAM Identity Center and other AWS services for authentication and data source access.",
+    taglishExplanation:
+      "Ang Grafana ay popular na open-source na tool para sa paggawa ng visual dashboards mula sa maraming pinagmumulan ng data (CloudWatch, Prometheus, at iba pa). Ang Amazon Managed Grafana ay nagbibigay ng parehong karanasan pero fully managed na — hindi mo na kailangang mag-patch o mag-provision ng sarili mong Grafana server.",
+    analogy:
+      "Managed Grafana is like getting a professionally maintained, always-updated dashboard wall for your operations room, instead of building and maintaining that dashboard hardware and software yourself.",
+    whyItExists:
+      "Running your own Grafana servers means patching, scaling, and securing that infrastructure yourself. Managed Grafana exists so teams get the same visualization capability without that operational overhead.",
+    flow: "Data sources (CloudWatch, Prometheus, and others) -> Amazon Managed Grafana workspace -> visual dashboards for teams to monitor operations",
+    withoutIt: [
+      "Teams would need to provision, patch, and scale their own Grafana servers",
+      "Centralizing visualization across many data sources would require more custom integration work",
+    ],
+    bestUseCases: [
+      "Building unified operational dashboards pulling from CloudWatch, Prometheus, and other data sources",
+      "Giving teams a single visualization layer across multiple AWS accounts/Regions",
+    ],
+    poorUseCases: [
+      "Storing and querying the underlying metrics data itself — that is CloudWatch's or Managed Service for Prometheus' job; Grafana visualizes, it doesn't natively store metrics",
+      "Simple, single-source dashboards that CloudWatch's own dashboards already cover adequately",
+    ],
+    alternatives: [
+      { need: "Managed, Grafana-compatible dashboards", choose: "Amazon Managed Grafana" },
+      { need: "Managed, Prometheus-compatible metrics storage", choose: "Amazon Managed Service for Prometheus" },
+    ],
+    keyFeatures: [
+      "Fully managed Grafana workspaces with automatic patching/scaling",
+      "Supports many data sources: CloudWatch, Prometheus, and others",
+      "Integrates with IAM Identity Center for authentication",
+      "Supports dashboards spanning multiple AWS accounts/Regions",
+    ],
+    availability:
+      "A fully managed, regional service; AWS handles the availability and scaling of the underlying Grafana workspace infrastructure.",
+    security:
+      "Access controlled via IAM Identity Center integration and workspace-level permissions; data source access is scoped per workspace.",
+    pricingLogic:
+      "Billed based on active users/editors per workspace per month — check current AWS pricing for exact rates.",
+    examKeywords: ["managed Grafana dashboards -> Amazon Managed Grafana", "visualize metrics from many sources -> Managed Grafana"],
+    examTraps: [
+      "Don't confuse Managed Grafana (visualization/dashboards) with Managed Service for Prometheus (metrics storage/querying) — Grafana typically visualizes data that Prometheus (or CloudWatch) stores.",
+    ],
+    architectureDiagram:
+      "CloudWatch / Prometheus / other data sources\n  |\nAmazon Managed Grafana workspace\n  |\nVisual dashboards for operations teams",
+    architectureCaption: "Managed Grafana visualizes metrics without you hosting Grafana yourself.",
+    mentorTip: "'Managed dashboards/visualization' = Managed Grafana. 'Managed metrics storage/querying' = Managed Service for Prometheus.",
+    questionIds: ["q-amazon-managed-grafana-1", "q-amazon-managed-grafana-2"],
+  },
+  {
+    id: "amazon-managed-service-for-prometheus",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "Amazon Managed Service for Prometheus",
+    shortName: "Managed Prometheus",
+    tier: 3,
+    domains: [3],
+    examImportance: "low",
+    oneLiner:
+      "Amazon Managed Service for Prometheus provides fully managed, Prometheus-compatible storage and querying of metrics, commonly used for monitoring containerized workloads.",
+    englishExplanation:
+      "Prometheus is a popular open-source metrics collection and querying system, widely used in Kubernetes/container environments. Amazon Managed Service for Prometheus gives you a fully managed, highly available, and scalable Prometheus-compatible backend — you keep using the same Prometheus query language (PromQL) and existing exporters/instrumentation, but AWS handles the underlying storage, scaling, and availability instead of you operating Prometheus servers yourself.",
+    taglishExplanation:
+      "Ang Prometheus ay popular na open-source na sistema para sa pag-collect at pag-query ng metrics, karaniwang ginagamit sa mga Kubernetes/container environment. Ang Amazon Managed Service for Prometheus ay nagbibigay ng parehong Prometheus-compatible na backend pero fully managed na — gamit mo pa rin ang PromQL at existing instrumentation mo, pero hindi mo na kailangang patakbuhin ang sarili mong Prometheus server.",
+    analogy:
+      "Managed Service for Prometheus is like outsourcing the record-keeping ledger behind your monitoring system to a fully staffed accounting office that never goes down, while you keep using the exact same ledger format (PromQL) you're already used to.",
+    whyItExists:
+      "Running your own scalable, highly-available Prometheus infrastructure is operationally demanding, especially at scale with many containerized workloads. Managed Service for Prometheus exists so teams get Prometheus's monitoring model without operating that infrastructure themselves.",
+    flow: "Containerized/other workloads emit metrics -> Amazon Managed Service for Prometheus ingests and stores them -> queried via PromQL, often visualized in Amazon Managed Grafana",
+    withoutIt: [
+      "Teams would need to provision, scale, and operate their own Prometheus infrastructure",
+      "Reliably storing and querying metrics at scale for containerized workloads would require more custom operational effort",
+    ],
+    bestUseCases: [
+      "Monitoring containerized workloads (e.g., on EKS/ECS) using existing Prometheus-based instrumentation",
+      "Migrating an existing self-managed Prometheus setup to a managed backend without changing tooling",
+    ],
+    poorUseCases: [
+      "Visualizing the metrics once collected — that is Amazon Managed Grafana's (or another dashboard tool's) job, not Managed Service for Prometheus' job",
+      "General AWS-native metrics that CloudWatch already collects natively without any Prometheus instrumentation in place",
+    ],
+    alternatives: [
+      { need: "Managed, Prometheus-compatible metrics storage/querying", choose: "Amazon Managed Service for Prometheus" },
+      { need: "Managed dashboards/visualization", choose: "Amazon Managed Grafana" },
+    ],
+    keyFeatures: [
+      "Fully managed, highly available Prometheus-compatible metrics storage",
+      "Compatible with existing PromQL queries and Prometheus exporters",
+      "Scales automatically with workload metric volume",
+      "Commonly paired with Amazon Managed Grafana for visualization",
+    ],
+    availability:
+      "A fully managed, regional service designed for high availability and automatic scaling of metrics ingestion/storage.",
+    security: "Access controlled via IAM; metrics ingestion and query endpoints can be secured within your VPC.",
+    pricingLogic:
+      "Billed based on metrics samples ingested, stored, and queried — check current AWS pricing for exact rates.",
+    examKeywords: [
+      "managed Prometheus-compatible metrics -> Managed Service for Prometheus",
+      "monitor containerized workloads with existing Prometheus tooling -> Managed Service for Prometheus",
+    ],
+    examTraps: [
+      "Managed Service for Prometheus stores/queries metrics; it does not itself provide the visual dashboard — that's Grafana's role (Managed Grafana is the natural pairing).",
+    ],
+    architectureDiagram:
+      "Containerized workloads (EKS/ECS) with Prometheus exporters\n  |\nAmazon Managed Service for Prometheus\n  |\nPromQL queries -> visualized in Amazon Managed Grafana",
+    architectureCaption: "Managed Service for Prometheus stores metrics; Managed Grafana typically visualizes them.",
+    mentorTip: "'Existing Prometheus/PromQL tooling, now managed' = Managed Service for Prometheus.",
+    questionIds: ["q-amazon-managed-service-for-prometheus-1", "q-amazon-managed-service-for-prometheus-2"],
+  },
+  {
+    id: "aws-well-architected-tool",
+    moduleId: "phase-misc",
+    category: "Management and Governance",
+    title: "AWS Well-Architected Tool",
+    shortName: "Well-Architected Tool",
+    tier: 3,
+    domains: [2],
+    examImportance: "medium",
+    oneLiner:
+      "The AWS Well-Architected Tool is a free, self-service tool that reviews a workload against the AWS Well-Architected Framework's six pillars and surfaces risks and recommendations.",
+    englishExplanation:
+      "The Well-Architected Framework defines six pillars: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability. The Well-Architected Tool walks you through a structured questionnaire about your workload's design, then highlights 'high' and 'medium' risk areas against each pillar along with specific improvement recommendations — all without requiring a live, human-led Well-Architected review.",
+    taglishExplanation:
+      "Ang Well-Architected Framework ay may anim na pillars: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, at Sustainability. Ang Well-Architected Tool ay gumagabay sa'yo sa isang structured questionnaire tungkol sa disenyo ng workload mo, at ipapakita nito ang mga risk area kasama ang mga rekomendasyon — lahat nang hindi na kailangan ng live, human-led na review.",
+    analogy:
+      "The Well-Architected Tool is like a self-guided home inspection checklist covering six different safety standards — it won't fix problems for you, but it tells you exactly which areas need attention and why.",
+    whyItExists:
+      "Manually and consistently reviewing every workload against best practices across six different dimensions is time-consuming without a structured framework. The Well-Architected Tool exists to make that review structured, repeatable, and self-service.",
+    flow: "Define a workload in the tool -> answer the pillar-based questionnaire -> tool highlights high/medium risks per pillar -> team acts on the recommendations -> periodically re-review as the workload evolves",
+    withoutIt: [
+      "Architecture reviews would be ad hoc and inconsistent across teams/workloads",
+      "Risks across the six Well-Architected pillars might go unnoticed until they cause an actual incident or cost overrun",
+    ],
+    bestUseCases: [
+      "Periodically self-reviewing a workload's architecture against AWS best practices",
+      "Onboarding a new team to a consistent architecture review process before a launch",
+    ],
+    poorUseCases: [
+      "Expecting the tool to automatically fix or redesign your architecture — it only surfaces risks and recommendations for humans to act on",
+      "Real-time monitoring of a running workload's health — that is CloudWatch's job, not the Well-Architected Tool's",
+    ],
+    alternatives: [
+      { need: "Self-assess architecture against AWS best practices", choose: "AWS Well-Architected Tool" },
+      { need: "Get automated cost/performance recommendations on existing resources", choose: "AWS Trusted Advisor" },
+    ],
+    keyFeatures: [
+      "Structured questionnaire across the six Well-Architected pillars",
+      "Identifies high- and medium-risk issues per pillar",
+      "Provides specific, actionable improvement recommendations",
+      "Supports saving and re-reviewing a workload over time to track improvement",
+    ],
+    availability: "A free, account-level tool; you can define and review any number of workloads across your account(s).",
+    security:
+      "IAM controls who can view or edit a workload's Well-Architected review, since it can reveal architectural details and identified risks.",
+    pricingLogic:
+      "The AWS Well-Architected Tool itself is completely free to use; you only pay for any AWS resources you subsequently change based on its recommendations.",
+    examKeywords: ["self-service architecture review -> Well-Architected Tool", "six pillars framework -> Well-Architected Tool"],
+    examTraps: [
+      "The Well-Architected Tool surfaces risks and recommendations — it does not automatically remediate them. Don't confuse it with Trusted Advisor, which gives automated checks against your live resources rather than a design questionnaire.",
+    ],
+    architectureDiagram:
+      "Workload definition\n  |\nAWS Well-Architected Tool (six-pillar questionnaire)\n  |\nHigh/medium risks + recommendations per pillar -> team takes action",
+    architectureCaption: "The Well-Architected Tool structures a self-review against AWS's six best-practice pillars.",
+    mentorTip: "'Self-service architecture review against best-practice pillars' = Well-Architected Tool. 'Automated checks against live resources' = Trusted Advisor.",
+    questionIds: ["q-aws-well-architected-tool-1", "q-aws-well-architected-tool-2"],
   },
 ];

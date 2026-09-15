@@ -15,7 +15,10 @@ export function ArchitectureDiagram({
           Architecture
         </span>
       </div>
-      <pre className="scrollbar-thin overflow-x-auto px-4 py-4 font-mono text-xs leading-relaxed text-foreground/90 sm:text-sm">
+      <pre
+        data-no-swipe-nav
+        className="scrollbar-thin overflow-x-auto px-4 py-4 font-mono text-xs leading-relaxed text-foreground/90 sm:text-sm"
+      >
         {diagram}
       </pre>
       {caption && (
