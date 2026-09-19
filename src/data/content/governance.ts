@@ -520,7 +520,7 @@ export const governanceLessons: Lesson[] = [
       "Compute Optimizer analyzes historical CloudWatch utilization data with ML to recommend better-fitted resource sizes.",
     mentorTip:
       "If the scenario specifically says \"machine learning\" and \"rightsizing based on historical utilization,\" that's Compute Optimizer, not Trusted Advisor.",
-    questionIds: ["q-aws-compute-optimizer-1", "q-aws-compute-optimizer-2"],
+    questionIds: ["q-aws-compute-optimizer-1", "q-aws-compute-optimizer-2", "q-aws-compute-optimizer-3"],
   },
 
   {
@@ -962,7 +962,7 @@ export const governanceLessons: Lesson[] = [
       "Transfer Family exposes familiar file transfer protocols while storing data directly in S3 or EFS.",
     mentorTip:
       "\"Our partners require SFTP\" plus \"want to store the files in S3\" is the exact phrase pattern for Transfer Family.",
-    questionIds: ["q-aws-transfer-family-1", "q-aws-transfer-family-2"],
+    questionIds: ["q-aws-transfer-family-1", "q-aws-transfer-family-2", "q-aws-transfer-family-3"],
   },
 
   {
@@ -1023,6 +1023,6 @@ export const governanceLessons: Lesson[] = [
       "MGN continuously replicates source servers so they can be launched as ready-to-run EC2 instances with minimal changes.",
     mentorTip:
       "\"Data center exit\" or \"migrate servers as-is quickly\" almost always signals Application Migration Service (MGN) for a rehost/lift-and-shift approach.",
-    questionIds: ["q-aws-application-migration-service-1", "q-aws-application-migration-service-2"],
+    questionIds: ["q-aws-application-migration-service-1", "q-aws-application-migration-service-2", "q-aws-application-migration-service-3"],
   },
 ];

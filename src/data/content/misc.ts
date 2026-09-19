@@ -531,7 +531,7 @@ export const miscLessons: Lesson[] = [
       "CUR delivers the rawest, most granular billing data to S3 for custom querying and analysis.",
     mentorTip:
       "\"Most detailed/granular\" is the exam's signal word for CUR — if the question just wants a dashboard or an alert, look elsewhere.",
-    questionIds: ["q-aws-cost-and-usage-report-1", "q-aws-cost-and-usage-report-2"],
+    questionIds: ["q-aws-cost-and-usage-report-1", "q-aws-cost-and-usage-report-2", "q-aws-cost-and-usage-report-3"],
   },
   {
     id: "savings-plans-reserved-spot",
@@ -673,7 +673,7 @@ export const miscLessons: Lesson[] = [
       "Amplify wires together common backend services and adds managed hosting/CI/CD for the frontend.",
     mentorTip:
       "If a scenario mentions a small team wanting to build and deploy a mobile or web app quickly without managing infrastructure themselves, Amplify is a strong recognition-level answer.",
-    questionIds: ["q-aws-amplify-1", "q-aws-amplify-2"],
+    questionIds: ["q-aws-amplify-1", "q-aws-amplify-2", "q-aws-amplify-3"],
   },
   {
     id: "amazon-api-gateway",
@@ -824,7 +824,7 @@ export const miscLessons: Lesson[] = [
       "Device Farm runs your app against real devices in the cloud and returns detailed test results.",
     mentorTip:
       "Recognition-level only: if a scenario mentions testing a mobile or web app against many real physical devices/OS versions in the cloud, that is Device Farm.",
-    questionIds: ["q-aws-device-farm-1", "q-aws-device-farm-2"],
+    questionIds: ["q-aws-device-farm-1", "q-aws-device-farm-2", "q-aws-device-farm-3"],
   },
   {
     id: "amazon-comprehend",
@@ -887,7 +887,7 @@ export const miscLessons: Lesson[] = [
       "Unstructured text (reviews / tickets / documents)\n  |\nAmazon Comprehend\n  |\nSentiment + entities + key phrases + language + PII flags",
     architectureCaption: "Comprehend turns raw text into structured, actionable insight.",
     mentorTip: "If the scenario says 'understand/analyze the meaning or sentiment of text,' think Comprehend.",
-    questionIds: ["q-amazon-comprehend-1", "q-amazon-comprehend-2"],
+    questionIds: ["q-amazon-comprehend-1", "q-amazon-comprehend-2", "q-amazon-comprehend-3"],
   },
   {
     id: "amazon-lex",
@@ -949,7 +949,7 @@ export const miscLessons: Lesson[] = [
       "User (voice/text) -> Amazon Lex (intent + slot recognition) -> AWS Lambda (fulfillment logic) -> Response back to user",
     architectureCaption: "Lex handles the conversational understanding; Lambda typically handles the actual fulfillment logic.",
     mentorTip: "'Chatbot' or 'voice bot' in a scenario almost always means Lex.",
-    questionIds: ["q-amazon-lex-1", "q-amazon-lex-2"],
+    questionIds: ["q-amazon-lex-1", "q-amazon-lex-2", "q-amazon-lex-3"],
   },
   {
     id: "amazon-polly",
@@ -1005,7 +1005,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Text + SSML markup\n  |\nAmazon Polly\n  |\nSynthesized speech audio (stream/file)",
     architectureCaption: "Polly turns written text into natural-sounding spoken audio.",
     mentorTip: "Text going IN, audio coming OUT = Polly. Keep that direction fixed in memory.",
-    questionIds: ["q-amazon-polly-1", "q-amazon-polly-2"],
+    questionIds: ["q-amazon-polly-1", "q-amazon-polly-2", "q-amazon-polly-3"],
   },
   {
     id: "amazon-rekognition",
@@ -1068,7 +1068,7 @@ export const miscLessons: Lesson[] = [
       "Image/video (S3 or live stream)\n  |\nAmazon Rekognition\n  |\nLabels + faces + text-in-image + moderation flags",
     architectureCaption: "Rekognition applies computer vision to images and video without you training a model.",
     mentorTip: "'Photo/video' + 'detect/recognize/moderate' = Rekognition. 'Scanned document' + 'extract' = Textract.",
-    questionIds: ["q-amazon-rekognition-1", "q-amazon-rekognition-2"],
+    questionIds: ["q-amazon-rekognition-1", "q-amazon-rekognition-2", "q-amazon-rekognition-3"],
   },
   {
     id: "amazon-sagemaker-ai",
@@ -1126,7 +1126,7 @@ export const miscLessons: Lesson[] = [
       "Training data -> SageMaker notebook (experiment) -> SageMaker training job -> tuned model -> SageMaker endpoint -> real-time/batch predictions",
     architectureCaption: "SageMaker AI covers the full custom-model lifecycle when no pre-built AI service fits.",
     mentorTip: "SageMaker AI is the answer only when the scenario explicitly needs a custom-trained model — otherwise, look for the matching pre-built service first.",
-    questionIds: ["q-amazon-sagemaker-ai-1", "q-amazon-sagemaker-ai-2"],
+    questionIds: ["q-amazon-sagemaker-ai-1", "q-amazon-sagemaker-ai-2", "q-amazon-sagemaker-ai-3"],
   },
   {
     id: "amazon-textract",
@@ -1188,7 +1188,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Scanned document/PDF (S3)\n  |\nAmazon Textract\n  |\nRaw text + key-value form pairs + table data",
     architectureCaption: "Textract extracts structured data, not just raw text, from scanned documents.",
     mentorTip: "'Scanned form/invoice' + 'extract structured data' = Textract, every time.",
-    questionIds: ["q-amazon-textract-1", "q-amazon-textract-2"],
+    questionIds: ["q-amazon-textract-1", "q-amazon-textract-2", "q-amazon-textract-3"],
   },
   {
     id: "amazon-transcribe",
@@ -1246,7 +1246,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Audio file / live stream\n  |\nAmazon Transcribe\n  |\nText transcript (+ speaker labels, punctuation)",
     architectureCaption: "Transcribe turns spoken audio into a written transcript.",
     mentorTip: "Audio going IN, text coming OUT = Transcribe. Keep that direction fixed opposite of Polly.",
-    questionIds: ["q-amazon-transcribe-1", "q-amazon-transcribe-2"],
+    questionIds: ["q-amazon-transcribe-1", "q-amazon-transcribe-2", "q-amazon-transcribe-3"],
   },
   {
     id: "amazon-translate",
@@ -1303,7 +1303,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Text (source language)\n  |\nAmazon Translate\n  |\nText (target language)\n\n(Need spoken output too?) -> chain with Amazon Polly",
     architectureCaption: "Translate converts text between languages; chain with Polly for translated speech.",
     mentorTip: "'Translate between languages' = Translate. If the scenario also wants it spoken aloud, that's Translate + Polly together.",
-    questionIds: ["q-amazon-translate-1", "q-amazon-translate-2"],
+    questionIds: ["q-amazon-translate-1", "q-amazon-translate-2", "q-amazon-translate-3"],
   },
   {
     id: "amazon-elastic-transcoder",
@@ -1361,7 +1361,7 @@ export const miscLessons: Lesson[] = [
       "Source video file (S3)\n  |\nAmazon Elastic Transcoder (output presets)\n  |\nTranscoded files: multiple formats/resolutions (S3)",
     architectureCaption: "Elastic Transcoder batch-converts existing media files into the formats each device needs.",
     mentorTip: "'Convert/transcode an existing video file' = Elastic Transcoder. 'Ingest a live video feed' = Kinesis Video Streams.",
-    questionIds: ["q-amazon-elastic-transcoder-1", "q-amazon-elastic-transcoder-2"],
+    questionIds: ["q-amazon-elastic-transcoder-1", "q-amazon-elastic-transcoder-2", "q-amazon-elastic-transcoder-3"],
   },
   {
     id: "amazon-kinesis-video-streams",
@@ -1420,7 +1420,7 @@ export const miscLessons: Lesson[] = [
       "Cameras/IoT devices (live video)\n  |\nAmazon Kinesis Video Streams\n  |\nDurable storage -> playback / Rekognition Video analysis",
     architectureCaption: "Kinesis Video Streams ingests and stores live video for playback or ML-based analysis.",
     mentorTip: "'Live video/camera feed ingestion' = Kinesis Video Streams. 'Generic real-time data records' = Kinesis Data Streams.",
-    questionIds: ["q-amazon-kinesis-video-streams-1", "q-amazon-kinesis-video-streams-2"],
+    questionIds: ["q-amazon-kinesis-video-streams-1", "q-amazon-kinesis-video-streams-2", "q-amazon-kinesis-video-streams-3"],
   },
   {
     id: "aws-cli",
@@ -1478,7 +1478,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Terminal command (or script)\n  |\nAWS CLI\n  |\nAWS API\n  |\nAWS service performs the action",
     architectureCaption: "The CLI is a scriptable interface to the same AWS APIs behind the Console.",
     mentorTip: "'Automate/script a repeatable AWS task' points to the CLI (or infrastructure as code); 'click around visually' points to the Console.",
-    questionIds: ["q-aws-cli-1", "q-aws-cli-2"],
+    questionIds: ["q-aws-cli-1", "q-aws-cli-2", "q-aws-cli-3"],
   },
   {
     id: "aws-management-console",
@@ -1535,7 +1535,7 @@ export const miscLessons: Lesson[] = [
     architectureDiagram: "Browser -> AWS Management Console -> AWS API -> AWS service performs the action",
     architectureCaption: "The Console is a visual interface to the same AWS APIs behind the CLI.",
     mentorTip: "Console = visual and exploratory. CLI/CloudFormation = scriptable and repeatable. Match the scenario's need to the right one.",
-    questionIds: ["q-aws-management-console-1", "q-aws-management-console-2"],
+    questionIds: ["q-aws-management-console-1", "q-aws-management-console-2", "q-aws-management-console-3"],
   },
   {
     id: "aws-health-dashboard",
@@ -1593,7 +1593,7 @@ export const miscLessons: Lesson[] = [
       "AWS-side issue or planned maintenance\n  |\nAWS Health Dashboard\n  |\nPublic status (general) + personalized view (your account's affected resources)",
     architectureCaption: "Health Dashboard tells you not just that AWS has an issue, but whether it affects you.",
     mentorTip: "'Is this AWS issue affecting MY resources specifically?' = Health Dashboard. 'Is MY application healthy?' = CloudWatch.",
-    questionIds: ["q-aws-health-dashboard-1", "q-aws-health-dashboard-2"],
+    questionIds: ["q-aws-health-dashboard-1", "q-aws-health-dashboard-2", "q-aws-health-dashboard-3"],
   },
   {
     id: "aws-license-manager",
@@ -1651,7 +1651,7 @@ export const miscLessons: Lesson[] = [
       "Licensing rule defined (e.g., BYOL core limit)\n  |\nAWS License Manager\n  |\nTracks consumption across EC2/on-prem -> alerts or blocks over-limit launches",
     architectureCaption: "License Manager keeps software license usage within entitlements automatically.",
     mentorTip: "'BYOL' or 'track/enforce software license compliance' in a scenario = License Manager.",
-    questionIds: ["q-aws-license-manager-1", "q-aws-license-manager-2"],
+    questionIds: ["q-aws-license-manager-1", "q-aws-license-manager-2", "q-aws-license-manager-3"],
   },
   {
     id: "amazon-managed-grafana",
@@ -1709,7 +1709,7 @@ export const miscLessons: Lesson[] = [
       "CloudWatch / Prometheus / other data sources\n  |\nAmazon Managed Grafana workspace\n  |\nVisual dashboards for operations teams",
     architectureCaption: "Managed Grafana visualizes metrics without you hosting Grafana yourself.",
     mentorTip: "'Managed dashboards/visualization' = Managed Grafana. 'Managed metrics storage/querying' = Managed Service for Prometheus.",
-    questionIds: ["q-amazon-managed-grafana-1", "q-amazon-managed-grafana-2"],
+    questionIds: ["q-amazon-managed-grafana-1", "q-amazon-managed-grafana-2", "q-amazon-managed-grafana-3"],
   },
   {
     id: "amazon-managed-service-for-prometheus",
@@ -1769,7 +1769,7 @@ export const miscLessons: Lesson[] = [
       "Containerized workloads (EKS/ECS) with Prometheus exporters\n  |\nAmazon Managed Service for Prometheus\n  |\nPromQL queries -> visualized in Amazon Managed Grafana",
     architectureCaption: "Managed Service for Prometheus stores metrics; Managed Grafana typically visualizes them.",
     mentorTip: "'Existing Prometheus/PromQL tooling, now managed' = Managed Service for Prometheus.",
-    questionIds: ["q-amazon-managed-service-for-prometheus-1", "q-amazon-managed-service-for-prometheus-2"],
+    questionIds: ["q-amazon-managed-service-for-prometheus-1", "q-amazon-managed-service-for-prometheus-2", "q-amazon-managed-service-for-prometheus-3"],
   },
   {
     id: "aws-well-architected-tool",
@@ -1826,6 +1826,6 @@ export const miscLessons: Lesson[] = [
       "Workload definition\n  |\nAWS Well-Architected Tool (six-pillar questionnaire)\n  |\nHigh/medium risks + recommendations per pillar -> team takes action",
     architectureCaption: "The Well-Architected Tool structures a self-review against AWS's six best-practice pillars.",
     mentorTip: "'Self-service architecture review against best-practice pillars' = Well-Architected Tool. 'Automated checks against live resources' = Trusted Advisor.",
-    questionIds: ["q-aws-well-architected-tool-1", "q-aws-well-architected-tool-2"],
+    questionIds: ["q-aws-well-architected-tool-1", "q-aws-well-architected-tool-2", "q-aws-well-architected-tool-3"],
   },
 ];

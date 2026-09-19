@@ -1184,6 +1184,34 @@ export const securityQuestions: Question[] = [
     keywords: ["Detective", "GuardDuty findings"],
     services: ["amazon-detective", "amazon-guardduty"],
   },
+  {
+    id: "q-amazon-detective-3",
+    lessonId: "amazon-detective",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "Your organization has GuardDuty enabled across every member account. After a finding fires, the SOC team wants an interactive graph showing which EC2 instances, IAM roles, and IP addresses were involved over the past two weeks, without manually cross-referencing CloudTrail and VPC Flow Logs by hand. Which statement is correct?",
+    options: [
+      { id: "a", text: "Enable Amazon Detective, which automatically ingests CloudTrail, VPC Flow Logs, and GuardDuty findings into an explorable behavior graph" },
+      { id: "b", text: "Enable Amazon Detective instead of GuardDuty, since Detective already generates its own findings" },
+      { id: "c", text: "Use AWS Config to build the interactive relationship graph, since Config already tracks resource state history" },
+      { id: "d", text: "Use CloudWatch Logs Insights alone, since it automatically correlates IAM, network, and API data with no configuration" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Detective is designed exactly for this: it ingests CloudTrail, VPC Flow Logs, and GuardDuty findings and builds a graph an analyst can explore to find root cause and scope quickly.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Detective does not generate its own findings; it investigates findings that GuardDuty (or similar) already raised, so GuardDuty still needs to stay enabled.",
+      c: "Incorrect — Config tracks configuration state and compliance over time, not a behavior graph of activity relationships.",
+      d: "Incorrect — Logs Insights only queries the log data you send it; it does not automatically build a cross-source relationship graph the way Detective does.",
+    },
+    examKeywordHint: "interactive investigation graph across CloudTrail/VPC Flow Logs/GuardDuty -> Detective (GuardDuty must stay on)",
+    keywords: ["Detective", "behavior graph", "GuardDuty prerequisite"],
+    services: ["amazon-detective", "amazon-guardduty"],
+  },
 
   // ---------------- aws-cloudhsm (tier 3) ----------------
   {
@@ -1237,6 +1265,34 @@ export const securityQuestions: Question[] = [
     keywords: ["CloudHSM vs KMS"],
     services: ["aws-cloudhsm", "aws-kms"],
   },
+  {
+    id: "q-aws-cloudhsm-3",
+    lessonId: "aws-cloudhsm",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "An auditor requires that cryptographic keys be generated and used only inside hardware that no AWS employee can access, with the customer administering the HSM cluster directly through standard APIs such as PKCS#11. Which service satisfies this, and what is the tradeoff versus the alternative?",
+    options: [
+      { id: "a", text: "AWS CloudHSM — dedicated, single-tenant HSM instances the customer administers, at the cost of more operational responsibility than KMS" },
+      { id: "b", text: "AWS KMS with a customer managed key — customer managed keys already run on dedicated, single-tenant hardware" },
+      { id: "c", text: "AWS Secrets Manager — it stores every secret inside a customer-dedicated hardware module" },
+      { id: "d", text: "AWS Certificate Manager — it issues certificates from a dedicated hardware module the customer controls" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Only CloudHSM provides dedicated, single-tenant HSM hardware that the customer administers directly via standard cryptographic APIs (PKCS#11, JCE, CNG); KMS's HSMs, even for customer managed keys, remain shared/AWS-operated infrastructure.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — a KMS customer managed key still runs on AWS's shared, AWS-operated HSM fleet; the 'customer managed' part refers to control over the key policy and lifecycle, not dedicated hardware.",
+      c: "Incorrect — Secrets Manager encrypts stored secrets using KMS; it does not provide dedicated HSM hardware itself.",
+      d: "Incorrect — ACM issues and manages TLS certificates; it is not a dedicated-hardware key management service.",
+    },
+    examKeywordHint: "dedicated hardware + customer administers via PKCS#11/JCE/CNG -> CloudHSM, not KMS",
+    keywords: ["CloudHSM", "dedicated hardware", "PKCS#11", "customer-administered HSM"],
+    services: ["aws-cloudhsm", "aws-kms"],
+  },
 
   // ---------------- aws-directory-service (tier 3) ----------------
   {
@@ -1287,6 +1343,34 @@ export const securityQuestions: Question[] = [
       d: "Incorrect — Macie is data discovery, unrelated.",
     },
     keywords: ["AD Connector", "hybrid identity"],
+    services: ["aws-directory-service"],
+  },
+  {
+    id: "q-aws-directory-service-3",
+    lessonId: "aws-directory-service",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company has never operated Active Directory anywhere — there is no on-premises directory to connect to — but a new line-of-business application running entirely in AWS requires full AD-native features like Group Policy and Kerberos authentication. Which option fits?",
+    options: [
+      { id: "a", text: "AWS Managed Microsoft AD — a real, AWS-hosted and managed AD domain with full AD/Kerberos/Group Policy support" },
+      { id: "b", text: "AD Connector — proxies authentication requests to an existing on-premises Active Directory" },
+      { id: "c", text: "Amazon Cognito — authentication for a web or mobile application's end users" },
+      { id: "d", text: "AWS IAM Identity Center alone — provides SSO but not a native AD domain with Group Policy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "With no existing on-premises AD to proxy to, and full native AD/Kerberos/Group Policy features required, AWS Managed Microsoft AD (a real, AWS-hosted AD domain) is the correct fit — AD Connector has nothing on-premises to connect to.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — AD Connector requires an existing on-premises AD to proxy authentication to; there isn't one here.",
+      c: "Incorrect — Cognito authenticates application end users, not enterprise workloads needing Group Policy/Kerberos.",
+      d: "Incorrect — IAM Identity Center provides SSO into AWS accounts and apps, not a full native AD domain with Group Policy.",
+    },
+    examKeywordHint: "no existing on-prem AD + need real AD/Kerberos/Group Policy -> AWS Managed Microsoft AD",
+    keywords: ["Managed Microsoft AD", "no existing on-prem AD", "Group Policy", "Kerberos"],
     services: ["aws-directory-service"],
   },
 
@@ -1342,6 +1426,34 @@ export const securityQuestions: Question[] = [
     keywords: ["RAM", "Transit Gateway sharing"],
     services: ["aws-resource-access-manager", "aws-transit-gateway"],
   },
+  {
+    id: "q-aws-resource-access-manager-3",
+    lessonId: "aws-resource-access-manager",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "Account A shares a subnet with Account B using AWS RAM. A developer in Account B then tries to launch an EC2 instance into that shared subnet. Besides the RAM share itself, what else is required for this to succeed?",
+    options: [
+      { id: "a", text: "The developer's IAM identity in Account B must also have an IAM policy permitting them to launch EC2 instances into that shared subnet" },
+      { id: "b", text: "Nothing else — accepting a RAM share automatically grants every IAM principal in Account B full access to the resource" },
+      { id: "c", text: "Account A must individually grant the developer's IAM user access via an IAM policy in Account A" },
+      { id: "d", text: "RAM automatically creates a duplicate copy of the subnet inside Account B, so no additional IAM permission is needed" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "RAM only makes the shared resource usable by the consuming account; it does not bypass IAM. A principal in the consuming account still needs its own IAM permissions to act on that resource.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — RAM sharing does not grant blanket access; IAM permissions in the consuming account still apply.",
+      c: "Incorrect — permissions for using a shared resource are managed by IAM policy in the consuming account (B), not by the owning account (A) granting individual users.",
+      d: "Incorrect — RAM shares the actual resource directly; it does not create a duplicate copy in the consuming account.",
+    },
+    examKeywordHint: "RAM share still requires IAM permission in the consuming account",
+    keywords: ["RAM", "shared resource", "IAM still required", "cross-account sharing"],
+    services: ["aws-resource-access-manager"],
+  },
 
   // ---------------- aws-artifact (tier 3) ----------------
   {
@@ -1393,6 +1505,34 @@ export const securityQuestions: Question[] = [
     },
     examKeywordHint: "download AWS's own compliance reports (SOC/ISO) -> AWS Artifact",
     keywords: ["Artifact", "SOC report", "compliance"],
+    services: ["aws-artifact"],
+  },
+  {
+    id: "q-aws-artifact-3",
+    lessonId: "aws-artifact",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A healthcare startup is about to store and process protected health information (PHI) on AWS and, per HIPAA requirements, must formally review and accept AWS's Business Associate Addendum (BAA) before doing so. Where do they do this?",
+    options: [
+      { id: "a", text: "AWS Artifact, in the Agreements section" },
+      { id: "b", text: "AWS Config, by enabling a HIPAA conformance pack" },
+      { id: "c", text: "AWS Trusted Advisor, under the security checks category" },
+      { id: "d", text: "AWS Security Hub, by enabling the HIPAA standard" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "AWS Artifact's Agreements section is where customers review and accept agreements like the HIPAA Business Associate Addendum before processing regulated data such as PHI.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — a Config conformance pack checks your resource configuration against HIPAA-related rules; it does not let you accept AWS's BAA.",
+      c: "Incorrect — Trusted Advisor gives account best-practice recommendations, not legal agreement acceptance.",
+      d: "Incorrect — Security Hub's HIPAA standard evaluates the compliance posture of your own resources; it is not where you accept AWS's BAA.",
+    },
+    examKeywordHint: "accept AWS's Business Associate Addendum (BAA) before processing PHI -> AWS Artifact Agreements",
+    keywords: ["Artifact", "BAA", "HIPAA agreement", "Agreements"],
     services: ["aws-artifact"],
   },
 

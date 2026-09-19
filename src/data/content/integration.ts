@@ -516,6 +516,6 @@ export const integrationLessons: Lesson[] = [
       "AppFlow moves data between a SaaS application and AWS storage/analytics services using a pre-built, managed connector.",
     mentorTip:
       "Recognition-level only: see \"Salesforce,\" \"Slack,\" \"ServiceNow,\" or similar SaaS names plus \"move data into S3/Redshift without custom code,\" and pick AppFlow.",
-    questionIds: ["q-amazon-appflow-1", "q-amazon-appflow-2"],
+    questionIds: ["q-amazon-appflow-1", "q-amazon-appflow-2", "q-amazon-appflow-3"],
   },
 ];

@@ -893,7 +893,7 @@ export const securityLessons: Lesson[] = [
     architectureCaption: "Detective turns raw logs tied to a finding into an explorable relationship graph.",
     mentorTip:
       "If the scenario says \"after receiving a GuardDuty finding, the security team needs to investigate the root cause,\" that is almost verbatim Detective's use case.",
-    questionIds: ["q-amazon-detective-1", "q-amazon-detective-2"],
+    questionIds: ["q-amazon-detective-1", "q-amazon-detective-2", "q-amazon-detective-3"],
   },
 
   {
@@ -949,7 +949,7 @@ export const securityLessons: Lesson[] = [
     architectureCaption: "You administer the HSM cluster yourself; AWS only manages the underlying infrastructure it runs on.",
     mentorTip:
       "\"Dedicated hardware,\" \"single-tenant,\" or \"we manage our own HSM\" in a question is the CloudHSM signal — otherwise, KMS is almost always the right, simpler answer.",
-    questionIds: ["q-aws-cloudhsm-1", "q-aws-cloudhsm-2"],
+    questionIds: ["q-aws-cloudhsm-1", "q-aws-cloudhsm-2", "q-aws-cloudhsm-3"],
   },
 
   {
@@ -1006,7 +1006,7 @@ export const securityLessons: Lesson[] = [
     architectureCaption: "AD Connector proxies authentication back to the existing on-premises directory without duplicating data.",
     mentorTip:
       "\"Existing on-premises Active Directory\" plus \"do not want to duplicate user data\" is the AD Connector fingerprint.",
-    questionIds: ["q-aws-directory-service-1", "q-aws-directory-service-2"],
+    questionIds: ["q-aws-directory-service-1", "q-aws-directory-service-2", "q-aws-directory-service-3"],
   },
 
   {
@@ -1062,7 +1062,7 @@ export const securityLessons: Lesson[] = [
     architectureCaption: "RAM shares the actual resource — no copies are created in the consuming accounts.",
     mentorTip:
       "\"Share a Transit Gateway/subnet across multiple accounts without duplicating it\" is RAM's textbook exam scenario.",
-    questionIds: ["q-aws-resource-access-manager-1", "q-aws-resource-access-manager-2"],
+    questionIds: ["q-aws-resource-access-manager-1", "q-aws-resource-access-manager-2", "q-aws-resource-access-manager-3"],
   },
 
   {
@@ -1116,6 +1116,6 @@ export const securityLessons: Lesson[] = [
     architectureCaption: "Artifact is a document library, not a scanning or monitoring service.",
     mentorTip:
       "If the scenario is about proving AWS's own compliance certifications to an external auditor, think Artifact — it is a documentation source, not a security service.",
-    questionIds: ["q-aws-artifact-1", "q-aws-artifact-2"],
+    questionIds: ["q-aws-artifact-1", "q-aws-artifact-2", "q-aws-artifact-3"],
   },
 ];

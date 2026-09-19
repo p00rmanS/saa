@@ -212,7 +212,7 @@ export const orientationQuestions: Question[] = [
     correctAnswers: ["b"],
     explanation: "A requirement violation eliminates an answer regardless of simplicity or cost.",
     optionExplanations: {
-      a: "Incorrect — 'solves the technical problem' isn't suffient if it violates a stated requirement.",
+      a: "Incorrect — 'solves the technical problem' isn't sufficient if it violates a stated requirement.",
       b: "Correct — requirement violations are disqualifying.",
       c: "Incorrect — simplicity doesn't excuse missing a hard requirement.",
       d: "Incorrect — cost doesn't excuse missing a hard requirement.",

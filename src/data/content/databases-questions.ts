@@ -947,6 +947,38 @@ export const databaseQuestions: Question[] = [
     keywords: ["Neptune", "fraud detection", "graph"],
     services: ["amazon-neptune"],
   },
+  {
+    id: "q-amazon-neptune-3",
+    lessonId: "amazon-neptune",
+    domain: 3,
+    difficulty: "hard",
+    type: "single",
+    kind: "exam",
+    scenario:
+      "A team's relational database models a social network with a 'follows' table. A query that finds 'friends of friends of friends' (three hops) requires three self-joins and has become extremely slow as the user base has grown, even with indexes on the join columns. What is the underlying reason a graph database like Amazon Neptune performs this kind of query far better, and which query languages would the team use once migrated?",
+    options: [
+      {
+        id: "a",
+        text: "Neptune stores relationships as first-class edges between nodes, so traversing each additional hop is a fast, localized pointer-chase rather than a new full-table join; Neptune supports Gremlin, openCypher, and SPARQL",
+      },
+      { id: "b", text: "Neptune automatically converts the relational schema into DynamoDB tables, which are faster for any query" },
+      { id: "c", text: "Neptune caches all query results in ElastiCache automatically, which is why it feels faster" },
+      { id: "d", text: "Neptune removes the need for indexes entirely, so any query is equally fast regardless of data shape" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Relational joins get progressively more expensive as hop count grows because each additional hop is another full join across the table. Graph databases like Neptune store relationships (edges) as first-class citizens alongside entities (nodes), so traversing a relationship is a direct, localized operation rather than a table-wide join — this is exactly why multi-hop traversal queries scale far better on Neptune. Neptune supports the Gremlin, openCypher, and SPARQL (RDF) query languages.",
+    optionExplanations: {
+      a: "Correct — this describes the actual architectural reason graph traversal outperforms repeated relational joins, and correctly names Neptune's supported query languages.",
+      b: "Incorrect — Neptune is a purpose-built graph engine, not a schema-conversion layer on top of DynamoDB; the two are unrelated services with different data models.",
+      c: "Incorrect — Neptune's performance advantage comes from its graph-native storage and traversal engine, not from an automatic ElastiCache caching layer.",
+      d: "Incorrect — Neptune still uses indexing internally for efficient traversal; it does not eliminate the need for indexes, it just organizes data differently than a relational table.",
+    },
+    examKeywordHint: "multi-hop relational joins slow at scale -> graph-native edges in Neptune; query languages: Gremlin, openCypher, SPARQL",
+    mentorTip: "If a scenario describes joins getting slower as 'hops' or relationship depth increases, that is the strongest Neptune signal on the exam — pair it mentally with its three query languages.",
+    keywords: ["Neptune", "graph traversal", "Gremlin", "openCypher", "SPARQL", "relational joins"],
+    services: ["amazon-neptune"],
+  },
 
   // ---------------- amazon-keyspaces (tier 3) ----------------
   {
@@ -999,6 +1031,35 @@ export const databaseQuestions: Question[] = [
     examKeywordHint: "existing Cassandra workload + managed equivalent -> Amazon Keyspaces",
     keywords: ["Keyspaces", "migration"],
     services: ["amazon-keyspaces"],
+  },
+  {
+    id: "q-amazon-keyspaces-3",
+    lessonId: "amazon-keyspaces",
+    domain: 3,
+    difficulty: "hard",
+    type: "single",
+    kind: "exam",
+    scenario:
+      "A team is evaluating Amazon Keyspaces against Amazon DynamoDB for a new, greenfield workload with no existing Cassandra code or CQL skills. Both would meet the throughput and latency needs equally well. Which factor should MOST influence the decision, and which service should they lean toward?",
+    options: [
+      { id: "a", text: "Keyspaces is always cheaper than DynamoDB, so cost alone should decide it" },
+      { id: "b", text: "With no existing Cassandra/CQL investment to preserve, DynamoDB is the more deeply AWS-native default choice, since Keyspaces' main value is compatibility with an ecosystem this team doesn't already use" },
+      { id: "c", text: "Keyspaces supports more AWS Regions than DynamoDB, so it should always be preferred" },
+      { id: "d", text: "DynamoDB cannot scale to the same throughput as Keyspaces, so Keyspaces must be chosen" },
+    ],
+    correctAnswers: ["b"],
+    explanation:
+      "Keyspaces exists specifically to preserve an existing investment in Apache Cassandra's CQL and wide-column data model — its entire value proposition is compatibility with tooling and skills a team already has. For a brand-new workload with no such existing Cassandra investment, that compatibility benefit doesn't apply, so the more deeply AWS-native, broadly-used DynamoDB is the more sensible default absent a specific reason to choose Keyspaces.",
+    optionExplanations: {
+      a: "Incorrect — pricing for both is workload-dependent (on-demand/provisioned, storage, throughput); neither is universally cheaper, and the exam does not test a blanket cost ranking between them.",
+      b: "Correct — this is exactly the reasoning the exam wants: Keyspaces' value is compatibility with an existing Cassandra ecosystem, which doesn't apply here, making DynamoDB the more natural default.",
+      c: "Incorrect — Regional availability is not the deciding factor described in AWS documentation or tested on the exam for this comparison.",
+      d: "Incorrect — DynamoDB is designed for virtually unlimited throughput scaling; this statement about a throughput ceiling is false.",
+    },
+    examKeywordHint: "no existing Cassandra investment -> prefer DynamoDB; existing Cassandra/CQL skills or workload -> prefer Keyspaces",
+    mentorTip: "The exam signal for Keyspaces is always the word 'Cassandra' or 'CQL' appearing because of an EXISTING workload or skill set — absent that, DynamoDB is the safer, more AWS-native default between the two.",
+    keywords: ["Keyspaces vs DynamoDB", "greenfield workload", "decision factor"],
+    services: ["amazon-keyspaces", "amazon-dynamodb"],
   },
 
   // ---------------- bonus comparison ----------------

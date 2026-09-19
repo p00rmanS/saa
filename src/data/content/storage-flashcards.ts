@@ -26,7 +26,7 @@ export const storageFlashcards: Flashcard[] = [
   { id: "fc-s3-glacier-1", serviceId: "s3-glacier", domain: 4, category: "Storage", front: "What is S3 Glacier for?", back: "Long-term, low-cost archival storage for data accessed rarely." },
   { id: "fc-s3-glacier-2", serviceId: "s3-glacier", domain: 4, category: "Storage", front: "What's the trade-off across Glacier retrieval tiers?", back: "Faster retrieval = higher cost; slower retrieval (e.g. Deep Archive) = lowest cost." },
   { id: "fc-s3-glacier-3", serviceId: "s3-glacier", domain: 1, category: "Storage", front: "What automates moving data from S3 Standard to Glacier over time?", back: "S3 Lifecycle rules." },
-  { id: "fc-s3-glacier-4", serviceId: "s3-glacier", domain: 1, category: "Storage", front: "What Glacier feature supports compliance/legal-hold requirements?", back: "S3 Object Lock / Glacier Vault Lock, for WORM (write-once-read-many) retention." },
+  { id: "fc-s3-glacier-4", serviceId: "s3-glacier", domain: 1, category: "Storage", front: "What feature supports compliance/legal-hold requirements for S3 (including Glacier-class) objects?", back: "S3 Object Lock (Governance or Compliance mode), for WORM (write-once-read-many) retention." },
   { id: "fc-s3-glacier-5", serviceId: "s3-glacier", domain: 4, category: "Storage", front: "Taglish: Kailan Glacier ang gamitin?", back: "Kapag matagal nang hindi ginagamit ang data pero kailangan pa rin itong i-retain para sa compliance o backup, at gusto mong pinakamura." },
 
   { id: "fc-aws-storage-gateway-1", serviceId: "aws-storage-gateway", domain: 3, category: "Storage", front: "What is AWS Storage Gateway for?", back: "Hybrid cloud storage — connecting on-premises applications to AWS storage via File, Volume, or Tape gateway types." },

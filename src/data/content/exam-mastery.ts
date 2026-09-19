@@ -174,7 +174,7 @@ export const examMasteryLessons: Lesson[] = [
     architectureDiagram: "Pick length (10/20/30) -> Timer starts -> Answer -> Score + domain breakdown",
     mentorTip:
       "Track your average time per question in mini exams — the real exam gives roughly 2 minutes per question; if you're consistently over that, focus on faster elimination.",
-    questionIds: ["q-timed-mini-exams-1", "q-timed-mini-exams-2"],
+    questionIds: ["q-timed-mini-exams-1", "q-timed-mini-exams-2", "q-timed-mini-exams-3"],
   },
   {
     id: "full-mock-exam",
@@ -227,6 +227,6 @@ export const examMasteryLessons: Lesson[] = [
     architectureDiagram: "65 questions (weighted 30/26/24/20 by domain) -> 130-minute timer -> Submit -> Score + domain breakdown -> Weak-area report",
     mentorTip:
       "These internal thresholds (90% lessons, 80%+ domain quizzes, 75%+ mock average, no domain below 70%) are study recommendations, not official AWS passing criteria — use them as a personal readiness signal, not a guarantee.",
-    questionIds: ["q-full-mock-exam-1", "q-full-mock-exam-2"],
+    questionIds: ["q-full-mock-exam-1", "q-full-mock-exam-2", "q-full-mock-exam-3"],
   },
 ];

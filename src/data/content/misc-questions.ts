@@ -737,6 +737,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Cost and Usage Report", "BI integration"],
     services: ["aws-cost-and-usage-report"],
   },
+  {
+    id: "q-aws-cost-and-usage-report-3",
+    lessonId: "aws-cost-and-usage-report",
+    domain: 4,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "Which AWS services are commonly used together to query and visualize AWS Cost and Usage Report (CUR) data once it lands in the destination S3 bucket?",
+    options: [
+      { id: "a", text: "Amazon Athena or Amazon Redshift for querying, and Amazon QuickSight for visualization" },
+      { id: "b", text: "AWS Budgets for querying and AWS Shield for visualization" },
+      { id: "c", text: "Amazon Route 53 for querying and AWS WAF for visualization" },
+      { id: "d", text: "AWS License Manager for querying and AWS Health Dashboard for visualization" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "CUR data is delivered to S3 as CSV/Parquet files, then commonly queried with Athena or Redshift and visualized with QuickSight or another BI tool.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Budgets alerts on spend thresholds and Shield protects against DDoS; neither queries or visualizes CUR data.",
+      c: "Incorrect — Route 53 is DNS and WAF is a web application firewall; both unrelated to billing data analysis.",
+      d: "Incorrect — License Manager tracks software licenses and the Health Dashboard shows AWS service status; neither is a CUR analysis tool.",
+    },
+    keywords: ["Cost and Usage Report", "Athena", "QuickSight"],
+    services: ["aws-cost-and-usage-report"],
+  },
 
   // ---------------- savings-plans-reserved-spot (tier 1) ----------------
   {
@@ -919,6 +945,33 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Snowball is data transfer, unrelated.",
     },
     keywords: ["Amplify", "frontend hosting"],
+    services: ["aws-amplify"],
+  },
+  {
+    id: "q-aws-amplify-3",
+    lessonId: "aws-amplify",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "An enterprise team needs a backend with highly custom, fine-grained control over API behavior, database indexing strategy, and individual Lambda function tuning — beyond what a quick-start toolchain typically offers. Should they build this on AWS Amplify?",
+    options: [
+      { id: "a", text: "No — provision API Gateway, Lambda, and DynamoDB directly for full, fine-grained control" },
+      { id: "b", text: "Yes — Amplify always provides the deepest customization for any backend requirement" },
+      { id: "c", text: "Yes, but only if they use Amplify Hosting instead of the Amplify Libraries" },
+      { id: "d", text: "No — Amplify cannot be used together with DynamoDB under any circumstances" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Amplify optimizes for speed on common full-stack patterns, not maximum fine-grained control — a complex custom backend is better served by provisioning each service directly.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Amplify trades some fine-grained control for speed and convenience, it is not the deepest-customization option.",
+      c: "Incorrect — Amplify Hosting only affects frontend deployment, not backend customization depth.",
+      d: "Incorrect — Amplify commonly uses DynamoDB as its data layer; this statement is false.",
+    },
+    examKeywordHint: "highly custom, fine-grained backend control -> provision services directly, not Amplify",
+    keywords: ["Amplify", "custom backend", "exam trap"],
     services: ["aws-amplify"],
   },
 
@@ -1104,6 +1157,31 @@ export const miscQuestions: Question[] = [
     keywords: ["Device Farm", "real device testing"],
     services: ["aws-device-farm"],
   },
+  {
+    id: "q-aws-device-farm-3",
+    lessonId: "aws-device-farm",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "Which of the following is NOT something AWS Device Farm is designed to do?",
+    options: [
+      { id: "a", text: "Load-test backend server infrastructure for concurrent user capacity" },
+      { id: "b", text: "Run automated UI tests using frameworks like Appium, Espresso, or XCTest on real devices" },
+      { id: "c", text: "Provide remote, manual interactive access to a real physical device" },
+      { id: "d", text: "Return logs, screenshots, and performance data from a test run" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Device Farm tests app behavior and compatibility on real devices — it is not a backend load-testing tool for server infrastructure.",
+    optionExplanations: {
+      a: "Correct — this is the one Device Farm does NOT do; use a dedicated load-testing tool for backend infrastructure instead.",
+      b: "Incorrect — this is a core Device Farm capability.",
+      c: "Incorrect — this is a core Device Farm capability.",
+      d: "Incorrect — this is a core Device Farm capability.",
+    },
+    keywords: ["Device Farm", "scope", "exam trap"],
+    services: ["aws-device-farm"],
+  },
 
   // ---------------- amazon-comprehend (tier 3) ----------------
   {
@@ -1154,6 +1232,32 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Transcribe converts audio to text, unrelated to PII detection.",
     },
     keywords: ["Comprehend", "PII detection"],
+    services: ["amazon-comprehend"],
+  },
+  {
+    id: "q-amazon-comprehend-3",
+    lessonId: "amazon-comprehend",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A news aggregator wants to automatically pull out the names of people, companies, and locations mentioned in each article, without training a custom model. Which Comprehend feature fits?",
+    options: [
+      { id: "a", text: "Entity recognition" },
+      { id: "b", text: "Sentiment analysis" },
+      { id: "c", text: "PII redaction" },
+      { id: "d", text: "Dominant language detection" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Comprehend's entity recognition identifies named entities like people, organizations, locations, and dates within text.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — sentiment analysis classifies emotional tone, not named entities.",
+      c: "Incorrect — PII redaction flags/removes personal data, a different feature than general entity extraction.",
+      d: "Incorrect — language detection identifies which language the text is written in, not the entities within it.",
+    },
+    keywords: ["Comprehend", "entity recognition"],
     services: ["amazon-comprehend"],
   },
 
@@ -1208,6 +1312,31 @@ export const miscQuestions: Question[] = [
     keywords: ["Lex", "IVR", "intent"],
     services: ["amazon-lex"],
   },
+  {
+    id: "q-amazon-lex-3",
+    lessonId: "amazon-lex",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "In Amazon Lex bot design, what is a 'slot'?",
+    options: [
+      { id: "a", text: "A required piece of information the bot collects from the user to fulfill an intent, such as a check-in date" },
+      { id: "b", text: "The AWS Region the bot is deployed in" },
+      { id: "c", text: "A billing tier for Lex usage" },
+      { id: "d", text: "A pre-recorded audio file used only by Amazon Polly" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "A slot is a parameter Lex needs filled in (like a date, location, or quantity) to complete a given intent, and Lex will prompt the user if it's missing.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Region is a deployment setting, not a Lex conversation concept.",
+      c: "Incorrect — not a real Lex billing term.",
+      d: "Incorrect — slots are a Lex concept, unrelated to Polly audio files.",
+    },
+    keywords: ["Lex", "slots", "intents"],
+    services: ["amazon-lex"],
+  },
 
   // ---------------- amazon-polly (tier 3) ----------------
   {
@@ -1258,6 +1387,31 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Kinesis data streams are unrelated to speech synthesis.",
     },
     keywords: ["Polly", "SSML"],
+    services: ["amazon-polly"],
+  },
+  {
+    id: "q-amazon-polly-3",
+    lessonId: "amazon-polly",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "Which Amazon Polly voice engine produces more natural, higher-fidelity speech than the standard engine, at a higher price?",
+    options: [
+      { id: "a", text: "Neural voices" },
+      { id: "b", text: "Classic voices" },
+      { id: "c", text: "Batch voices" },
+      { id: "d", text: "Streaming-only voices" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Polly's Neural Text-to-Speech (NTTS) engine produces more lifelike speech than the standard engine, at a higher per-character price.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — 'Classic' isn't a real Polly voice engine name; standard voices are the cheaper, less lifelike tier.",
+      c: "Incorrect — not a real Polly voice engine tier.",
+      d: "Incorrect — not a real Polly voice engine tier; streaming is an output delivery mode, not a voice quality tier.",
+    },
+    keywords: ["Polly", "Neural voices"],
     services: ["amazon-polly"],
   },
 
@@ -1312,6 +1466,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Rekognition", "facial comparison"],
     services: ["amazon-rekognition"],
   },
+  {
+    id: "q-amazon-rekognition-3",
+    lessonId: "amazon-rekognition",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A retailer wants Rekognition to recognize a specific product logo that isn't one of its built-in labels. Which Rekognition feature allows training it to detect that custom object?",
+    options: [
+      { id: "a", text: "Custom Labels" },
+      { id: "b", text: "Content moderation" },
+      { id: "c", text: "Face comparison" },
+      { id: "d", text: "Text detection" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Rekognition Custom Labels lets you train the service to detect objects/logos specific to your own use case when the built-in labels aren't enough.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — content moderation flags unsafe content, not custom object recognition.",
+      c: "Incorrect — face comparison matches faces, not product logos.",
+      d: "Incorrect — text detection reads visible text, not custom object recognition.",
+    },
+    keywords: ["Rekognition", "Custom Labels"],
+    services: ["amazon-rekognition"],
+  },
   // ---------------- amazon-sagemaker-ai (tier 3) ----------------
   {
     id: "q-amazon-sagemaker-ai-1",
@@ -1361,6 +1541,31 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Polly converts text to speech, unrelated to sentiment.",
     },
     keywords: ["SageMaker AI", "Comprehend", "exam trap"],
+    services: ["amazon-sagemaker-ai"],
+  },
+  {
+    id: "q-amazon-sagemaker-ai-3",
+    lessonId: "amazon-sagemaker-ai",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "Which SageMaker AI feature helps reduce the cost of training a large custom model?",
+    options: [
+      { id: "a", text: "Managed Spot Training, which uses spare EC2 Spot capacity for training jobs" },
+      { id: "b", text: "Automatic model tuning, which always guarantees the lowest possible training cost" },
+      { id: "c", text: "SageMaker endpoints, which are free regardless of usage" },
+      { id: "d", text: "SageMaker notebooks, which bypass all compute charges" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "SageMaker AI supports Spot-instance-based training jobs, which can significantly cut training compute cost for interruption-tolerant jobs.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — automatic tuning optimizes model performance, not cost, and doesn't guarantee the lowest cost.",
+      c: "Incorrect — hosting endpoints are billed based on the compute resources kept running.",
+      d: "Incorrect — notebooks are billed based on the compute instance backing them while running.",
+    },
+    keywords: ["SageMaker AI", "Managed Spot Training", "cost"],
     services: ["amazon-sagemaker-ai"],
   },
 
@@ -1415,6 +1620,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Textract", "table extraction"],
     services: ["amazon-textract"],
   },
+  {
+    id: "q-amazon-textract-3",
+    lessonId: "amazon-textract",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A bank wants to automate ID verification by pulling structured field data (name, ID number, expiration date) from scanned driver's licenses and passports. Which service fits BEST?",
+    options: [
+      { id: "a", text: "Amazon Textract" },
+      { id: "b", text: "Amazon Rekognition general label detection" },
+      { id: "c", text: "Amazon Comprehend" },
+      { id: "d", text: "Amazon Polly" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Textract extracts structured key-value field data from identity documents, exactly the kind of automated ID-verification use case described.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Rekognition's general label detection identifies objects/scenes, not structured field values on a document.",
+      c: "Incorrect — Comprehend analyzes existing digital text, it doesn't extract structured fields from a scanned image.",
+      d: "Incorrect — Polly converts text to speech, unrelated to document data extraction.",
+    },
+    keywords: ["Textract", "identity document", "ID verification"],
+    services: ["amazon-textract"],
+  },
 
   // ---------------- amazon-transcribe (tier 3) ----------------
   {
@@ -1465,6 +1696,32 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Rekognition Video analyzes visual content, not speech.",
     },
     keywords: ["Transcribe", "streaming", "speaker labels"],
+    services: ["amazon-transcribe"],
+  },
+  {
+    id: "q-amazon-transcribe-3",
+    lessonId: "amazon-transcribe",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A medical transcription team working with unusual clinical terminology wants Transcribe to more accurately recognize domain-specific words that a generic model would otherwise misinterpret. What should they configure?",
+    options: [
+      { id: "a", text: "A custom vocabulary" },
+      { id: "b", text: "SSML tags" },
+      { id: "c", text: "A Rekognition custom label" },
+      { id: "d", text: "A Lex slot type" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Transcribe's custom vocabulary feature improves recognition accuracy for domain-specific or unusual terms.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — SSML controls Polly's speech output, it doesn't apply to Transcribe's input recognition.",
+      c: "Incorrect — Rekognition custom labels are for image/video object detection, unrelated to audio transcription.",
+      d: "Incorrect — Lex slot types configure chatbot conversation parameters, not transcription accuracy.",
+    },
+    keywords: ["Transcribe", "custom vocabulary"],
     services: ["amazon-transcribe"],
   },
 
@@ -1519,6 +1776,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Translate", "Polly", "chaining services"],
     services: ["amazon-translate"],
   },
+  {
+    id: "q-amazon-translate-3",
+    lessonId: "amazon-translate",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company has thousands of archived support documents that need to be translated into five languages overnight, not in real time. Which Amazon Translate capability fits BEST?",
+    options: [
+      { id: "a", text: "Batch (asynchronous) translation" },
+      { id: "b", text: "Real-time synchronous translation only" },
+      { id: "c", text: "Amazon Polly Neural voices" },
+      { id: "d", text: "An Amazon Lex custom intent" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Translate's batch (asynchronous) mode is built for translating large document sets without requiring an immediate, real-time response.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — real-time translation is meant for short, immediate text, not large overnight document batches.",
+      c: "Incorrect — Polly Neural voices concern speech synthesis, unrelated to bulk translation.",
+      d: "Incorrect — Lex intents concern chatbot conversation flow, unrelated to document translation.",
+    },
+    keywords: ["Translate", "batch translation"],
+    services: ["amazon-translate"],
+  },
   // ---------------- amazon-elastic-transcoder (tier 3) ----------------
   {
     id: "q-amazon-elastic-transcoder-1",
@@ -1568,6 +1851,31 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — that is Transcribe's role.",
     },
     keywords: ["Elastic Transcoder"],
+    services: ["amazon-elastic-transcoder"],
+  },
+  {
+    id: "q-amazon-elastic-transcoder-3",
+    lessonId: "amazon-elastic-transcoder",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "What is a 'preset' in Amazon Elastic Transcoder?",
+    options: [
+      { id: "a", text: "A predefined (or custom) template specifying the output format, resolution, and bitrate for a transcoding job" },
+      { id: "b", text: "A saved IAM policy specific to Elastic Transcoder" },
+      { id: "c", text: "A live video ingestion endpoint" },
+      { id: "d", text: "A CloudFront cache invalidation rule" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "A preset defines the target output format/resolution/bitrate a transcoding job should produce; jobs can use multiple presets to generate several outputs at once.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — not related to IAM policies.",
+      c: "Incorrect — live ingestion endpoints are Kinesis Video Streams' domain, not Elastic Transcoder's.",
+      d: "Incorrect — not related to CloudFront caching.",
+    },
+    keywords: ["Elastic Transcoder", "presets"],
     services: ["amazon-elastic-transcoder"],
   },
 
@@ -1622,6 +1930,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Kinesis Video Streams", "Kinesis Data Streams", "comparison"],
     services: ["amazon-kinesis-video-streams"],
   },
+  {
+    id: "q-amazon-kinesis-video-streams-3",
+    lessonId: "amazon-kinesis-video-streams",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A security company wants live video ingested from thousands of cameras to be automatically analyzed for detecting specific objects or people. Which combination of services fits BEST?",
+    options: [
+      { id: "a", text: "Amazon Kinesis Video Streams feeding Amazon Rekognition Video" },
+      { id: "b", text: "Amazon Elastic Transcoder feeding Amazon Polly" },
+      { id: "c", text: "Amazon Kinesis Data Streams feeding Amazon Comprehend" },
+      { id: "d", text: "Amazon Textract feeding Amazon Translate" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Kinesis Video Streams ingests and stores the live video, and integrates directly with Rekognition Video for ML-based object/person detection.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — Elastic Transcoder converts existing files, and Polly produces speech; neither ingests live video or detects objects.",
+      c: "Incorrect — Kinesis Data Streams handles generic data records, not video, and Comprehend analyzes text.",
+      d: "Incorrect — Textract extracts document text and Translate changes language; neither analyzes live video.",
+    },
+    keywords: ["Kinesis Video Streams", "Rekognition Video", "video analytics"],
+    services: ["amazon-kinesis-video-streams"],
+  },
 
   // ---------------- aws-cli (tier 3) ----------------
   {
@@ -1674,6 +2008,32 @@ export const miscQuestions: Question[] = [
     keywords: ["AWS CLI", "AWS API"],
     services: ["aws-cli"],
   },
+  {
+    id: "q-aws-cli-3",
+    lessonId: "aws-cli",
+    domain: 4,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A developer needs the AWS CLI to switch between credentials for two different AWS accounts without editing configuration files each time. What CLI feature supports this?",
+    options: [
+      { id: "a", text: "Named profiles" },
+      { id: "b", text: "SSML tags" },
+      { id: "c", text: "A CLI-only IAM-free mode" },
+      { id: "d", text: "A dedicated CLI-only AWS Region" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Named profiles let the CLI store multiple sets of credentials/settings and switch between them with a simple flag or environment variable.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — SSML is a Polly speech-markup concept, unrelated to the CLI.",
+      c: "Incorrect — the CLI always operates under IAM permissions; there is no IAM-free mode.",
+      d: "Incorrect — the CLI works against the same Regions as any other AWS interface.",
+    },
+    keywords: ["AWS CLI", "named profiles"],
+    services: ["aws-cli"],
+  },
   // ---------------- aws-management-console (tier 3) ----------------
   {
     id: "q-aws-management-console-1",
@@ -1723,6 +2083,32 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Rekognition is unrelated to configuration management.",
     },
     keywords: ["Management Console", "automation", "exam trap"],
+    services: ["aws-management-console"],
+  },
+  {
+    id: "q-aws-management-console-3",
+    lessonId: "aws-management-console",
+    domain: 4,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "What browser-based command-line environment is built directly into the AWS Management Console, letting you run CLI commands without installing anything locally?",
+    options: [
+      { id: "a", text: "AWS CloudShell" },
+      { id: "b", text: "AWS CLI Sandbox" },
+      { id: "c", text: "Amazon Cloud9 (always required for this)" },
+      { id: "d", text: "AWS Systems Manager Session Manager (the only way to get a shell)" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "AWS CloudShell is the browser-based shell built into the Console, pre-authenticated with your Console credentials and pre-installed with the CLI.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — not a real AWS product name.",
+      c: "Incorrect — Cloud9 is a full cloud IDE, a separate service, not what's built into the Console for quick CLI access.",
+      d: "Incorrect — Session Manager provides shell access into EC2 instances, not a general Console-embedded CLI environment.",
+    },
+    keywords: ["Management Console", "CloudShell"],
     services: ["aws-management-console"],
   },
 
@@ -1777,6 +2163,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Health Dashboard", "personalized view"],
     services: ["aws-health-dashboard"],
   },
+  {
+    id: "q-aws-health-dashboard-3",
+    lessonId: "aws-health-dashboard",
+    domain: 2,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A team wants to automatically trigger a Lambda function whenever AWS Health posts a new event affecting their account's resources, instead of manually checking the dashboard. What should they use?",
+    options: [
+      { id: "a", text: "Amazon EventBridge integration with AWS Health events" },
+      { id: "b", text: "AWS License Manager" },
+      { id: "c", text: "AWS Budgets" },
+      { id: "d", text: "Amazon Rekognition" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "AWS Health events can be routed through Amazon EventBridge to trigger automated responses like a Lambda function.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — License Manager tracks software licenses, unrelated to Health events.",
+      c: "Incorrect — Budgets alerts on spend thresholds, unrelated to Health events.",
+      d: "Incorrect — Rekognition analyzes images/video, unrelated.",
+    },
+    keywords: ["Health Dashboard", "EventBridge", "automation"],
+    services: ["aws-health-dashboard"],
+  },
 
   // ---------------- aws-license-manager (tier 3) ----------------
   {
@@ -1829,6 +2241,32 @@ export const miscQuestions: Question[] = [
     keywords: ["License Manager", "enforcement"],
     services: ["aws-license-manager"],
   },
+  {
+    id: "q-aws-license-manager-3",
+    lessonId: "aws-license-manager",
+    domain: 4,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A large enterprise with dozens of linked AWS accounts under AWS Organizations wants centralized visibility into software license usage across all of them. What does AWS License Manager support that enables this?",
+    options: [
+      { id: "a", text: "Centralized, cross-account license tracking when integrated with AWS Organizations" },
+      { id: "b", text: "Automatic purchasing of new licenses across every linked account" },
+      { id: "c", text: "Replacing IAM permissions across all accounts" },
+      { id: "d", text: "Encrypting EC2 root volumes across all accounts" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "License Manager can centralize license visibility and enforcement across multiple AWS accounts when integrated with AWS Organizations.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — License Manager tracks/enforces entitlements you already own, it doesn't purchase licenses for you.",
+      c: "Incorrect — License Manager doesn't replace IAM.",
+      d: "Incorrect — volume encryption is unrelated to License Manager's purpose.",
+    },
+    keywords: ["License Manager", "AWS Organizations", "centralized tracking"],
+    services: ["aws-license-manager"],
+  },
   // ---------------- amazon-managed-grafana (tier 3) ----------------
   {
     id: "q-amazon-managed-grafana-1",
@@ -1878,6 +2316,32 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — Textract extracts document data, unrelated.",
     },
     keywords: ["Managed Grafana", "Managed Service for Prometheus", "pairing"],
+    services: ["amazon-managed-grafana"],
+  },
+  {
+    id: "q-amazon-managed-grafana-3",
+    lessonId: "amazon-managed-grafana",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company wants its Managed Grafana workspace to authenticate users through their existing corporate single sign-on, instead of managing separate Grafana logins. What should they integrate with?",
+    options: [
+      { id: "a", text: "IAM Identity Center" },
+      { id: "b", text: "AWS License Manager" },
+      { id: "c", text: "Amazon Textract" },
+      { id: "d", text: "Named AWS CLI profiles" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Amazon Managed Grafana integrates with IAM Identity Center for centralized, SSO-based authentication.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — License Manager tracks software licenses, unrelated to authentication.",
+      c: "Incorrect — Textract extracts document data, unrelated.",
+      d: "Incorrect — CLI profiles are a local credential-switching mechanism, not an SSO integration for a hosted service.",
+    },
+    keywords: ["Managed Grafana", "IAM Identity Center", "SSO"],
     services: ["amazon-managed-grafana"],
   },
 
@@ -1932,6 +2396,32 @@ export const miscQuestions: Question[] = [
     keywords: ["Managed Service for Prometheus", "managed infrastructure"],
     services: ["amazon-managed-service-for-prometheus"],
   },
+  {
+    id: "q-amazon-managed-service-for-prometheus-3",
+    lessonId: "amazon-managed-service-for-prometheus",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A team migrating from a self-hosted Prometheus server to Amazon Managed Service for Prometheus wants to confirm their existing setup will keep working with minimal changes. What do they NOT need to rewrite?",
+    options: [
+      { id: "a", text: "Their existing PromQL queries and Prometheus exporters" },
+      { id: "b", text: "Their entire container orchestration platform" },
+      { id: "c", text: "Their application source code" },
+      { id: "d", text: "Their IAM account structure" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Managed Service for Prometheus is Prometheus-compatible, so existing PromQL queries and exporters continue to work unchanged against the new managed backend.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — the container orchestration platform (e.g., Kubernetes) is unrelated to the metrics backend and stays as-is regardless.",
+      c: "Incorrect — application source code generally doesn't need to change just to switch the metrics backend.",
+      d: "Incorrect — IAM structure is a separate concern from metrics tooling compatibility.",
+    },
+    keywords: ["Managed Service for Prometheus", "migration", "PromQL compatibility"],
+    services: ["amazon-managed-service-for-prometheus"],
+  },
 
   // ---------------- aws-well-architected-tool (tier 3) ----------------
   {
@@ -1982,6 +2472,33 @@ export const miscQuestions: Question[] = [
       d: "Incorrect — deleting the workload definition doesn't fix the underlying architecture.",
     },
     keywords: ["Well-Architected Tool", "remediation"],
+    services: ["aws-well-architected-tool"],
+  },
+  {
+    id: "q-aws-well-architected-tool-3",
+    lessonId: "aws-well-architected-tool",
+    domain: 2,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A team wants automated checks continuously run against their LIVE, already-deployed AWS resources to flag cost and security issues — not a design-time questionnaire about a planned workload. Which tool fits that need BETTER than the Well-Architected Tool?",
+    options: [
+      { id: "a", text: "AWS Trusted Advisor" },
+      { id: "b", text: "The Well-Architected Tool itself" },
+      { id: "c", text: "AWS CLI" },
+      { id: "d", text: "Amazon Comprehend" },
+    ],
+    correctAnswers: ["a"],
+    explanation: "Trusted Advisor runs automated checks against your actual live resources; the Well-Architected Tool is a structured design-time questionnaire, not a continuous live-resource scanner.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — the Well-Architected Tool is a self-service questionnaire about a workload's design, not automated continuous scanning of live resources.",
+      c: "Incorrect — the CLI is a management interface, not an automated best-practice checker.",
+      d: "Incorrect — Comprehend analyzes text, unrelated to infrastructure checks.",
+    },
+    examKeywordHint: "automated checks against live resources -> Trusted Advisor; design-time questionnaire -> Well-Architected Tool",
+    keywords: ["Well-Architected Tool", "Trusted Advisor", "comparison"],
     services: ["aws-well-architected-tool"],
   },
 

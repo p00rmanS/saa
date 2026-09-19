@@ -1218,6 +1218,34 @@ export const computeQuestions: Question[] = [
     services: ["aws-outposts"],
   },
   {
+    id: "q-aws-outposts-3",
+    lessonId: "aws-outposts",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "An Outposts rack briefly loses its network connection back to the parent AWS Region. What is the MOST accurate statement about the impact on already-running EC2 instances on that rack?",
+    options: [
+      { id: "a", text: "Already-running instances keep running locally; only certain Region-dependent management actions are affected until connectivity returns" },
+      { id: "b", text: "All instances on the rack are immediately terminated" },
+      { id: "c", text: "The instances automatically migrate to the parent Region" },
+      { id: "d", text: "Outposts refuses to run any workload without a constant, live connection to the Region" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Outposts is designed so already-running local workloads keep operating through a temporary loss of connectivity to the parent Region; only actions that depend on the Region's control plane are impacted until the link is restored.",
+    optionExplanations: {
+      a: "Correct — this local resiliency is a key Outposts design point.",
+      b: "Incorrect — a lost connection does not terminate running instances.",
+      c: "Incorrect — Outposts does not auto-migrate workloads to the Region; that would defeat the purpose of keeping them on-premises.",
+      d: "Incorrect — Outposts specifically tolerates short-term disconnection for already-running workloads.",
+    },
+    examKeywordHint: "temporary loss of connection to parent Region -> already-running workloads keep running locally",
+    keywords: ["Outposts", "connectivity", "local resiliency"],
+    services: ["aws-outposts"],
+  },
+  {
     id: "q-aws-serverless-application-repository-1",
     lessonId: "aws-serverless-application-repository",
     domain: 3,
@@ -1265,6 +1293,34 @@ export const computeQuestions: Question[] = [
       d: "Incorrect — Directory Service is for identity, unrelated.",
     },
     keywords: ["SAR", "reusable applications"],
+    services: ["aws-serverless-application-repository"],
+  },
+  {
+    id: "q-aws-serverless-application-repository-3",
+    lessonId: "aws-serverless-application-repository",
+    domain: 1,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A developer is about to deploy a third-party application from the AWS Serverless Application Repository into their production AWS account. What should they do BEFORE deploying it?",
+    options: [
+      { id: "a", text: "Review the IAM permissions/resources defined in the application's SAM template to confirm they follow least privilege" },
+      { id: "b", text: "Nothing — SAR applications are automatically sandboxed and cannot access any of your resources" },
+      { id: "c", text: "Disable IAM entirely so the application can run" },
+      { id: "d", text: "Rewrite the entire application from scratch instead of deploying it" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "A deployed SAR application gets its own IAM roles/permissions as defined by its SAM template, so you should always review a third-party application's requested permissions before deploying it into your account.",
+    optionExplanations: {
+      a: "Correct — reviewing requested permissions before deployment is the standard safe practice.",
+      b: "Incorrect — SAR applications are not automatically sandboxed; they run with whatever IAM permissions their template requests.",
+      c: "Incorrect — disabling IAM is never appropriate and removes all access control.",
+      d: "Incorrect — rewriting defeats the purpose of reusing a pre-built component; reviewing it is sufficient and standard.",
+    },
+    examKeywordHint: "deploying a third-party SAR app -> review its IAM permissions first",
+    keywords: ["SAR", "IAM", "security review"],
     services: ["aws-serverless-application-repository"],
   },
   {
@@ -1318,6 +1374,33 @@ export const computeQuestions: Question[] = [
     services: ["vmware-cloud-on-aws"],
   },
   {
+    id: "q-vmware-cloud-on-aws-3",
+    lessonId: "vmware-cloud-on-aws",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario: "Which statement correctly describes the infrastructure that VMware Cloud on AWS runs on?",
+    options: [
+      { id: "a", text: "Dedicated, AWS-owned bare-metal infrastructure reserved for the customer's VMware software-defined data center" },
+      { id: "b", text: "Ordinary shared EC2 instances alongside other customers' workloads" },
+      { id: "c", text: "Only the customer's own on-premises hardware" },
+      { id: "d", text: "Containers, after converting all VMs to Docker images first" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "VMware Cloud on AWS runs the VMware SDDC stack (vSphere, vSAN, NSX) on dedicated AWS bare-metal hosts reserved for the customer, not on ordinary shared multi-tenant EC2 instances.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — it uses dedicated bare-metal hosts, not shared multi-tenant instances.",
+      c: "Incorrect — the whole point is running the VMware stack on AWS infrastructure, not staying purely on-premises.",
+      d: "Incorrect — no containerization/conversion is required; this preserves the existing VM-based VMware stack as-is.",
+    },
+    examKeywordHint: "VMware Cloud on AWS -> dedicated bare-metal AWS hosts",
+    keywords: ["VMware Cloud on AWS", "dedicated hardware", "bare metal"],
+    services: ["vmware-cloud-on-aws"],
+  },
+  {
     id: "q-aws-wavelength-1",
     lessonId: "aws-wavelength",
     domain: 3,
@@ -1365,6 +1448,34 @@ export const computeQuestions: Question[] = [
       d: "Incorrect — Config is for compliance tracking, unrelated.",
     },
     keywords: ["Wavelength", "AR/VR", "5G"],
+    services: ["aws-wavelength"],
+  },
+  {
+    id: "q-aws-wavelength-3",
+    lessonId: "aws-wavelength",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A solutions architect is deciding between AWS Wavelength and AWS Local Zones for a new low-latency application. What is the key distinguishing factor between the two?",
+    options: [
+      { id: "a", text: "Wavelength embeds AWS infrastructure specifically inside telecom carriers' 5G networks; Local Zones extend AWS to metro areas generally, independent of any specific carrier network" },
+      { id: "b", text: "They are exactly the same service under two different names" },
+      { id: "c", text: "Local Zones only work with 5G devices, while Wavelength works with any device" },
+      { id: "d", text: "Wavelength provides storage services only, while Local Zones provide compute services only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Wavelength is specifically embedded within telecom 5G networks for mobile-device latency, while Local Zones are a more general metro-area extension of AWS infrastructure not tied to any particular carrier.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — they solve related but distinct latency problems and are deployed differently.",
+      c: "Incorrect — this reverses the relationship; Wavelength is the one tied specifically to carrier 5G networks.",
+      d: "Incorrect — both offer compute and storage services; there is no such storage-only vs compute-only split.",
+    },
+    examKeywordHint: "embedded inside carrier 5G network -> Wavelength; general metro-area extension -> Local Zones",
+    keywords: ["Wavelength", "Local Zones", "comparison"],
     services: ["aws-wavelength"],
   },
   {
@@ -1418,6 +1529,34 @@ export const computeQuestions: Question[] = [
     services: ["amazon-ecs-anywhere"],
   },
   {
+    id: "q-amazon-ecs-anywhere-3",
+    lessonId: "amazon-ecs-anywhere",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "What must a company do to register its own on-premises servers so ECS Anywhere can schedule tasks onto them?",
+    options: [
+      { id: "a", text: "Install the ECS agent on the server and register it with AWS Systems Manager" },
+      { id: "b", text: "Nothing — any server on the network is automatically discovered and enrolled" },
+      { id: "c", text: "Install a full Kubernetes control plane on the server" },
+      { id: "d", text: "Purchase and install an AWS Outposts rack" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "ECS Anywhere requires installing the ECS agent on the on-premises server and registering it via AWS Systems Manager so the ECS control plane in AWS can schedule tasks onto it.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — servers must be explicitly registered; there is no automatic discovery.",
+      c: "Incorrect — a full Kubernetes control plane describes an EKS Anywhere-style approach, not ECS Anywhere, which uses ECS's own control plane.",
+      d: "Incorrect — Outposts is physical AWS hardware installed on-site; ECS Anywhere works with the customer's own existing hardware, no Outposts rack required.",
+    },
+    examKeywordHint: "register an on-premises server for ECS Anywhere -> ECS agent + Systems Manager",
+    keywords: ["ECS Anywhere", "Systems Manager", "registration"],
+    services: ["amazon-ecs-anywhere"],
+  },
+  {
     id: "q-amazon-eks-anywhere-1",
     lessonId: "amazon-eks-anywhere",
     domain: 3,
@@ -1468,6 +1607,34 @@ export const computeQuestions: Question[] = [
     services: ["amazon-eks-anywhere"],
   },
   {
+    id: "q-amazon-eks-anywhere-3",
+    lessonId: "amazon-eks-anywhere",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "How does responsibility for the Kubernetes control plane differ between Amazon EKS and Amazon EKS Anywhere?",
+    options: [
+      { id: "a", text: "In EKS, AWS manages the highly available control plane; in EKS Anywhere, the customer deploys and operates the entire cluster, including the control plane, on their own infrastructure" },
+      { id: "b", text: "There is no difference — AWS manages the control plane in both cases" },
+      { id: "c", text: "In EKS Anywhere, AWS installs a physical rack on-premises to remotely manage the control plane" },
+      { id: "d", text: "EKS Anywhere clusters do not have a control plane at all" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "This is the core distinction: EKS gives you an AWS-managed control plane in the cloud, while EKS Anywhere hands you the tooling to run and operate the entire cluster — including the control plane — yourself, typically for on-premises or air-gapped needs.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — this is the opposite of how EKS Anywhere works.",
+      c: "Incorrect — that describes AWS Outposts, a different service, not EKS Anywhere.",
+      d: "Incorrect — a Kubernetes cluster always has a control plane; in EKS Anywhere the customer simply operates it themselves instead of AWS.",
+    },
+    examKeywordHint: "customer manages the whole cluster incl. control plane -> EKS Anywhere; AWS manages control plane -> EKS",
+    keywords: ["EKS Anywhere", "control plane", "responsibility"],
+    services: ["amazon-eks-anywhere"],
+  },
+  {
     id: "q-amazon-eks-distro-1",
     lessonId: "amazon-eks-distro",
     domain: 3,
@@ -1515,6 +1682,34 @@ export const computeQuestions: Question[] = [
       d: "Incorrect — Fargate is a launch type, not a Kubernetes distribution.",
     },
     keywords: ["EKS Distro", "self-managed"],
+    services: ["amazon-eks-distro"],
+  },
+  {
+    id: "q-amazon-eks-distro-3",
+    lessonId: "amazon-eks-distro",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A vendor wants to build its own commercial Kubernetes management product on top of exactly the same tested Kubernetes components AWS uses for EKS, without adopting AWS's cluster-management tooling or a support subscription. What should they use as their foundation?",
+    options: [
+      { id: "a", text: "Amazon EKS Distro" },
+      { id: "b", text: "Amazon EKS Anywhere" },
+      { id: "c", text: "Amazon EKS (managed)" },
+      { id: "d", text: "Amazon ECS" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "EKS Distro is the raw, open-source, AWS-tested Kubernetes build with no bundled tooling or support — exactly the free foundation a vendor could build a separate product on top of, unlike EKS Anywhere, which already bundles tooling and optional support.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — EKS Anywhere already adds AWS's own cluster-management tooling and an optional support subscription, which the vendor explicitly does not want.",
+      c: "Incorrect — managed EKS requires running in AWS with AWS operating the control plane, not a standalone foundation for a separate product.",
+      d: "Incorrect — ECS is not Kubernetes at all.",
+    },
+    examKeywordHint: "raw tested Kubernetes components, no tooling/support -> EKS Distro",
+    keywords: ["EKS Distro", "EKS Anywhere", "foundation"],
     services: ["amazon-eks-distro"],
   },
 

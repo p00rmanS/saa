@@ -838,26 +838,26 @@ export const networkingQuestions: Question[] = [
     difficulty: "exam",
     type: "multiple",
     kind: "exam",
-    scenario: "Which of the following are valid CloudFront origins or capabilities? (Choose two.)",
+    scenario: "Which of the following can be configured as a CloudFront origin? (Choose two.)",
     options: [
       { id: "a", text: "An Amazon S3 bucket" },
       { id: "b", text: "An Application Load Balancer fronting EC2 instances" },
-      { id: "c", text: "Direct integration with AWS WAF for edge-level request filtering" },
-      { id: "d", text: "Automatic database replication" },
-      { id: "e", text: "Native block storage volumes" },
+      { id: "c", text: "An Amazon RDS database instance" },
+      { id: "d", text: "An Amazon DynamoDB table" },
+      { id: "e", text: "An Amazon EBS volume" },
     ],
     correctAnswers: ["a", "b"],
     explanation:
-      "Wait — this question should list exactly two correct capability/origin answers among five options; both S3 and ALB are valid CloudFront origins.",
+      "CloudFront origins are HTTP(S)-reachable endpoints that serve content — Amazon S3 (as a static origin) and an Application Load Balancer fronting EC2 instances (as a custom/dynamic origin) are both standard, supported CloudFront origin types.",
     optionExplanations: {
       a: "Correct — S3 is one of the most common CloudFront origins for static content.",
-      b: "Correct — an ALB (fronting dynamic EC2-based applications) is a standard CloudFront origin as well.",
-      c: "Also true in reality (CloudFront does integrate with WAF), but for this question we are selecting the two BEST examples of 'origins' as asked; WAF integration is a capability, not an origin type, so it is not one of the two selected here.",
-      d: "Incorrect — CloudFront has no database replication capability.",
-      e: "Incorrect — CloudFront does not provide block storage volumes.",
+      b: "Correct — an ALB (fronting dynamic EC2-based applications) is a standard CloudFront custom origin as well.",
+      c: "Incorrect — RDS is a database service reached over a database protocol (e.g. MySQL/PostgreSQL wire protocol), not an HTTP(S) endpoint CloudFront can use as an origin.",
+      d: "Incorrect — DynamoDB is accessed via its own API, not as an HTTP(S) content origin CloudFront can cache directly.",
+      e: "Incorrect — EBS volumes are block storage attached to a single EC2 instance; they are not independently reachable as a CloudFront origin.",
     },
     examKeywordHint: "valid CloudFront origins: S3, ALB, EC2, MediaStore, custom HTTP servers",
-    mentorTip: "Keep a clear mental list of valid CloudFront origins: S3, ALB/EC2 (custom origin), and other HTTP(S)-reachable endpoints.",
+    mentorTip: "Keep a clear mental list of valid CloudFront origins: S3, ALB/EC2 (custom origin), and other HTTP(S)-reachable endpoints. Databases and block storage are never origins.",
     keywords: ["CloudFront origins", "S3 origin", "ALB origin"],
     services: ["amazon-cloudfront"],
   },
@@ -1267,7 +1267,7 @@ export const networkingQuestions: Question[] = [
     services: ["aws-site-to-site-vpn", "aws-direct-connect"],
   },
 
-  // ---------- aws-client-vpn (tier 3, 2 questions) ----------
+  // ---------- aws-client-vpn (tier 3, 3 questions) ----------
   {
     id: "q-aws-client-vpn-1",
     lessonId: "aws-client-vpn",
@@ -1321,6 +1321,35 @@ export const networkingQuestions: Question[] = [
     examKeywordHint: "individual user + AD authentication + VPN -> Client VPN",
     mentorTip: "Client VPN's authentication options (certificates, AD, SAML) are a good detail to remember for scenario questions about identity-based remote access.",
     keywords: ["Client VPN", "Active Directory authentication"],
+    services: ["aws-client-vpn"],
+  },
+  {
+    id: "q-aws-client-vpn-3",
+    lessonId: "aws-client-vpn",
+    domain: 1,
+    difficulty: "hard",
+    type: "single",
+    kind: "exam",
+    scenario:
+      "A company sets up AWS Client VPN so remote contractors can connect into a VPC. Security policy requires that contractors' VPN sessions can only reach a single specific private subnet that hosts a contractor portal, and must not be able to reach any other subnet in the VPC, even though all subnets are reachable via local routes. What should the team configure to enforce this?",
+    options: [
+      { id: "a", text: "A stricter security group on every other subnet's resources" },
+      { id: "b", text: "Client VPN authorization rules that permit the contractor group only to the specific subnet's CIDR range" },
+      { id: "c", text: "A separate Client VPN endpoint per Availability Zone" },
+      { id: "d", text: "A NAT Gateway restricting contractor traffic" },
+    ],
+    correctAnswers: ["b"],
+    explanation:
+      "Client VPN authorization rules are the native mechanism for scoping which user groups can reach which network CIDR ranges through the VPN endpoint — restricting the contractor group's authorization rule to only the portal subnet's CIDR directly enforces this requirement at the VPN layer, before traffic ever reaches a security group.",
+    optionExplanations: {
+      a: "Incorrect — tightening every other subnet's security groups is a workable but inferior, high-maintenance approach; it does not use Client VPN's own purpose-built authorization mechanism and must be replicated per resource.",
+      b: "Correct — authorization rules are exactly the feature designed to scope which authenticated users/groups can reach which destination CIDR ranges through a Client VPN endpoint.",
+      c: "Incorrect — deploying per-AZ endpoints affects availability and subnet association, not which destination CIDRs a given user group is authorized to reach.",
+      d: "Incorrect — NAT Gateway is for outbound internet access from private subnets; it has no role in restricting which internal VPC CIDR ranges a VPN client can reach.",
+    },
+    examKeywordHint: "scope VPN users to one subnet only -> Client VPN authorization rules",
+    mentorTip: "Client VPN authorization rules are the subnet-scoping tool, the same way Transit Gateway route tables scope VPC-to-VPC reachability — don't reach for security groups first when the requirement is about which CIDR a user GROUP can reach.",
+    keywords: ["Client VPN", "authorization rules", "network segmentation"],
     services: ["aws-client-vpn"],
   },
 

@@ -952,6 +952,35 @@ export const analyticsQuestions: Question[] = [
     keywords: ["QuickSight", "visualization layer", "analytics pipeline"],
     services: ["amazon-quicksight"],
   },
+  {
+    id: "q-amazon-quicksight-3",
+    lessonId: "amazon-quicksight",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company's QuickSight dashboards query Amazon Athena directly, and every time a viewer opens a dashboard, QuickSight re-runs the underlying Athena queries — slowing down page loads and increasing Athena's per-query scan costs. What QuickSight feature should they use to cache the dataset in a fast in-memory store so repeated dashboard views don't re-query Athena each time?",
+    options: [
+      { id: "a", text: "SPICE (QuickSight's in-memory data store)" },
+      { id: "b", text: "Enabling Multi-AZ on the QuickSight account" },
+      { id: "c", text: "Switching Athena to a provisioned, always-on EC2-based query engine" },
+      { id: "d", text: "Streaming the dashboard's data through Amazon Kinesis Data Streams" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "SPICE (Super-fast, Parallel, In-memory Calculation Engine) is QuickSight's built-in in-memory data store. Importing a dataset into SPICE lets dashboards read from that fast cached copy instead of re-running the underlying query (e.g., against Athena) every time someone opens the dashboard.",
+    optionExplanations: {
+      a: "Correct — SPICE caches a dataset in memory so dashboard views are served quickly without re-querying the original data source each time.",
+      b: "Incorrect — QuickSight has no \"Multi-AZ\" setting; that concept applies to services like RDS, not to QuickSight's caching behavior.",
+      c: "Incorrect — Athena is already serverless; there is no provisioned EC2-based Athena engine to switch to, and this would not address dashboard caching anyway.",
+      d: "Incorrect — Kinesis Data Streams is for real-time streaming ingestion; it is unrelated to caching dashboard query results.",
+    },
+    examKeywordHint: "\"fast in-memory dashboard caching, avoid re-querying the source\" -> SPICE",
+    mentorTip: "SPICE is QuickSight's one truly distinctive technical feature worth memorizing by name — it is what lets a dashboard stay fast and cheap even with many viewers.",
+    keywords: ["QuickSight", "SPICE", "in-memory", "caching"],
+    services: ["amazon-quicksight"],
+  },
 
   // ---------- AWS Data Exchange (tier 3, 2 questions) ----------
   {
@@ -1011,6 +1040,35 @@ export const analyticsQuestions: Question[] = [
     mentorTip: "Remember Data Exchange's delivery mechanism (commonly S3) so you can connect it to a downstream Athena/Redshift analysis step in a scenario.",
     keywords: ["AWS Data Exchange", "data delivery", "S3"],
     services: ["aws-data-exchange"],
+  },
+  {
+    id: "q-aws-data-exchange-3",
+    lessonId: "aws-data-exchange",
+    domain: 3,
+    difficulty: "medium",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company subscribes to a third-party market-data product through AWS Data Exchange. The provider publishes a new data revision every night, and the company wants its ingestion pipeline to start automatically the moment a new revision becomes available, without polling on a fixed schedule. What should they do?",
+    options: [
+      { id: "a", text: "Configure an Amazon EventBridge rule that reacts to AWS Data Exchange's \"revision published\" event and triggers the ingestion pipeline" },
+      { id: "b", text: "Manually check the AWS Data Exchange console every morning before starting the pipeline" },
+      { id: "c", text: "Re-subscribe to the dataset every time a new revision is published" },
+      { id: "d", text: "Configure the pipeline to poll Amazon S3 every minute for new objects" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "AWS Data Exchange emits events to Amazon EventBridge when a new revision is published to a data set you are subscribed to, so you can trigger a Lambda function, Step Functions workflow, or other target automatically the moment new data arrives, instead of polling on a schedule.",
+    optionExplanations: {
+      a: "Correct — reacting to Data Exchange's revision-published event via EventBridge gives immediate, event-driven triggering with no polling needed.",
+      b: "Incorrect — this is manual and does not run automatically the moment new data is available.",
+      c: "Incorrect — re-subscribing is unnecessary and unrelated to picking up new revisions of an existing subscription.",
+      d: "Incorrect — polling S3 on a fixed interval is both less efficient and less immediate than reacting to the actual publish event.",
+    },
+    examKeywordHint: "\"react immediately when a new dataset revision is published\" -> AWS Data Exchange + EventBridge event",
+    mentorTip: "Whenever a scenario wants an automatic reaction to a new event (new revision, new file, state change) instead of a polling schedule, EventBridge is very often part of the answer.",
+    keywords: ["AWS Data Exchange", "EventBridge", "revision", "event-driven"],
+    services: ["aws-data-exchange", "amazon-eventbridge"],
   },
 
   // ---------- Bonus comparison scenario question (not referenced by any lesson) ----------

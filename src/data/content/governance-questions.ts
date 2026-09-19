@@ -634,6 +634,34 @@ export const governanceQuestions: Question[] = [
     keywords: ["Compute Optimizer", "rightsizing"],
     services: ["aws-compute-optimizer"],
   },
+  {
+    id: "q-aws-compute-optimizer-3",
+    lessonId: "aws-compute-optimizer",
+    domain: 4,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A team enables AWS Compute Optimizer on an EC2 instance that was launched only a couple of hours ago. What should they expect?",
+    options: [
+      { id: "a", text: "Compute Optimizer needs enough accumulated CloudWatch utilization history before it can produce a confident rightsizing recommendation for that instance" },
+      { id: "b", text: "Compute Optimizer immediately produces a fully confident rightsizing recommendation regardless of how long the instance has been running" },
+      { id: "c", text: "Compute Optimizer cannot analyze the instance at all unless the CloudWatch agent is manually installed on it first" },
+      { id: "d", text: "Compute Optimizer only analyzes instances that belong to an Auto Scaling group, never standalone EC2 instances" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Compute Optimizer's recommendations are built from historical CloudWatch utilization metrics, so a brand-new instance simply hasn't generated enough usage history yet for a confident recommendation — its findings get more reliable the longer a resource runs.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — with almost no usage history, there is little to no data-driven recommendation yet.",
+      c: "Incorrect — Compute Optimizer reads standard EC2 CloudWatch metrics that are published by default; the CloudWatch agent is not required for its baseline recommendations.",
+      d: "Incorrect — Compute Optimizer analyzes standalone EC2 instances, EBS volumes, Lambda functions, and Auto Scaling groups, not only ASGs.",
+    },
+    examKeywordHint: "Compute Optimizer needs accumulated utilization history before a confident recommendation",
+    keywords: ["Compute Optimizer", "utilization history", "recommendation confidence"],
+    services: ["aws-compute-optimizer"],
+  },
 
   // ---------------- aws-cloudformation (tier 1) ----------------
   {
@@ -1291,6 +1319,34 @@ export const governanceQuestions: Question[] = [
     keywords: ["Transfer Family", "SFTP", "S3"],
     services: ["aws-transfer-family"],
   },
+  {
+    id: "q-aws-transfer-family-3",
+    lessonId: "aws-transfer-family",
+    domain: 3,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "A company wants its existing on-premises Active Directory users to authenticate through an AWS Transfer Family SFTP endpoint, instead of manually creating a separate service-managed user for every partner. What should they configure?",
+    options: [
+      { id: "a", text: "A custom identity provider integration (for example via AWS Directory Service/AD or a Lambda function behind API Gateway) so Transfer Family authenticates against the existing directory" },
+      { id: "b", text: "Nothing — Transfer Family automatically discovers and syncs with any on-premises Active Directory with no configuration" },
+      { id: "c", text: "Migrate every Active Directory user into IAM users first, since Transfer Family only supports IAM-based authentication" },
+      { id: "d", text: "Use Amazon Cognito User Pools, since that is the only identity source Transfer Family can integrate with" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Transfer Family supports custom identity provider integration — including AWS Directory Service/AD or a Lambda function behind API Gateway — so it can authenticate users against an existing directory instead of relying only on Transfer Family's service-managed users.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — this integration must be explicitly configured; it does not happen automatically.",
+      c: "Incorrect — Transfer Family does not require migrating every user into IAM; it supports service-managed users as well as custom identity providers.",
+      d: "Incorrect — Cognito can be one option in certain custom identity provider setups, but it is not the only supported identity source, and it is not required.",
+    },
+    examKeywordHint: "authenticate SFTP users against an existing directory -> custom identity provider integration",
+    keywords: ["Transfer Family", "custom identity provider", "Active Directory integration"],
+    services: ["aws-transfer-family", "aws-directory-service"],
+  },
 
   // ---------------- aws-application-migration-service (tier 3) ----------------
   {
@@ -1342,6 +1398,34 @@ export const governanceQuestions: Question[] = [
     },
     examKeywordHint: "lift-and-shift many servers, minimal changes -> Application Migration Service",
     keywords: ["MGN", "server migration"],
+    services: ["aws-application-migration-service"],
+  },
+  {
+    id: "q-aws-application-migration-service-3",
+    lessonId: "aws-application-migration-service",
+    domain: 2,
+    difficulty: "hard",
+    type: "single",
+    kind: "checkpoint",
+    scenario:
+      "During a lift-and-shift migration with AWS Application Migration Service (MGN), the team wants to confirm the replicated servers boot correctly and applications behave as expected in AWS, without affecting the still-running source servers or forcing a final cutover yet. What should they do?",
+    options: [
+      { id: "a", text: "Perform a non-disruptive test launch of the replicated servers as EC2 instances; this does not affect the source servers or interrupt ongoing replication" },
+      { id: "b", text: "Perform the cutover launch immediately, since MGN has no separate testing mode" },
+      { id: "c", text: "Manually build AMIs from the replicated data and launch them outside of MGN to test" },
+      { id: "d", text: "Pause replication first, since MGN cannot test-launch while replication is still running" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "MGN explicitly supports non-disruptive test launches of the replicated servers as EC2 instances, so teams can validate the migration before committing to the final cutover — the source servers keep running and replication continues in the background throughout.",
+    optionExplanations: {
+      a: "Correct.",
+      b: "Incorrect — MGN's workflow is built specifically around separating test launches from the final cutover launch; you are not forced to cut over immediately.",
+      c: "Incorrect — this bypasses MGN's built-in, purpose-made test-launch capability and adds unnecessary manual work.",
+      d: "Incorrect — replication continues in the background during a test launch; it does not need to be paused.",
+    },
+    examKeywordHint: "validate migrated servers without disrupting the source -> MGN non-disruptive test launch",
+    keywords: ["MGN", "test launch", "cutover", "non-disruptive"],
     services: ["aws-application-migration-service"],
   },
 

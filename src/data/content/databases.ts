@@ -737,6 +737,7 @@ export const databaseLessons: Lesson[] = [
     questionIds: [
       "q-amazon-neptune-1",
       "q-amazon-neptune-2",
+      "q-amazon-neptune-3",
     ],
   },
   {
@@ -806,6 +807,7 @@ export const databaseLessons: Lesson[] = [
     questionIds: [
       "q-amazon-keyspaces-1",
       "q-amazon-keyspaces-2",
+      "q-amazon-keyspaces-3",
     ],
   },
 ];

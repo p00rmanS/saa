@@ -823,7 +823,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "Outposts extends real AWS infrastructure physically into the customer's own facility.",
     mentorTip:
       "When a scenario insists a workload must run physically on-premises (not just \"connected to\" AWS) while still using AWS APIs, think Outposts.",
-    questionIds: ["q-aws-outposts-1", "q-aws-outposts-2"],
+    questionIds: ["q-aws-outposts-1", "q-aws-outposts-2", "q-aws-outposts-3"],
   },
 
   {
@@ -879,7 +879,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "SAR deploys a packaged SAM application directly into your own account's resources.",
     mentorTip:
       "If a question describes reusing or sharing a pre-built serverless application/component across teams or publicly, that's SAR.",
-    questionIds: ["q-aws-serverless-application-repository-1", "q-aws-serverless-application-repository-2"],
+    questionIds: ["q-aws-serverless-application-repository-1", "q-aws-serverless-application-repository-2", "q-aws-serverless-application-repository-3"],
   },
 
   {
@@ -935,7 +935,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "VMware Cloud on AWS extends an existing VMware environment onto dedicated AWS infrastructure.",
     mentorTip:
       "If a scenario says the company wants to move to AWS \"without re-architecting\" their existing VMware environment, that phrase is the signal for VMware Cloud on AWS.",
-    questionIds: ["q-vmware-cloud-on-aws-1", "q-vmware-cloud-on-aws-2"],
+    questionIds: ["q-vmware-cloud-on-aws-1", "q-vmware-cloud-on-aws-2", "q-vmware-cloud-on-aws-3"],
   },
 
   {
@@ -991,7 +991,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "Wavelength keeps compute inside the carrier network, avoiding the round trip to a distant Region.",
     mentorTip:
       "If the scenario mentions 5G networks plus ultra-low latency for mobile users, that combination is the Wavelength trigger.",
-    questionIds: ["q-aws-wavelength-1", "q-aws-wavelength-2"],
+    questionIds: ["q-aws-wavelength-1", "q-aws-wavelength-2", "q-aws-wavelength-3"],
   },
 
   {
@@ -1047,7 +1047,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "The control plane stays in AWS; the containers run on infrastructure you own.",
     mentorTip:
       "\"ECS workflow, but containers must run on our own on-premises hardware\" is the exact phrase pattern for ECS Anywhere.",
-    questionIds: ["q-amazon-ecs-anywhere-1", "q-amazon-ecs-anywhere-2"],
+    questionIds: ["q-amazon-ecs-anywhere-1", "q-amazon-ecs-anywhere-2", "q-amazon-ecs-anywhere-3"],
   },
 
   {
@@ -1103,7 +1103,7 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "The entire Kubernetes cluster, including the control plane, runs on infrastructure the customer owns.",
     mentorTip:
       "\"Kubernetes cluster must run fully on-premises / air-gapped, no connection to AWS\" is the signal for EKS Anywhere, not EKS.",
-    questionIds: ["q-amazon-eks-anywhere-1", "q-amazon-eks-anywhere-2"],
+    questionIds: ["q-amazon-eks-anywhere-1", "q-amazon-eks-anywhere-2", "q-amazon-eks-anywhere-3"],
   },
 
   {
@@ -1159,6 +1159,6 @@ export const computeLessons: Lesson[] = [
     architectureCaption: "EKS Distro is the raw, open-source foundation shared between EKS in the cloud and EKS Anywhere on-premises.",
     mentorTip:
       "If a question asks about a free, open-source Kubernetes distribution with no AWS dependency, that's EKS Distro; if it mentions AWS tooling/support for on-premises clusters, that's EKS Anywhere.",
-    questionIds: ["q-amazon-eks-distro-1", "q-amazon-eks-distro-2"],
+    questionIds: ["q-amazon-eks-distro-1", "q-amazon-eks-distro-2", "q-amazon-eks-distro-3"],
   },
 ];

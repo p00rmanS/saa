@@ -790,7 +790,7 @@ export const networkingLessons: Lesson[] = [
       "A single remote user connects through the Client VPN endpoint directly into private VPC resources.",
     mentorTip:
       "Keyword trigger: 'individual remote employees need secure access' -> Client VPN. 'Our branch office network needs to connect' -> Site-to-Site VPN.",
-    questionIds: ["q-aws-client-vpn-1", "q-aws-client-vpn-2"],
+    questionIds: ["q-aws-client-vpn-1", "q-aws-client-vpn-2", "q-aws-client-vpn-3"],
   },
   {
     id: "aws-transit-gateway",

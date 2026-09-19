@@ -268,7 +268,7 @@ export const analyticsLessons: Lesson[] = [
     taglishExplanation:
       "Si Firehose parang \"auto-pilot\" na version ng streaming delivery — hindi mo na kailangan gumawa ng sarili mong consumer application. Basta i-configure mo lang kung saan mo gustong dumating yung data (S3, Redshift, OpenSearch), tapos si Firehose na ang bahalang mag-buffer, mag-batch, at mag-deliver nun. Kung gusto mo lang na \"dumating lang yung stream sa destination,\" Firehose. Kung gusto mong may sarili kang code na magpo-process real time habang dumadaan yung data, Kinesis Data Streams naman ang tama.",
     analogy:
-      "If Kinesis Data Streams is a conveyor belt where you station your own workers to inspect items, Firehose is a conveyor belt with an automatic sorting machine already built in at the end — you just tell it which bin (S3, Redshift, OpenSearch) each type of item should land in, and it handles getting them there.",
+      "Picture a warehouse conveyor belt with an automatic sorting machine bolted onto the end of it: packages roll in continuously, and the machine reads each label and drops it straight into the correct outgoing truck (S3, Redshift, or OpenSearch) with no human worker standing there sorting by hand. You just tell the machine which truck gets which kind of package, and it handles the buffering, batching, and delivery on its own.",
     whyItExists:
       "Many streaming use cases do not need custom real-time processing logic at all — they just need the data to reliably and automatically arrive in a data lake or analytics destination. Building and operating your own consumer application purely to move data from A to B is unnecessary operational overhead, so Firehose exists to remove that consumer entirely.",
     flow: "Producers -> Amazon Data Firehose (buffer/optional Lambda transform) -> Destination (S3 / Redshift / OpenSearch / HTTP endpoint)",
@@ -566,7 +566,7 @@ export const analyticsLessons: Lesson[] = [
     taglishExplanation:
       "Si MSK yung managed version ni Apache Kafka sa AWS. Gamitin mo ito kapag talagang Kafka mismo ang kailangan — halimbawa may existing na applications ka na na naka-code laban sa Kafka APIs, o yung team niyo ay Kafka-focused talaga ang ecosystem. Kung walang ganung specific na Kafka requirement sa scenario, mas simple at mas \"AWS-native\" na option ang Kinesis Data Streams para sa streaming ingestion.",
     analogy:
-      "If Kinesis is AWS's own native streaming service, MSK is like AWS renting you a fully maintained version of a specific, well-known third-party tool (Kafka) that some teams already know how to use and have existing tooling built around — you get that same tool, just without having to rack and maintain the servers yourself.",
+      "Imagine your delivery business has always used one specific, well-known brand of motorbike, and every rider, mechanic, and spare part in your shop is built around that exact brand. MSK is like a rental company delivering you that same brand of bike, fully fueled and maintained, instead of asking your riders to switch to a different (even if similar) brand overnight. You get the exact vehicle your team already knows how to ride and fix — someone else just handles the maintenance.",
     whyItExists:
       "Many organizations already have significant investment in Kafka-based tooling, client code, and operational knowledge before moving to AWS. MSK exists so those teams can keep using the Kafka API and ecosystem they already know, without taking on the operational overhead of running Kafka brokers themselves.",
     flow: "Kafka producers (existing apps) -> Amazon MSK (managed Kafka brokers) -> Kafka consumers (existing apps/connectors)",
@@ -632,7 +632,7 @@ export const analyticsLessons: Lesson[] = [
     oneLiner:
       "Amazon QuickSight is a managed business intelligence service for building interactive dashboards and visualizations from your data.",
     englishExplanation:
-      "Amazon QuickSight (sometimes referred to informally as \"Amazon Quick\" in newer branding contexts) is AWS's managed BI/visualization tool: it connects to data sources like S3, Athena, Redshift, and RDS, and lets business users build interactive charts, dashboards, and reports without standing up separate visualization infrastructure. At the SAA exam level, you mainly need to recognize QuickSight as \"the answer when the scenario needs dashboards/visualizations for business users,\" as opposed to the services that produce or store the underlying data (Athena, Redshift, S3).",
+      "Amazon QuickSight is AWS's managed BI/visualization tool: it connects to data sources like S3, Athena, Redshift, and RDS, and lets business users build interactive charts, dashboards, and reports without standing up separate visualization infrastructure. At the SAA exam level, you mainly need to recognize QuickSight as \"the answer when the scenario needs dashboards/visualizations for business users,\" as opposed to the services that produce or store the underlying data (Athena, Redshift, S3).\n\nOne feature worth knowing by name is SPICE (Super-fast, Parallel, In-memory Calculation Engine) — QuickSight's built-in in-memory data store. Importing a dataset into SPICE means dashboard viewers read from a fast cached copy instead of re-running the underlying query (e.g., against Athena or Redshift) every single time someone opens a dashboard, which both speeds up load times and avoids repeatedly paying for the same query.",
     taglishExplanation:
       "Si QuickSight yung BI/visualization tool ng AWS — dito gagawa ng dashboards at charts galing sa data na nasa S3, Athena, Redshift, o RDS. Kapag sinabi sa scenario na kailangan ng \"business dashboards\" o \"visualize the data for stakeholders,\" QuickSight ang tamang sagot, hindi na yung underlying data source mismo.",
     analogy:
@@ -659,6 +659,7 @@ export const analyticsLessons: Lesson[] = [
     keyFeatures: [
       "Connects to S3, Athena, Redshift, RDS, and other data sources",
       "Interactive, shareable dashboards for business users",
+      "SPICE: an optional in-memory data store that caches datasets for fast, repeated dashboard access without re-querying the source",
       "Serverless, scales automatically with usage",
     ],
     availability:
@@ -671,6 +672,7 @@ export const analyticsLessons: Lesson[] = [
       "business intelligence dashboards",
       "data visualization",
       "interactive reports",
+      "SPICE (in-memory engine)",
     ],
     examTraps: [
       "QuickSight visualizes data — it is not itself a data processing, storage, or query engine.",
@@ -685,6 +687,7 @@ export const analyticsLessons: Lesson[] = [
     questionIds: [
       "q-amazon-quicksight-1",
       "q-amazon-quicksight-2",
+      "q-amazon-quicksight-3",
     ],
   },
   {
@@ -753,6 +756,7 @@ export const analyticsLessons: Lesson[] = [
     questionIds: [
       "q-aws-data-exchange-1",
       "q-aws-data-exchange-2",
+      "q-aws-data-exchange-3",
     ],
   },
 ];
