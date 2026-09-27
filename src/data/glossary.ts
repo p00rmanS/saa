@@ -191,4 +191,32 @@ export const glossary: GlossaryTerm[] = [
       "An approach where servers/resources are never modified after deployment — instead, a new version is deployed and the old one is replaced.",
     taglish: "Sa halip na baguhin ang existing na server, gumagawa ka na lang ng bago at papalitan ang luma.",
   },
+  {
+    id: "shared-responsibility-model",
+    term: "Shared Responsibility Model",
+    definition:
+      "AWS secures the underlying cloud infrastructure (\"security OF the cloud\" — hardware, data centers, host OS, network); you are responsible for what you configure inside it (\"security IN the cloud\" — data, IAM permissions, OS patching on EC2, security group rules, encryption settings).",
+    taglish: "Ang AWS ang bahala sa seguridad ng mismong imprastraktura (data centers, hardware). Ikaw naman ang bahala sa kung paano mo ito ina-ayos — mga permission, encryption, at settings mo.",
+  },
+  {
+    id: "durability",
+    term: "Durability",
+    definition:
+      "The likelihood that stored data survives over time without being lost or corrupted (e.g. S3's 99.999999999% / \"11 nines\" durability) — a different guarantee from availability, which is about whether the data can be reached right now.",
+    taglish: "Kung gaano katiyak na hindi mawawala o masisira ang naka-store mong datos sa paglipas ng panahon — iba ito sa availability, na tungkol sa kung ma-a-access mo ba ito ngayon din.",
+  },
+  {
+    id: "elasticity",
+    term: "Elasticity",
+    definition:
+      "The ability of a system to automatically grow AND shrink its resources to match actual demand in real time — scalability is the capacity to grow at all; elasticity specifically includes shrinking back down when demand drops.",
+    taglish: "Kakayahan ng system na automatic na lumaki at lumiit depende sa aktwal na pangangailangan — hindi lang ito basta \"kayang lumaki\" (scalability), kasama rin ang awtomatikong pagliit pagbaba ng gamit.",
+  },
+  {
+    id: "blast-radius",
+    term: "Blast Radius",
+    definition:
+      "How much of a system would be affected if a single component, credential, or account were compromised or failed — good architecture and security design aims to keep the blast radius as small as possible.",
+    taglish: "Kung gaano kalawak ang maapektuhan kapag may isang bahagi, credential, o account na na-compromise o nasira — layunin ng magandang disenyo na paliitin ito hangga't maaari.",
+  },
 ];

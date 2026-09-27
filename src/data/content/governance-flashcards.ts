@@ -65,4 +65,8 @@ export const governanceFlashcards: Flashcard[] = [
 
   { id: "fc-aws-application-migration-service-1", serviceId: "aws-application-migration-service", domain: 2, category: "Migration and Transfer", front: "What is AWS Application Migration Service (MGN)?", back: "Lift-and-shift rehosting of physical/virtual/cloud servers into AWS with minimal changes, via continuous replication." },
   { id: "fc-aws-application-migration-service-2", serviceId: "aws-application-migration-service", domain: 2, category: "Migration and Transfer", front: "When would you use MGN?", back: "Migrating many servers to EC2 quickly with minimal re-architecture." },
+
+  { id: "fc-aws-auto-scaling-1", serviceId: "aws-auto-scaling", domain: 2, category: "Management and Governance", front: "How is AWS Auto Scaling different from EC2 Auto Scaling?", back: "EC2 Auto Scaling only scales EC2 instances in an ASG. AWS Auto Scaling (Application Auto Scaling) is broader — it can scale ECS, DynamoDB, Aurora Replicas, EMR, and Spot Fleet too, from one unified scaling plan." },
+  { id: "fc-aws-auto-scaling-2", serviceId: "aws-auto-scaling", domain: 2, category: "Management and Governance", front: "What is predictive scaling?", back: "A machine-learning feature of AWS Auto Scaling that forecasts a recurring demand pattern and pre-launches EC2 capacity ahead of the expected spike, instead of only reacting after a metric crosses a threshold." },
+  { id: "fc-aws-auto-scaling-3", serviceId: "aws-auto-scaling", domain: 2, category: "Management and Governance", front: "Taglish: Kailan AWS Auto Scaling imbes na plain EC2 Auto Scaling?", back: "Kapag hindi lang EC2 ang sina-scale mo — halimbawa DynamoDB capacity, ECS task count, o Aurora Replica count." },
 ];

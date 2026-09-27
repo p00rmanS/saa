@@ -1025,4 +1025,76 @@ export const governanceLessons: Lesson[] = [
       "\"Data center exit\" or \"migrate servers as-is quickly\" almost always signals Application Migration Service (MGN) for a rehost/lift-and-shift approach.",
     questionIds: ["q-aws-application-migration-service-1", "q-aws-application-migration-service-2", "q-aws-application-migration-service-3"],
   },
+
+  {
+    id: "aws-auto-scaling",
+    moduleId: "phase-9-monitoring",
+    category: "Management and Governance",
+    title: "AWS Auto Scaling",
+    shortName: "Auto Scaling (unified)",
+    tier: 2,
+    domains: [2, 4],
+    examImportance: "medium",
+    oneLiner:
+      "AWS Auto Scaling is a unified service for configuring automatic scaling across multiple AWS resource types at once — not just EC2 — including DynamoDB tables, Aurora Replicas, ECS services, and Spot Fleets, with an optional machine-learning \"predictive scaling\" mode.",
+    englishExplanation:
+      "It's easy to mix this up with EC2 Auto Scaling, so start with the distinction the exam cares about: EC2 Auto Scaling manages one thing — an Auto Scaling group of EC2 instances. AWS Auto Scaling (the underlying API is actually called Application Auto Scaling) is broader — it is the single service AWS built so that scaling policies can be defined and monitored for many different scalable resources from one place, using the same target-tracking model EC2 Auto Scaling made popular (\"keep this metric near a target value\").\n\nResources that can be scaled through AWS/Application Auto Scaling include: EC2 Auto Scaling group capacity, ECS service desired task count, DynamoDB table (or Global Secondary Index) read/write capacity, Aurora Replica count, EMR cluster instance groups, and even Spot Fleet target capacity. Rather than configuring each of these separately in its own console with its own scaling logic, you can build a single \"scaling plan\" that covers several resources at once with consistent target-tracking policies.\n\nThe other feature that sets AWS Auto Scaling apart is predictive scaling: instead of only reacting to a metric after demand has already changed (dynamic/target-tracking scaling), predictive scaling uses machine learning on historical load patterns to forecast a recurring demand curve (like a daily 9am traffic spike) and pre-launches capacity slightly ahead of time, so instances are already warm when the spike actually arrives. This is opt-in and works alongside dynamic scaling as a safety net for anything the forecast under-predicts.",
+    taglishExplanation:
+      "Madaling malito ito sa EC2 Auto Scaling, kaya linawin muna natin: ang EC2 Auto Scaling ay para lang sa isang bagay — sa mga EC2 instances sa loob ng isang Auto Scaling group. Ang AWS Auto Scaling naman (tinatawag ding Application Auto Scaling sa likod ng API) ay mas malawak — isa itong \"sentro\" kung saan puwede mong i-configure ang automatic scaling ng iba't ibang klaseng resources nang sabay-sabay: ECS service task count, DynamoDB read/write capacity, Aurora Replica count, EMR cluster size, at Spot Fleet capacity — gamit ang parehong \"target tracking\" na paraan (halimbawa \"panatilihin ang CPU sa 50%\").\n\nMay bonus pa itong \"predictive scaling\" — sa halip na maghintay munang tumaas ang trapiko bago mag-react (yun ang ginagawa ng normal na dynamic scaling), gumagamit ito ng machine learning para tantiyahin ang paulit-ulit na pattern ng trapiko (halimbawa laging tumataas tuwing alas-9 ng umaga) at maaga na siyang magdadagdag ng capacity bago pa man dumating ang tunay na spike, para handa na agad ang mga instance.",
+    analogy:
+      "EC2 Auto Scaling is like one department supervisor who only manages that department's staffing. AWS Auto Scaling is like the building's overall facilities manager, who can adjust staffing levels across several departments at once using the same simple rule (\"keep each department's workload comfortable\") — and who also glances at the calendar to know a big event is coming next Tuesday, so extra staff are already scheduled before the crowd shows up, instead of scrambling to call people in after the line is already out the door.",
+    whyItExists:
+      "As more AWS services (DynamoDB, ECS, Aurora, EMR, Spot Fleet) each grew their own scaling knobs, there was no single place to define consistent target-tracking policies across them, and no way to get ahead of predictable demand instead of only reacting to it. AWS Auto Scaling exists to unify that scaling experience and add forecast-based predictive scaling on top of reactive scaling.",
+    flow: "Choose resources to include in a scaling plan (EC2 ASG, ECS service, DynamoDB table, Aurora Replicas, Spot Fleet, etc.) -> define a target-tracking metric per resource -> (optionally) enable predictive scaling for EC2 -> AWS Auto Scaling adjusts capacity automatically as load changes or as forecasted",
+    withoutIt: [
+      "Each scalable resource type must be configured and monitored separately, with inconsistent scaling logic across services",
+      "Scaling is purely reactive — capacity is only added after a metric crosses a threshold, so brief cold-start delays can hit users right as a predictable spike begins",
+      "No single dashboard to review scaling activity across multiple resource types at once",
+    ],
+    bestUseCases: [
+      "Coordinating target-tracking scaling policies across several different resource types (EC2, ECS, DynamoDB, Aurora, Spot Fleet) from one scaling plan",
+      "Workloads with a known, recurring demand pattern (daily/weekly traffic curve) that can benefit from predictive scaling pre-launching EC2 capacity ahead of time",
+      "DynamoDB tables or Aurora clusters that need their capacity/replica count to track load automatically without manual intervention",
+    ],
+    poorUseCases: [
+      "A single EC2 fleet with simple, reactive scaling needs — plain EC2 Auto Scaling groups already cover this without the extra scaling-plan layer",
+      "Workloads with no predictable pattern and no need to coordinate scaling across multiple resource types",
+    ],
+    alternatives: [
+      { need: "Scale only one EC2 fleet reactively", choose: "EC2 Auto Scaling group directly" },
+      { need: "Automatic read/write capacity scaling for a DynamoDB table", choose: "DynamoDB Auto Scaling (built on the same Application Auto Scaling API)" },
+      { need: "Get ahead of a known, recurring demand pattern", choose: "AWS Auto Scaling predictive scaling for EC2" },
+    ],
+    keyFeatures: [
+      "Unified scaling plans spanning EC2, ECS, DynamoDB, Aurora Replicas, EMR, and Spot Fleet",
+      "Target-tracking scaling policies (\"keep this metric near a target value\") shared across resource types",
+      "Predictive scaling using machine learning to forecast recurring demand and pre-launch EC2 capacity",
+      "Single dashboard for reviewing scaling activity and forecasts across resources",
+    ],
+    availability:
+      "A regional, fully managed control-plane service; it configures scaling policies on the underlying resources but does not itself need to be provisioned or scaled.",
+    security:
+      "IAM controls who can create or modify scaling plans; the underlying scaling actions on each resource are performed via service-linked roles scoped to that resource type.",
+    pricingLogic:
+      "There is no additional charge for using AWS Auto Scaling itself — you only pay for the underlying resources (EC2 instances, DynamoDB capacity, Aurora Replicas, etc.) that it scales for you.",
+    examKeywords: [
+      "unified scaling across services",
+      "scaling plan",
+      "predictive scaling",
+      "target tracking",
+      "scale DynamoDB/ECS/Aurora Replicas automatically",
+    ],
+    examTraps: [
+      "If a scenario mentions scaling something other than plain EC2 instances — DynamoDB capacity, ECS task count, Aurora Replica count, Spot Fleet — the answer is AWS Auto Scaling (Application Auto Scaling), not EC2 Auto Scaling.",
+      "\"Predictive scaling based on historical patterns\" is a distinguishing phrase for AWS Auto Scaling; plain EC2 Auto Scaling target tracking is reactive only.",
+      "AWS Auto Scaling doesn't replace EC2 Auto Scaling groups — it can manage an existing ASG's capacity as one of several resources in a scaling plan.",
+    ],
+    architectureDiagram:
+      "Scaling Plan\n  |-- EC2 Auto Scaling group (target tracking + predictive scaling)\n  |-- ECS service (desired task count)\n  |-- DynamoDB table (read/write capacity)\n  |-- Aurora Replica count\n  |-- Spot Fleet target capacity",
+    architectureCaption:
+      "One AWS Auto Scaling plan can coordinate target-tracking policies across several different resource types at once.",
+    mentorTip:
+      "Say this pair out loud until it sticks: \"EC2 Auto Scaling scales EC2. AWS Auto Scaling scales almost everything else too, plus it can predict demand before it happens.\"",
+    questionIds: ["q-aws-auto-scaling-1", "q-aws-auto-scaling-2", "q-aws-auto-scaling-3"],
+  },
 ];
