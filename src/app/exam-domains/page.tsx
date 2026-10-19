@@ -19,7 +19,7 @@ export default function ExamDomainsPage() {
           <div key={domain.id} className="rounded-xl border border-border bg-card p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground">
                   Domain {domain.id}
                 </p>
                 <h2 className="text-xl font-semibold tracking-tight">{domain.title}</h2>

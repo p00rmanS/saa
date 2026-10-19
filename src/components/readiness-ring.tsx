@@ -49,7 +49,7 @@ export function ReadinessRing({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="font-mono text-sm font-semibold tabular-nums">{clamped}%</span>
-        {label && <span className="text-[9px] uppercase tracking-wide text-muted-foreground">{label}</span>}
+        {label && <span className="text-[9px] text-muted-foreground">{label}</span>}
       </div>
     </div>
   );

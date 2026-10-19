@@ -29,7 +29,7 @@ export default function QuizzesPage() {
               className="group flex items-center justify-between rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40 hover:bg-muted/30"
             >
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <p className="text-xs font-medium text-muted-foreground">
                   Domain {d} · {DOMAIN_WEIGHTS[d]}% of exam
                 </p>
                 <p className="mt-0.5 text-base font-semibold group-hover:text-primary">

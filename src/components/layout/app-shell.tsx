@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, Sparkles } from "lucide-react";
+import { Menu } from "lucide-react";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { Topbar } from "@/components/layout/topbar";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
@@ -15,14 +15,9 @@ import { computeDomainScores, computeOverallReadiness } from "@/lib/readiness";
 function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-2 px-3 py-4">
-      <span className="flex size-8 items-center justify-center rounded-lg bg-primary/15 text-primary">
-        <Sparkles className="size-4" />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="text-sm font-semibold tracking-tight">SAA Mentor</span>
-        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-          SAA-C03 Prep
-        </span>
+      <span className="flex flex-col leading-tight">
+        <span className="font-heading text-xl font-semibold">SAA Mentor</span>
+        <span className="text-xs text-muted-foreground">AWS Solutions Architect Associate</span>
       </span>
     </Link>
   );
@@ -38,12 +33,12 @@ function SidebarReadiness() {
     : 0;
 
   return (
-    <div className="mx-3 mb-3 flex items-center gap-3 rounded-xl border border-sidebar-border bg-sidebar-accent/40 p-3">
+    <div className="mx-3 mb-3 flex items-center gap-3 rounded-lg border border-sidebar-border bg-card p-3">
       <ReadinessRing value={overall} size={44} strokeWidth={4} />
       <div className="min-w-0">
-        <p className="text-[11px] font-medium text-sidebar-foreground/60">Readiness</p>
-        <p className="truncate text-xs text-sidebar-foreground/80">
-          {mounted ? "Keep going!" : "Loading…"}
+        <p className="text-xs font-medium text-sidebar-foreground/70">Exam readiness</p>
+        <p className="truncate text-sm text-sidebar-foreground">
+          {mounted ? `${overall}%` : "…"}
         </p>
       </div>
     </div>
@@ -54,7 +49,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   return (
-    <div className="terminal-bg min-h-screen">
+    <div className="min-h-screen">
       <div className="flex min-h-screen">
         {/* Desktop sidebar */}
         <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-sidebar-border bg-sidebar lg:flex">

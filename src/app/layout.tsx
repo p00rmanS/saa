@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Newsreader, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppShell } from "@/components/layout/app-shell";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const body = Inter({
+  variable: "--font-body",
+  subsets: ["latin"],
+});
+
+const serif = Newsreader({
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
@@ -16,9 +21,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SAA Mentor — AWS Solutions Architect Training",
+  title: "SAA Mentor — AWS Solutions Architect Associate course",
   description:
-    "A premium, mentor-led AWS Certified Solutions Architect – Associate (SAA-C03) training platform with Taglish explanations, labs, quizzes, flashcards, and mock exams.",
+    "A self-paced course for the AWS Solutions Architect Associate (SAA-C03): lessons in English and Taglish, hands-on labs, practice questions, and mock exams.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,12 +31,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${body.variable} ${serif.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

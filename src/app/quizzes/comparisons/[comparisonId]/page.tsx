@@ -38,33 +38,33 @@ export default async function ComparisonPage(props: PageProps<"/quizzes/comparis
             <h2 className="text-base font-semibold text-primary">{item.name}</h2>
 
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Primary Use</p>
+              <p className="text-xs font-medium text-muted-foreground">Primary Use</p>
               <p className="text-sm text-foreground/90">{item.primaryUse}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Scope</p>
+              <p className="text-xs font-medium text-muted-foreground">Scope</p>
               <p className="text-sm text-foreground/90">{item.scope}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Availability</p>
+              <p className="text-xs font-medium text-muted-foreground">Availability</p>
               <p className="text-sm text-foreground/90">{item.availability}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Scalability</p>
+              <p className="text-xs font-medium text-muted-foreground">Scalability</p>
               <p className="text-sm text-foreground/90">{item.scalability}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              <p className="text-xs font-medium text-muted-foreground">
                 Operational Overhead
               </p>
               <p className="text-sm text-foreground/90">{item.operationalOverhead}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Cost Logic</p>
+              <p className="text-xs font-medium text-muted-foreground">Cost Logic</p>
               <p className="text-sm text-foreground/90">{item.costLogic}</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Exam Keywords</p>
+              <p className="text-xs font-medium text-muted-foreground">Exam Keywords</p>
               <div className="mt-1 flex flex-wrap gap-1">
                 {item.examKeywords.map((k) => (
                   <Badge key={k} variant="outline" className="border-border bg-muted/40 font-mono text-[11px]">
@@ -74,7 +74,7 @@ export default async function ComparisonPage(props: PageProps<"/quizzes/comparis
               </div>
             </div>
             <div className="rounded-lg border border-danger/20 bg-danger/5 p-2.5">
-              <p className="text-xs font-medium uppercase tracking-wide text-danger">When NOT to use</p>
+              <p className="text-xs font-medium text-danger">When NOT to use</p>
               <p className="text-sm text-foreground/90">{item.whenNotToUse}</p>
             </div>
           </div>

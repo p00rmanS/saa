@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Flame, Target, CheckCircle2, Percent, ArrowRight, Sparkles } from "lucide-react";
+import { Flame, Target, CheckCircle2, Percent, ArrowRight } from "lucide-react";
 import { ReadinessRing } from "@/components/readiness-ring";
 import { DomainBar } from "@/components/dashboard/domain-bar";
 import { LessonCard } from "@/components/lesson/lesson-card";
@@ -32,12 +32,12 @@ function StatCard({
   sub?: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+    <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted text-foreground/70">
         <Icon className="size-4" />
       </span>
       <div className="min-w-0">
-        <p className="font-mono text-lg font-semibold tabular-nums leading-none">{value}</p>
+        <p className="text-xl font-semibold tabular-nums leading-none">{value}</p>
         <p className="mt-1 truncate text-xs text-muted-foreground">
           {label}
           {sub && <span className="text-muted-foreground/70"> · {sub}</span>}
@@ -70,24 +70,21 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Dashboard</h1>
-        <p className="mt-2 text-muted-foreground">Maligayang pagbabalik! Here&apos;s where you stand.</p>
+        <h1 className="text-4xl font-semibold sm:text-5xl">Your progress</h1>
+        <p className="mt-2 text-muted-foreground">Welcome back. Here is where you stand against the SAA-C03 exam.</p>
       </div>
 
       {/* Readiness hero */}
-      <div className="glass-panel relative overflow-hidden rounded-2xl border p-6">
-        <div className="terminal-grid pointer-events-none absolute inset-0 opacity-40" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center">
+      <div className="rounded-lg border border-border bg-card p-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
           <div className="flex items-center gap-4 sm:gap-6">
             <ReadinessRing value={overall} size={104} strokeWidth={8} />
             <div className="min-w-0 flex-1 lg:max-w-xs">
-              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                SAA-C03 Readiness
-              </p>
-              <p className="text-xl font-semibold tracking-tight">{examReadinessLabel(overall)}</p>
+              <p className="text-sm text-muted-foreground">Exam readiness</p>
+              <p className="font-heading text-2xl font-semibold">{examReadinessLabel(overall)}</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Blended from lesson completion (40%) and quiz accuracy (60%), weighted by each
-                domain&apos;s real exam weight.
+                Lesson completion counts for 40% and quiz accuracy for 60%, weighted by how much each
+                domain counts on the real exam.
               </p>
             </div>
           </div>
@@ -113,25 +110,23 @@ export default function DashboardPage() {
 
       {/* Weak / strong */}
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-danger/25 bg-danger/5 p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-danger">Weakest Domain</p>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground">Weakest domain</p>
           <p className="mt-1 text-lg font-semibold">{weakest.title}</p>
-          <p className="text-sm text-muted-foreground">{Math.round(weakest.score)}% — focus here next</p>
+          <p className="text-sm text-muted-foreground">{Math.round(weakest.score)}%. Spend your next session here.</p>
         </div>
-        <div className="rounded-xl border border-success/25 bg-success/5 p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-success">Strongest Domain</p>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground">Strongest domain</p>
           <p className="mt-1 text-lg font-semibold">{strongest.title}</p>
-          <p className="text-sm text-muted-foreground">{Math.round(strongest.score)}% — keep it up</p>
+          <p className="text-sm text-muted-foreground">{Math.round(strongest.score)}%</p>
         </div>
       </div>
 
       {/* Continue learning */}
       {nextLesson && (
-        <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/25 bg-primary/5 p-5 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-card p-5 sm:flex-row sm:items-center">
           <div>
-            <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-primary">
-              <Sparkles className="size-3.5" /> Continue Learning
-            </p>
+            <p className="text-sm text-muted-foreground">Pick up where you left off</p>
             <p className="mt-1 text-lg font-semibold">{nextLesson.title}</p>
             <p className="text-sm text-muted-foreground">{nextLesson.oneLiner}</p>
           </div>
@@ -145,9 +140,9 @@ export default function DashboardPage() {
       {reviewLessons.length > 0 && (
         <div>
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-lg font-semibold tracking-tight">Recommended Review</h2>
-            <Link href="/weak-areas" className="text-sm text-primary hover:underline">
-              See weak areas →
+            <h2 className="text-2xl font-semibold">Worth another look</h2>
+            <Link href="/weak-areas" className="text-sm text-primary underline-offset-4 hover:underline">
+              All weak areas →
             </Link>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

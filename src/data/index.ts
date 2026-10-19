@@ -48,6 +48,12 @@ import { examMasteryLessons } from "./content/exam-mastery";
 import { examMasteryQuestions } from "./content/exam-mastery-questions";
 import { examMasteryFlashcards } from "./content/exam-mastery-flashcards";
 
+import { deepDivesA } from "./content/deep-dives-a";
+import { deepDivesB } from "./content/deep-dives-b";
+import { deepDivesC } from "./content/deep-dives-c";
+import { deepDiveCQuestions, deepDiveCFlashcards } from "./content/deep-dives-c-questions";
+import { deepDiveQuestions, deepDiveFlashcards } from "./content/deep-dives-questions";
+
 export const allLessons: Lesson[] = [
   ...orientationLessons,
   ...iamLessons,
@@ -60,6 +66,9 @@ export const allLessons: Lesson[] = [
   ...securityLessons,
   ...governanceLessons,
   ...miscLessons,
+  ...deepDivesA,
+  ...deepDivesB,
+  ...deepDivesC,
   ...examMasteryLessons,
 ];
 
@@ -75,6 +84,8 @@ export const allQuestions: Question[] = [
   ...securityQuestions,
   ...governanceQuestions,
   ...miscQuestions,
+  ...deepDiveQuestions,
+  ...deepDiveCQuestions,
   ...examMasteryQuestions,
 ];
 
@@ -90,6 +101,8 @@ export const allFlashcards: Flashcard[] = [
   ...securityFlashcards,
   ...governanceFlashcards,
   ...miscFlashcards,
+  ...deepDiveFlashcards,
+  ...deepDiveCFlashcards,
   ...examMasteryFlashcards,
 ];
 

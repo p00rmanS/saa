@@ -56,7 +56,7 @@ export default async function LabPage(props: PageProps<"/labs/[labId]">) {
 
       {lab.prerequisites.length > 0 && (
         <div className="mt-6 rounded-xl border border-border p-4">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-2 text-sm font-semibold text-muted-foreground">
             Prerequisites
           </h2>
           <ul className="flex flex-col gap-1 text-sm text-foreground/90">
@@ -71,7 +71,7 @@ export default async function LabPage(props: PageProps<"/labs/[labId]">) {
       )}
 
       <div className="mt-6">
-        <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-muted-foreground">
           <ListChecks className="size-4" /> Steps
         </h2>
         <ol className="flex flex-col gap-2">
@@ -91,7 +91,7 @@ export default async function LabPage(props: PageProps<"/labs/[labId]">) {
       </Callout>
 
       <div className="mt-6 rounded-xl border border-danger/20 bg-danger/5 p-4">
-        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-danger">
+        <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold text-danger">
           <Trash2 className="size-4" /> Cleanup (avoid unexpected charges)
         </h2>
         <ul className="flex flex-col gap-1 text-sm text-foreground/90">
@@ -105,7 +105,7 @@ export default async function LabPage(props: PageProps<"/labs/[labId]">) {
       </div>
 
       <div className="mt-6 rounded-xl border border-border p-4">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        <h2 className="mb-2 text-sm font-semibold text-muted-foreground">
           Why This Matters for the Exam
         </h2>
         <p className="text-sm text-foreground/90">{lab.whyItMatters}</p>
