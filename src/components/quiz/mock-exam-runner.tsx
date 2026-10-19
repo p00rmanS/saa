@@ -158,7 +158,7 @@ function MockExamActive({
     return (
       <div className="flex flex-col gap-6">
         <div className="rounded-2xl border border-border bg-card p-6 text-center">
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+          <p className="text-xs font-medium text-muted-foreground">
             Mock Exam Result
           </p>
           <p className={cn("mt-2 font-mono text-5xl font-bold", pct >= 75 ? "text-success" : pct >= 50 ? "text-warning" : "text-danger")}>

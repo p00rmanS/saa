@@ -78,7 +78,7 @@ export default function MockExamsPage() {
           <h2 className="mb-3 text-lg font-semibold tracking-tight">History</h2>
           <div className="overflow-hidden rounded-xl border border-border">
             <table className="w-full text-sm">
-              <thead className="bg-muted/50 text-xs uppercase tracking-wide text-muted-foreground">
+              <thead className="bg-muted/50 text-xs text-muted-foreground">
                 <tr>
                   <th className="px-4 py-2 text-left font-medium">Date</th>
                   <th className="px-4 py-2 text-left font-medium">Type</th>

@@ -1,5 +1,3 @@
-import { Network } from "lucide-react";
-
 export function ArchitectureDiagram({
   diagram,
   caption,
@@ -8,13 +6,7 @@ export function ArchitectureDiagram({
   caption?: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-muted/30">
-      <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-2">
-        <Network className="size-3.5 text-muted-foreground" />
-        <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          Architecture
-        </span>
-      </div>
+    <figure className="overflow-hidden rounded-lg border border-border bg-card">
       <pre
         data-no-swipe-nav
         className="scrollbar-thin overflow-x-auto px-4 py-4 font-mono text-xs leading-relaxed text-foreground/90 sm:text-sm"
@@ -22,8 +14,10 @@ export function ArchitectureDiagram({
         {diagram}
       </pre>
       {caption && (
-        <p className="border-t border-border px-4 py-2.5 text-xs text-muted-foreground">{caption}</p>
+        <figcaption className="border-t border-border px-4 py-2.5 text-sm text-muted-foreground">
+          {caption}
+        </figcaption>
       )}
-    </div>
+    </figure>
   );
 }

@@ -3,50 +3,58 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  Lightbulb,
-  Sparkles,
-  AlertTriangle,
-  ArrowRightLeft,
-  ShieldCheck,
-  DollarSign,
-  Gauge,
-  CheckCircle2,
-  XCircle,
-  Quote,
-  Tags,
-  HelpCircle,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Bookmark, BookmarkCheck, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Callout } from "@/components/callout";
 import { ArchitectureDiagram } from "@/components/lesson/architecture-diagram";
 import { CheckpointQuiz } from "@/components/quiz/checkpoint-quiz";
-import { TierBadge, ExamImportanceBadge, DomainBadge } from "@/components/badges";
+import { TIER_LABEL } from "@/components/badges";
 import { useProgressStore, DEFAULT_SETTINGS } from "@/lib/store";
 import { useHasMounted } from "@/lib/use-has-mounted";
+import { DOMAIN_SHORT_TITLES } from "@/lib/readiness";
 import type { Lesson, Question } from "@/lib/types";
 import { cn } from "cn";
-import { Bookmark, BookmarkCheck, CheckCircle } from "lucide-react";
 
 function Prose({ text }: { text: string }) {
-  const paragraphs = text.split("\n\n");
   return (
-    <div className="flex flex-col gap-3 text-sm leading-relaxed text-foreground/90">
-      {paragraphs.map((p, i) => (
+    <div className="lesson-prose text-foreground/90">
+      {text.split("\n\n").map((p, i) => (
         <p key={i}>{p}</p>
       ))}
     </div>
   );
 }
 
-function SectionHeading({ icon: Icon, children }: { icon: React.ComponentType<{ className?: string }>; children: React.ReactNode }) {
+function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-      <Icon className="size-4" />
+    <section id={id} className="scroll-mt-24">
+      <h2 className="mb-4 text-2xl font-semibold">{title}</h2>
       {children}
-    </h2>
+    </section>
   );
+}
+
+function BulletList({ items, className }: { items: string[]; className?: string }) {
+  return (
+    <ul className={cn("flex max-w-[68ch] list-disc flex-col gap-2 pl-5 leading-relaxed marker:text-muted-foreground", className)}>
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+
+function readingMinutes(lesson: Lesson): number {
+  const text = [
+    lesson.englishExplanation,
+    lesson.whyItExists,
+    lesson.availability,
+    lesson.security,
+    lesson.pricingLogic,
+    ...lesson.keyFeatures,
+    ...lesson.bestUseCases,
+    ...lesson.examTraps,
+  ].join(" ");
+  return Math.max(2, Math.round(text.split(/\s+/).length / 200));
 }
 
 export function LessonView({
@@ -110,283 +118,225 @@ export function LessonView({
   const showEnglish = settings.taglishMode !== "taglish";
   const showTaglish = settings.taglishMode !== "english";
 
-  const explanationBlock = (
-    <div className="flex flex-col gap-4">
+  const explanation = (
+    <div className="flex flex-col gap-6">
       {showEnglish && (
         <div>
-          {showTaglish && <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">English</p>}
+          {showTaglish && <p className="mb-2 text-sm font-medium text-muted-foreground">In English</p>}
           <Prose text={lesson.englishExplanation} />
         </div>
       )}
       {showTaglish && (
         <div>
-          {showEnglish && <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">Taglish</p>}
+          {showEnglish && <p className="mb-2 text-sm font-medium text-muted-foreground">Sa Taglish</p>}
           <Prose text={lesson.taglishExplanation} />
         </div>
       )}
     </div>
   );
 
-  const analogyBlock = (
-    <Callout icon={Quote} title="Real-Life Analogy" tone="info">
-      <p>{lesson.analogy}</p>
-    </Callout>
+  const analogy = (
+    <aside className="max-w-[68ch] border-l-2 border-primary/50 pl-4">
+      <p className="mb-1 text-sm font-medium text-muted-foreground">Think of it this way</p>
+      <p className="leading-relaxed">{lesson.analogy}</p>
+    </aside>
   );
 
-  const teachingSection = settings.examMode ? (
-    <details className="group rounded-xl border border-border">
-      <summary className="cursor-pointer list-none rounded-xl px-4 py-3 text-sm font-medium text-foreground/90 hover:bg-muted/50">
-        <span className="mr-2 inline-block transition-transform group-open:rotate-90">▸</span>
-        Full explanation (exam mode is hiding this by default)
-      </summary>
-      <div className="border-t border-border px-4 py-4">
-        {settings.beginnerMode ? (
-          <div className="flex flex-col gap-4">
-            {analogyBlock}
-            {explanationBlock}
-          </div>
-        ) : (
-          explanationBlock
-        )}
-      </div>
-    </details>
-  ) : settings.beginnerMode ? (
-    <div className="flex flex-col gap-4">
-      {analogyBlock}
-      {explanationBlock}
-    </div>
-  ) : (
-    <div className="flex flex-col gap-4">
-      {explanationBlock}
-      {analogyBlock}
+  const overview = (
+    <div className="flex flex-col gap-6">
+      {settings.beginnerMode ? (
+        <>
+          {analogy}
+          {explanation}
+        </>
+      ) : (
+        <>
+          {explanation}
+          {analogy}
+        </>
+      )}
     </div>
   );
+
+  const outline: { id: string; title: string }[] = [
+    { id: "overview", title: "Overview" },
+    { id: "why", title: "Why it exists" },
+    { id: "when", title: "When to use it" },
+    { id: "features", title: "How it works" },
+    { id: "operations", title: "Availability, security, cost" },
+    { id: "exam", title: "On the exam" },
+    { id: "architecture", title: "Example architecture" },
+    ...(questions.length > 0 ? [{ id: "check", title: "Check yourself" }] : []),
+  ];
+
+  const tierLabel = TIER_LABEL[lesson.tier];
+  const domainText = lesson.domains.map((d) => `${d} (${DOMAIN_SHORT_TITLES[d]})`).join(", ");
 
   return (
-    <div
-      className="flex flex-col gap-8 pb-16"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      {/* Header */}
-      <div>
-        <div className="mb-2 flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="border-border text-muted-foreground">
-            {lesson.category}
-          </Badge>
-          <TierBadge tier={lesson.tier} />
-          <ExamImportanceBadge importance={lesson.examImportance} />
-          {lesson.domains.map((d) => (
-            <DomainBadge key={d} domain={d} />
-          ))}
-        </div>
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{lesson.title}</h1>
-        <p className="mt-2 max-w-3xl text-base text-muted-foreground">{lesson.oneLiner}</p>
-
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+    <div className="pb-16" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <header className="max-w-3xl">
+        <p className="text-sm text-muted-foreground">
+          <Link href="/course" className="hover:text-foreground hover:underline">
+            Learn
+          </Link>{" "}
+          / {lesson.category}
+        </p>
+        <h1 className="mt-2 text-4xl font-semibold leading-tight sm:text-5xl">{lesson.title}</h1>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{lesson.oneLiner}</p>
+        <p className="mt-4 text-sm text-muted-foreground">
+          {tierLabel} · {readingMinutes(lesson)} min read · Exam domain {domainText}
+        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
           <Button
             size="sm"
             variant={completed ? "default" : "outline"}
             onClick={() => toggleLessonComplete(lesson.id)}
           >
             <CheckCircle className="size-4" />
-            {completed ? "Completed" : "Mark Complete"}
+            {completed ? "Completed" : "Mark complete"}
           </Button>
           <Button size="icon-sm" variant="outline" aria-label="Bookmark" onClick={() => toggleBookmark(lesson.id)}>
             {bookmarked ? <BookmarkCheck className="size-4 text-primary" /> : <Bookmark className="size-4" />}
           </Button>
         </div>
-      </div>
+      </header>
 
-      {/* Explanation + analogy (order depends on beginner mode; collapsible in exam mode) */}
-      <section>{teachingSection}</section>
+      <div className="mt-10 grid gap-12 xl:grid-cols-[minmax(0,1fr)_14rem]">
+        <div className="flex min-w-0 flex-col gap-14">
+          <Section id="overview" title="Overview">
+            {settings.examMode ? (
+              <details className="group">
+                <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground">
+                  Exam mode is on, so the full explanation is collapsed. Click to read it.
+                </summary>
+                <div className="mt-4">{overview}</div>
+              </details>
+            ) : (
+              overview
+            )}
+          </Section>
 
-      {/* Why it exists + flow */}
-      <section className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={HelpCircle}>Why Does This Exist?</SectionHeading>
-          <p className="text-sm leading-relaxed text-foreground/90">{lesson.whyItExists}</p>
-        </div>
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={ArrowRightLeft}>What Happens When You Use It</SectionHeading>
-          <p className="break-words font-mono text-sm leading-relaxed text-foreground/90">{lesson.flow}</p>
-        </div>
-      </section>
+          <Section id="why" title="Why it exists">
+            <Prose text={lesson.whyItExists} />
+            <h3 className="mb-2 mt-8 text-lg font-semibold">What a request looks like</h3>
+            <p className="max-w-[68ch] break-words font-mono text-sm leading-relaxed text-foreground/90">{lesson.flow}</p>
+            <h3 className="mb-2 mt-8 text-lg font-semibold">Without it</h3>
+            <BulletList items={lesson.withoutIt} />
+          </Section>
 
-      {/* Without it */}
-      <section className="rounded-xl border border-danger/20 bg-danger/5 p-4">
-        <SectionHeading icon={XCircle}>What Happens If You Don&apos;t Use It</SectionHeading>
-        <ul className="flex flex-col gap-1.5 text-sm text-foreground/90">
-          {lesson.withoutIt.map((item, i) => (
-            <li key={i} className="flex gap-2">
-              <span className="text-danger">—</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+          <Section id="when" title="When to use it">
+            <h3 className="mb-2 text-lg font-semibold">A good fit</h3>
+            <BulletList items={lesson.bestUseCases} />
+            <h3 className="mb-2 mt-8 text-lg font-semibold">A poor fit</h3>
+            <BulletList items={lesson.poorUseCases} />
+            {lesson.alternatives.length > 0 && (
+              <>
+                <h3 className="mb-3 mt-8 text-lg font-semibold">Pick something else when…</h3>
+                <div className="max-w-3xl overflow-hidden rounded-lg border border-border">
+                  <table className="w-full text-sm">
+                    <tbody>
+                      {lesson.alternatives.map((row, i) => (
+                        <tr key={i} className={cn(i > 0 && "border-t border-border")}>
+                          <td className="px-4 py-3 align-top text-foreground/90">{row.need}</td>
+                          <td className="px-4 py-3 align-top font-medium">{row.choose}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
+          </Section>
 
-      {/* Use cases */}
-      <section className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-success/20 bg-success/5 p-4">
-          <SectionHeading icon={CheckCircle2}>Best Use Cases</SectionHeading>
-          <ul className="flex flex-col gap-1.5 text-sm text-foreground/90">
-            {lesson.bestUseCases.map((item, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-success">✓</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-xl border border-border bg-muted/30 p-4">
-          <SectionHeading icon={XCircle}>Poor Use Cases</SectionHeading>
-          <ul className="flex flex-col gap-1.5 text-sm text-foreground/90">
-            {lesson.poorUseCases.map((item, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-muted-foreground">✕</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+          <Section id="features" title="How it works">
+            <BulletList items={lesson.keyFeatures} />
+          </Section>
 
-      {/* Alternatives */}
-      {lesson.alternatives.length > 0 && (
-        <section>
-          <SectionHeading icon={ArrowRightLeft}>Closest Alternatives</SectionHeading>
-          <div className="overflow-hidden rounded-xl border border-border">
-            <table className="w-full text-sm">
-              <thead className="bg-muted/50 text-xs uppercase tracking-wide text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-2 text-left font-medium">Need</th>
-                  <th className="px-4 py-2 text-left font-medium">Choose</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lesson.alternatives.map((row, i) => (
-                  <tr key={i} className={cn("border-t border-border", i % 2 === 1 && "bg-muted/20")}>
-                    <td className="px-4 py-2.5 text-foreground/90">{row.need}</td>
-                    <td className="px-4 py-2.5 font-medium text-primary">{row.choose}</td>
-                  </tr>
+          <Section id="operations" title="Availability, security, cost">
+            <h3 className="mb-2 text-lg font-semibold">Availability and scaling</h3>
+            <Prose text={lesson.availability} />
+            <h3 className="mb-2 mt-8 text-lg font-semibold">Security</h3>
+            <Prose text={lesson.security} />
+            <h3 className="mb-2 mt-8 text-lg font-semibold">What you pay for</h3>
+            <Prose text={lesson.pricingLogic} />
+          </Section>
+
+          <Section id="exam" title="On the exam">
+            <h3 className="mb-2 text-lg font-semibold">Phrases that point here</h3>
+            <p className="max-w-[68ch] leading-relaxed text-foreground/90">
+              {lesson.examKeywords.join(" · ")}
+            </p>
+            <h3 className="mb-2 mt-8 text-lg font-semibold">Where people lose marks</h3>
+            <BulletList items={lesson.examTraps} className="marker:text-warning" />
+            {settings.mentorMode && (
+              <aside className="mt-8 max-w-[68ch] rounded-lg bg-warning/10 p-4">
+                <p className="mb-1 text-sm font-semibold text-warning">Mentor note</p>
+                <p className="leading-relaxed text-foreground/90">{lesson.mentorTip}</p>
+              </aside>
+            )}
+          </Section>
+
+          <Section id="architecture" title="Example architecture">
+            <ArchitectureDiagram diagram={lesson.architectureDiagram} caption={lesson.architectureCaption} />
+          </Section>
+
+          {questions.length > 0 && (
+            <Section id="check" title="Check yourself">
+              <div className="flex flex-col gap-4">
+                {questions.map((q, i) => (
+                  <CheckpointQuiz key={q.id} question={q} index={i} />
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
+              </div>
+            </Section>
+          )}
 
-      {/* Key features */}
-      <section>
-        <SectionHeading icon={Sparkles}>Key Features</SectionHeading>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {lesson.keyFeatures.map((f, i) => (
-            <div key={i} className="flex gap-2 rounded-lg border border-border px-3 py-2 text-sm text-foreground/90">
-              <span className="text-primary">•</span>
-              <span>{f}</span>
-            </div>
-          ))}
+          <nav className="flex items-center justify-between gap-3 border-t border-border pt-6">
+            {prevLesson ? (
+              <Button
+                variant="outline"
+                className="max-w-[48%]"
+                nativeButton={false}
+                render={<Link href={`/course/${prevLesson.id}`} />}
+              >
+                <ArrowLeft className="size-4" />
+                <span className="truncate">{prevLesson.title}</span>
+              </Button>
+            ) : (
+              <span />
+            )}
+            {nextLesson ? (
+              <Button
+                className="max-w-[48%]"
+                nativeButton={false}
+                render={<Link href={`/course/${nextLesson.id}`} />}
+              >
+                <span className="truncate">{nextLesson.title}</span>
+                <ArrowRight className="size-4" />
+              </Button>
+            ) : (
+              <span />
+            )}
+          </nav>
         </div>
-      </section>
 
-      {/* Availability / Security / Pricing */}
-      <section className="grid gap-4">
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={Gauge}>Availability, Durability & Scalability</SectionHeading>
-          <p className="text-sm leading-relaxed text-foreground/90">{lesson.availability}</p>
-        </div>
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={ShieldCheck}>Security</SectionHeading>
-          <p className="text-sm leading-relaxed text-foreground/90">{lesson.security}</p>
-        </div>
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={DollarSign}>Pricing Logic</SectionHeading>
-          <p className="text-sm leading-relaxed text-foreground/90">{lesson.pricingLogic}</p>
-        </div>
-      </section>
-
-      {/* Exam keywords + traps */}
-      <section className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-border p-4">
-          <SectionHeading icon={Tags}>Exam Keywords</SectionHeading>
-          <div className="flex flex-wrap gap-1.5">
-            {lesson.examKeywords.map((k, i) => (
-              <Badge key={i} variant="outline" className="border-border bg-muted/40 font-mono text-xs">
-                {k}
-              </Badge>
-            ))}
-          </div>
-        </div>
-        <div className="rounded-xl border border-warning/20 bg-warning/5 p-4">
-          <SectionHeading icon={AlertTriangle}>Common Exam Traps</SectionHeading>
-          <ul className="flex flex-col gap-1.5 text-sm text-foreground/90">
-            {lesson.examTraps.map((t, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-warning">⚠</span>
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Architecture */}
-      <section>
-        <SectionHeading icon={ArrowRightLeft}>Architecture Example</SectionHeading>
-        <ArchitectureDiagram diagram={lesson.architectureDiagram} caption={lesson.architectureCaption} />
-      </section>
-
-      {/* Mentor tip */}
-      {settings.mentorMode && (
-        <Callout icon={Lightbulb} title="Mentor Tip" tone="brand">
-          <p>{lesson.mentorTip}</p>
-        </Callout>
-      )}
-
-      {/* Quiz */}
-      {questions.length > 0 && (
-        <section>
-          <SectionHeading icon={HelpCircle}>Checkpoint Quiz</SectionHeading>
-          <div className="flex flex-col gap-3">
-            {questions.map((q, i) => (
-              <CheckpointQuiz key={q.id} question={q} index={i} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Prev / next */}
-      <nav className="flex items-center justify-between gap-3 border-t border-border pt-6">
-        {prevLesson ? (
-          <Button
-            variant="outline"
-            className="max-w-[48%]"
-            nativeButton={false}
-            render={<Link href={`/course/${prevLesson.id}`} />}
-          >
-            <span className="truncate">← {prevLesson.title}</span>
-          </Button>
-        ) : (
-          <span />
-        )}
-        {nextLesson ? (
-          <Button
-            className="max-w-[48%]"
-            nativeButton={false}
-            render={<Link href={`/course/${nextLesson.id}`} />}
-          >
-            <span className="truncate">{nextLesson.title} →</span>
-          </Button>
-        ) : (
-          <span />
-        )}
-      </nav>
-      {(prevLesson || nextLesson) && (
-        <p className="-mt-6 text-center text-xs text-muted-foreground sm:hidden">
-          Swipe left/right to jump between lessons
-        </p>
-      )}
+        <aside className="hidden xl:block">
+          <nav className="sticky top-24" aria-label="In this lesson">
+            <p className="mb-3 text-sm font-semibold">In this lesson</p>
+            <ol className="flex flex-col gap-2 border-l border-border text-sm">
+              {outline.map((o) => (
+                <li key={o.id}>
+                  <a
+                    href={`#${o.id}`}
+                    className="-ml-px block border-l border-transparent pl-4 text-muted-foreground hover:border-foreground hover:text-foreground"
+                  >
+                    {o.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      </div>
     </div>
   );
 }
