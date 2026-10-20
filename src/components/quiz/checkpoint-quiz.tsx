@@ -41,7 +41,7 @@ export function CheckpointQuiz({ question, index }: { question: Question; index?
         )}
         <DifficultyBadge difficulty={question.difficulty} />
         {question.type === "multiple" && (
-          <span className="text-xs text-muted-foreground">Select all that apply</span>
+          <span className="text-xs text-muted-foreground">Select {question.correctAnswers.length}</span>
         )}
       </div>
 
