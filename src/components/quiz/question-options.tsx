@@ -1,7 +1,9 @@
 "use client";
 
+import * as React from "react";
 import { Check, X } from "lucide-react";
 import { cn } from "cn";
+import { seededShuffle } from "@/lib/shuffle";
 import type { Question } from "@/lib/types";
 
 export function QuestionOptions({
@@ -18,6 +20,10 @@ export function QuestionOptions({
   disabled?: boolean;
 }) {
   const isMultiple = question.type === "multiple";
+  const options = React.useMemo(
+    () => seededShuffle(question.options, question.id),
+    [question.options, question.id]
+  );
 
   function toggle(optionId: string) {
     if (disabled) return;
@@ -34,7 +40,7 @@ export function QuestionOptions({
 
   return (
     <div className="flex flex-col gap-2" role={isMultiple ? "group" : "radiogroup"}>
-      {question.options.map((opt) => {
+      {options.map((opt) => {
         const isSelected = selected.includes(opt.id);
         const isCorrect = question.correctAnswers.includes(opt.id);
         const showCorrect = revealed && isCorrect;

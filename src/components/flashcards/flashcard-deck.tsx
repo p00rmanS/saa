@@ -23,13 +23,16 @@ export function FlashcardDeck({ cards }: { cards: Flashcard[] }) {
   const [index, setIndex] = React.useState(0);
   const [flipped, setFlipped] = React.useState(false);
 
+  // Order is fixed when the deck loads (hardest first). Re-sorting on every status change
+  // would shift cards under the current index, so marking a card would skip the next one.
   const ordered = React.useMemo(() => {
     return [...cards].sort((a, b) => {
       const sa = STATUS_WEIGHT[statuses[a.id] ?? "new"];
       const sb = STATUS_WEIGHT[statuses[b.id] ?? "new"];
       return sa - sb;
     });
-  }, [cards, statuses]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards, mounted]);
 
   const boundedIndex = Math.min(index, Math.max(0, ordered.length - 1));
   const card = ordered[boundedIndex];

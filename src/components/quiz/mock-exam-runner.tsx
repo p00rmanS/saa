@@ -105,7 +105,8 @@ function MockExamActive({
         domainScores[question.domain].correct += 1;
         correct += 1;
       }
-      recordAnswer(question.id, isCorrect);
+      // Skipped questions count against the score but are not recorded as wrong attempts.
+      if (given.length > 0) recordAnswer(question.id, isCorrect);
     }
     const durationSeconds = Math.round((Date.now() - startedAt.current) / 1000);
     const examResult: MockExamResult = {
@@ -123,11 +124,13 @@ function MockExamActive({
 
   React.useEffect(() => {
     if (phase !== "running") return;
+    // Derive remaining time from the wall clock so throttled background tabs cannot stall the exam timer.
     const interval = setInterval(() => {
-      setSecondsLeft((s) => Math.max(0, s - 1));
+      const elapsed = Math.floor((Date.now() - startedAt.current) / 1000);
+      setSecondsLeft(Math.max(0, durationMinutes * 60 - elapsed));
     }, 1000);
     return () => clearInterval(interval);
-  }, [phase]);
+  }, [phase, durationMinutes]);
 
   React.useEffect(() => {
     if (phase === "running" && secondsLeft === 0) {
@@ -275,7 +278,7 @@ function MockExamActive({
           <DomainBadge domain={q.domain} />
           <DifficultyBadge difficulty={q.difficulty} />
           {q.type === "multiple" && (
-            <span className="text-xs text-muted-foreground">Select all that apply</span>
+            <span className="text-xs text-muted-foreground">Select {q.correctAnswers.length}</span>
           )}
           <Button
             size="icon-sm"
