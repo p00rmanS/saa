@@ -93,7 +93,7 @@ export default function ProgressPage() {
 
       <div>
         <h2 className="mb-3 text-lg font-semibold tracking-tight">Lesson Completion by Phase</h2>
-        <div className="h-80 rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4" style={{ height: Math.max(320, moduleChartData.length * 32 + 48) }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={moduleChartData} layout="vertical" margin={{ left: 40 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
@@ -104,6 +104,7 @@ export default function ProgressPage() {
                 stroke="var(--muted-foreground)"
                 fontSize={11}
                 width={140}
+                interval={0}
                 tickLine={false}
                 axisLine={false}
               />
