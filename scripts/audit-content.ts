@@ -1,5 +1,6 @@
 import { allLessons, allQuestions, allFlashcards } from "../src/data";
 import { modules } from "../src/data/modules";
+import { taskStatements, inScopeServices } from "../src/data/exam-guide";
 import type { Lesson, Question, Flashcard } from "../src/lib/types";
 
 type Issue = { severity: "error" | "warn"; area: string; id: string; message: string };
@@ -233,12 +234,25 @@ for (const f of allFlashcards) {
   if (f.domain && ![1, 2, 3, 4].includes(f.domain)) err("flashcard", where, `invalid domain ${f.domain}`);
 }
 
+// ---------- Official exam guide coverage ----------
+for (const t of taskStatements) {
+  if (t.lessonIds.length < 3) err("exam-guide", t.id, `task statement maps to only ${t.lessonIds.length} lessons`);
+  for (const id of t.lessonIds) {
+    if (!lessonIdSet.has(id)) err("exam-guide", t.id, `maps to unknown lesson "${id}"`);
+  }
+  if (new Set(t.lessonIds).size !== t.lessonIds.length) warn("exam-guide", t.id, "lists a lesson more than once");
+}
+for (const svc of inScopeServices) {
+  if (!lessonIdSet.has(svc.lessonId)) err("exam-guide", svc.name, `in-scope service has no lesson "${svc.lessonId}"`);
+}
+
 // ---------- Report ----------
 const errors = issues.filter((i) => i.severity === "error");
 const warnings = issues.filter((i) => i.severity === "warn");
 
 console.log(`\n=== AUDIT SUMMARY ===`);
 console.log(`Lessons: ${allLessons.length}, Questions: ${allQuestions.length}, Flashcards: ${allFlashcards.length}, Modules: ${modules.length}`);
+console.log(`Exam guide: ${taskStatements.length} task statements, ${inScopeServices.length} in-scope services mapped`);
 console.log(`Errors: ${errors.length}, Warnings: ${warnings.length}\n`);
 
 function printGroup(title: string, list: Issue[]) {

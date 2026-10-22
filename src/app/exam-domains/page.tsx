@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { examDomains } from "@/data/exam-domains";
 import { lessonById } from "@/data";
+import { taskStatements, inScopeServices } from "@/data/exam-guide";
 
 export const metadata = { title: "Exam Domains — SAA Mentor" };
 
@@ -13,6 +14,15 @@ export default function ExamDomainsPage() {
         The SAA-C03 exam is scored across four domains. Security and resiliency carry the most
         weight — study time should reflect that.
       </p>
+
+      <div className="mt-6 max-w-2xl rounded-lg border border-border bg-card p-4 text-sm">
+        <p className="font-medium">Checked against the official exam guide</p>
+        <p className="mt-1 text-muted-foreground">
+          All {taskStatements.length} task statements and all {inScopeServices.length} in-scope services in the
+          SAA-C03 guide (v1.1) are mapped to lessons below. Open a task statement to see the skills it tests and
+          the lessons that cover them.
+        </p>
+      </div>
 
       <div className="mt-8 flex flex-col gap-6">
         {examDomains.map((domain) => (
@@ -61,6 +71,36 @@ export default function ExamDomainsPage() {
                   </ul>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2 border-t border-border pt-4">
+              <p className="text-sm font-medium">Task statements</p>
+              {taskStatements
+                .filter((t) => t.domain === domain.id)
+                .map((t) => (
+                  <details key={t.id} className="rounded-md border border-border px-3 py-2">
+                    <summary className="cursor-pointer text-sm">
+                      <span className="font-medium">{t.id}</span> {t.title}
+                      <span className="ml-2 text-xs text-muted-foreground">{t.lessonIds.length} lessons</span>
+                    </summary>
+                    <ul className="mt-3 list-disc pl-5 text-sm text-muted-foreground">
+                      {t.skills.map((skill) => (
+                        <li key={skill}>{skill}</li>
+                      ))}
+                    </ul>
+                    <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                      {t.lessonIds.map((id) => {
+                        const lesson = lessonById.get(id);
+                        if (!lesson) return null;
+                        return (
+                          <Link key={id} href={`/course/${id}`} className="text-primary hover:underline">
+                            {lesson.shortName ?? lesson.title}
+                          </Link>
+                        );
+                      })}
+                    </p>
+                  </details>
+                ))}
             </div>
           </div>
         ))}
