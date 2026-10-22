@@ -198,6 +198,13 @@ for (const q of allQuestions) {
     }
   }
   if (![1, 2, 3, 4].includes(q.domain)) err("question", where, `invalid domain ${q.domain}`);
+  // Format fidelity with the exam guide: multiple response has five or more options and two or more answers.
+  if (q.type === "multiple") {
+    if (q.options.length < 5) err("question", where, `multiple-response question has only ${q.options.length} options (guide: five or more)`);
+    if (q.correctAnswers.length < 2) err("question", where, `multiple-response question has fewer than two correct answers`);
+  } else if (q.options.length !== 4 && q.options.length !== 5) {
+    warn("question", where, `single-answer question has ${q.options.length} options (guide: one correct, three distractors)`);
+  }
 }
 
 // cross-check: every lesson's questionIds should actually be "kind: checkpoint" or scenario tied back to that lesson
