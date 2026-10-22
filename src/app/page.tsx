@@ -60,6 +60,8 @@ export default function DashboardPage() {
   const strongest = strongestDomain(domainScores);
   const accuracy = overallQuestionAccuracy(questionAttempts);
   const lessonStats = overallLessonCompletion(lessons);
+  // With no activity every domain ties at 0%, so a weakest/strongest ranking would be meaningless.
+  const hasRanking = domainScores.some((d) => d.score !== domainScores[0].score);
   const nextLesson = nextLessonToContinue(lessons);
   const reviewLessons = recommendedReviewLessons(weakest, lessons);
 
@@ -112,13 +114,19 @@ export default function DashboardPage() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg border border-border bg-card p-4">
           <p className="text-sm text-muted-foreground">Weakest domain</p>
-          <p className="mt-1 text-lg font-semibold">{weakest.title}</p>
-          <p className="text-sm text-muted-foreground">{Math.round(weakest.score)}%. Spend your next session here.</p>
+          <p className="mt-1 text-lg font-semibold">{hasRanking ? weakest.title : "Not enough data yet"}</p>
+          <p className="text-sm text-muted-foreground">
+            {hasRanking
+              ? `${Math.round(weakest.score)}%. Spend your next session here.`
+              : "Finish a lesson or answer a few questions to see where to focus."}
+          </p>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <p className="text-sm text-muted-foreground">Strongest domain</p>
-          <p className="mt-1 text-lg font-semibold">{strongest.title}</p>
-          <p className="text-sm text-muted-foreground">{Math.round(strongest.score)}%</p>
+          <p className="mt-1 text-lg font-semibold">{hasRanking ? strongest.title : "Not enough data yet"}</p>
+          <p className="text-sm text-muted-foreground">
+            {hasRanking ? `${Math.round(strongest.score)}%` : "Your strongest domain will show up here."}
+          </p>
         </div>
       </div>
 
@@ -137,7 +145,7 @@ export default function DashboardPage() {
       )}
 
       {/* Recommended review */}
-      {reviewLessons.length > 0 && (
+      {hasRanking && reviewLessons.length > 0 && (
         <div>
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-2xl font-semibold">Worth another look</h2>

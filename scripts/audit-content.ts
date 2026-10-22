@@ -12,6 +12,7 @@ const lessonIdCounts = new Map<string, number>();
 for (const l of allLessons) lessonIdCounts.set(l.id, (lessonIdCounts.get(l.id) ?? 0) + 1);
 for (const [id, count] of lessonIdCounts) if (count > 1) err("lesson", id, `duplicate lesson id used ${count} times`);
 
+const CONCEPTUAL_MODULES = new Set(["phase-0-orientation", "phase-15-exam-mastery"]);
 const moduleIds = new Set(modules.map((m) => m.id));
 const validModuleIdsFromLessons = new Set(allLessons.map((l) => l.moduleId));
 
@@ -76,6 +77,8 @@ for (const lesson of allLessons) {
     }
   }
   for (const field of REQUIRED_ARRAY_FIELDS) {
+    // Conceptual lessons (orientation, exam skills) have no service alternatives to compare.
+    if (field === "alternatives" && CONCEPTUAL_MODULES.has(lesson.moduleId)) continue;
     const val = lesson[field] as unknown as unknown[];
     if (!Array.isArray(val) || val.length === 0) {
       err("lesson", where, `missing/empty required array field "${field}"`);
@@ -209,7 +212,8 @@ for (const lesson of allLessons) {
 // orphaned questions: checkpoint/scenario questions not referenced by any lesson.questionIds
 const referencedQIds = new Set(allLessons.flatMap((l) => l.questionIds ?? []));
 for (const q of allQuestions) {
-  if (q.kind !== "exam" && !referencedQIds.has(q.id)) {
+  // Comparison scenario questions are served through domain quizzes and mock exams, not a lesson.
+  if (q.kind !== "exam" && !referencedQIds.has(q.id) && !q.id.includes("-comparison-")) {
     warn("question", q.id, `kind="${q.kind}" question is not referenced by any lesson's questionIds`);
   }
 }
