@@ -53,6 +53,7 @@ import { deepDivesB } from "./content/deep-dives-b";
 import { deepDivesC } from "./content/deep-dives-c";
 import { deepDivesD } from "./content/deep-dives-d";
 import { deepDivesE } from "./content/deep-dives-e";
+import { withFifthOptions } from "./multi-response";
 import { deepDivesF } from "./content/deep-dives-f";
 import { deepDivesG } from "./content/deep-dives-g";
 import { deepDivesH } from "./content/deep-dives-h";
@@ -86,7 +87,7 @@ export const allLessons: Lesson[] = [
   ...examMasteryLessons,
 ];
 
-export const allQuestions: Question[] = [
+export const allQuestions: Question[] = withFifthOptions([
   ...orientationQuestions,
   ...iamQuestions,
   ...computeQuestions,
@@ -105,7 +106,7 @@ export const allQuestions: Question[] = [
   ...deepDiveFQuestions,
   ...deepDiveGHQuestions,
   ...examMasteryQuestions,
-];
+]);
 
 export const allFlashcards: Flashcard[] = [
   ...orientationFlashcards,
