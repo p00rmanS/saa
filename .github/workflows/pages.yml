@@ -32,6 +32,7 @@ jobs:
 
       - name: Check types, lint and content
         run: |
+          npx next typegen
           npx tsc --noEmit
           npx eslint src scripts
           npx tsx scripts/audit-content.ts
