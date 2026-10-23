@@ -286,7 +286,7 @@ export const deepDiveCFlashcards: Flashcard[] = [
 
   fc("kinesis-data-streams-vs-firehose", 1, 3, "Analytics", "Kinesis Data Streams shard limits?", "Write: 1 MB/s or 1,000 records/s per shard. Read: 2 MB/s per shard."),
   fc("kinesis-data-streams-vs-firehose", 2, 3, "Analytics", "Which supports replay: Streams or Firehose?", "Only Data Streams, with retention of 24 hours up to 365 days. Firehose does not retain for replay."),
-  fc("kinesis-data-streams-vs-firehose", 3, 3, "Analytics", "Why is Firehose only near real time?", "It buffers by size or time (about 60 seconds minimum) before delivering to the destination."),
+  fc("kinesis-data-streams-vs-firehose", 3, 3, "Analytics", "Why is Firehose only near real time?", "It buffers by size or time before delivering. The interval is configurable (default 300 seconds, typically 60 to 900 seconds for S3), so it is near real time, not real time."),
 
   fc("aws-elastic-disaster-recovery", 1, 2, "Resilience", "Elastic Disaster Recovery RPO and RTO?", "RPO typically seconds, RTO typically minutes, with a low-cost staging area."),
   fc("aws-elastic-disaster-recovery", 2, 2, "Resilience", "Elastic DR vs AWS Backup vs Application Migration Service?", "DRS: continuous replication for DR. Backup: periodic recovery points. MGN: same replication technology used to migrate permanently."),

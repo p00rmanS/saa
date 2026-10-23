@@ -586,7 +586,7 @@ export const deepDiveFFlashcards: Flashcard[] = [
 
   fc("amazon-qldb", 1, 1, "Databases", "QLDB vs blockchain?", "QLDB has one central trusted authority and an immutable verifiable journal. Managed Blockchain is for multiple untrusted parties."),
   fc("amazon-qldb", 2, 1, "Databases", "How does a ledger database prove history is intact?", "Each journal block is hash-chained with SHA-256 so any change is detectable, and you can verify a digest."),
-  fc("amazon-qldb", 3, 1, "Databases", "QLDB status today?", "AWS announced end of support in 2025 and recommends Aurora PostgreSQL for ledger-style needs. It is still in the exam guide v1.1."),
+  fc("amazon-qldb", 3, 1, "Databases", "QLDB status today?", "AWS ended support on July 31, 2025 and recommends Aurora PostgreSQL for ledger-style needs. It is still in the exam guide v1.1."),
 
   fc("amazon-timestream", 1, 3, "Databases", "When to choose a time series database?", "Timestamped measurements arriving continuously and queried over time windows, such as IoT and metrics. Timestream is AWS's service."),
   fc("amazon-timestream", 2, 4, "Databases", "Why Parquet instead of CSV for Athena?", "Parquet is columnar and compressed, so queries read only needed columns and scan less data, lowering cost."),
@@ -594,7 +594,7 @@ export const deepDiveFFlashcards: Flashcard[] = [
 
   fc("amazon-pinpoint", 1, 3, "Front-End Web and Mobile", "Pinpoint vs SNS vs SES?", "Pinpoint: segmented multichannel campaigns with analytics. SNS: simple pub/sub notifications. SES: bulk and transactional email."),
   fc("amazon-pinpoint", 2, 3, "Front-End Web and Mobile", "Pinpoint channels?", "Email, SMS, push, voice and in-app messages."),
-  fc("amazon-pinpoint", 3, 3, "Front-End Web and Mobile", "Pinpoint status today?", "AWS announced end of support for engagement features, with messaging moving to SES and End User Messaging. Still in the exam guide."),
+  fc("amazon-pinpoint", 3, 3, "Front-End Web and Mobile", "Pinpoint status today?", "Closed to new customers since May 20, 2025 and support ends October 30, 2026. Email moves to SES, SMS/voice/push to End User Messaging, campaigns to Amazon Connect. Still in the exam guide."),
 
   fc("amazon-forecast", 1, 3, "Machine Learning", "What does Amazon Forecast do?", "Managed ML time-series forecasting, such as demand, with probabilistic forecasts at quantiles like P10, P50 and P90."),
   fc("amazon-forecast", 2, 3, "Machine Learning", "Forecast vs SageMaker?", "Forecast: purpose-built, no ML expertise. SageMaker: build and tune custom models."),
@@ -610,7 +610,7 @@ export const deepDiveFFlashcards: Flashcard[] = [
 
   fc("aws-proton", 1, 2, "Management and Governance", "What is AWS Proton for?", "Platform teams publish versioned environment and service templates (CloudFormation or Terraform) that developers deploy through self-service."),
   fc("aws-proton", 2, 1, "Management and Governance", "Proton vs Service Catalog?", "Proton: templates with deployment pipelines for services. Service Catalog: curated catalog of approved products users can launch."),
-  fc("aws-proton", 3, 2, "Management and Governance", "Proton status today?", "AWS announced its retirement. The concept is still in the exam guide v1.1."),
+  fc("aws-proton", 3, 2, "Management and Governance", "Proton status today?", "Support ended October 7, 2026. CloudFormation Git sync is one alternative. The concept is still in the exam guide v1.1."),
 
   fc("aws-application-discovery-service", 1, 4, "Migration and Transfer", "Two ways Application Discovery Service collects data?", "Agentless Discovery Connector (VMware vCenter VMs) and Discovery Agent (installed on servers, also captures processes and network dependencies)."),
   fc("aws-application-discovery-service", 2, 4, "Migration and Transfer", "Migration toolchain order?", "Discover (Application Discovery Service), track (Migration Hub), then migrate with Application Migration Service for servers or DMS for databases."),
