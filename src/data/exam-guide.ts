@@ -70,6 +70,10 @@ export const taskStatements: TaskStatement[] = [
       "aws-site-to-site-vpn",
       "aws-direct-connect",
       "direct-connect-vpn-resilience",
+      "security-services-decision-guide",
+      "waf-shield-ddos-resilience",
+      "systems-manager-capabilities",
+      "cloudtrail-config-event-types",
     ],
   },
   {
@@ -99,6 +103,10 @@ export const taskStatements: TaskStatement[] = [
       "aws-lake-formation",
       "aws-artifact",
       "aws-audit-manager",
+      "rds-backup-restore-encryption",
+      "encryption-in-transit-patterns",
+      "aws-backup-vault-lock-policies",
+      "cloudtrail-config-event-types",
     ],
   },
   {
@@ -139,6 +147,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-transfer-family",
       "rds-multi-az-read-replicas",
       "database-decision-framework",
+      "event-driven-service-selection",
+      "step-functions-workflow-types",
     ],
   },
   {
@@ -171,6 +181,10 @@ export const taskStatements: TaskStatement[] = [
       "amazon-comprehend",
       "amazon-polly",
       "network-cidr-subnets-routing",
+      "cloudformation-change-sets-drift-stacksets",
+      "systems-manager-capabilities",
+      "aws-backup-vault-lock-policies",
+      "rds-backup-restore-encryption",
     ],
   },
   {
@@ -285,6 +299,7 @@ export const taskStatements: TaskStatement[] = [
       "vpc-peering",
       "amazon-route-53",
       "route-53-routing-policies",
+      "transit-gateway-hybrid-routing",
     ],
   },
   {
@@ -317,6 +332,7 @@ export const taskStatements: TaskStatement[] = [
       "aws-snow-family",
       "data-ingestion-transfer-sizing",
       "amazon-appflow",
+      "analytics-service-selection-redshift-emr",
     ],
   },
   {
@@ -350,6 +366,7 @@ export const taskStatements: TaskStatement[] = [
       "aws-cost-explorer",
       "aws-budgets",
       "aws-cost-and-usage-report",
+      "aws-backup-vault-lock-policies",
     ],
   },
   {
@@ -407,6 +424,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-dms",
       "database-migration-homogeneous-heterogeneous",
       "cost-allocation-tags-consolidated-billing",
+      "rds-backup-restore-encryption",
+      "analytics-service-selection-redshift-emr",
     ],
   },
   {
@@ -437,6 +456,7 @@ export const taskStatements: TaskStatement[] = [
       "elastic-load-balancing",
       "api-gateway-types-throttling",
       "cost-allocation-tags-consolidated-billing",
+      "transit-gateway-hybrid-routing",
     ],
   },
 ];
