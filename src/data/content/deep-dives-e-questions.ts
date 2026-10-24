@@ -360,9 +360,9 @@ export const deepDiveEFlashcards: Flashcard[] = [
   fc("storage-gateway-types", 2, 3, "Storage", "Cached vs stored volumes?", "Cached: primary data in S3, hot data cached locally. Stored: entire data set local, async EBS snapshots to S3."),
   fc("storage-gateway-types", 3, 2, "Storage", "Storage Gateway vs DataSync vs Snow?", "Gateway: ongoing hybrid access. DataSync: scheduled or one-time transfers over the network. Snow: offline bulk transfer."),
 
-  fc("aurora-features-endpoints", 1, 3, "Databases", "Aurora endpoint types?", "Cluster (writer), reader (load-balances replicas), custom (chosen instances), instance (single instance)."),
-  fc("aurora-features-endpoints", 2, 2, "Databases", "Aurora Backtrack vs point-in-time restore?", "Backtrack rewinds the existing Aurora MySQL cluster in place within a window up to 72 hours. PITR creates a new cluster."),
-  fc("aurora-features-endpoints", 3, 2, "Databases", "Aurora storage facts?", "Six copies across three AZs, auto-grows to 128 TiB, up to 15 replicas, failover in about 30 seconds."),
+  fc("aurora-features-endpoints", 1, 3, "Database", "Aurora endpoint types?", "Cluster (writer), reader (load-balances replicas), custom (chosen instances), instance (single instance)."),
+  fc("aurora-features-endpoints", 2, 2, "Database", "Aurora Backtrack vs point-in-time restore?", "Backtrack rewinds the existing Aurora MySQL cluster in place within a window up to 72 hours. PITR creates a new cluster."),
+  fc("aurora-features-endpoints", 3, 2, "Database", "Aurora storage facts?", "Six copies across three AZs, auto-grows to 128 TiB, up to 15 replicas, failover in about 30 seconds."),
 
   fc("containers-ecs-eks-fargate-decision", 1, 1, "Containers", "Task role vs task execution role?", "Execution role: ECS pulls images, writes logs, fetches secrets. Task role: what your application code uses to call AWS services."),
   fc("containers-ecs-eks-fargate-decision", 2, 3, "Containers", "When must you use EC2 instead of Fargate?", "For GPUs, privileged containers, host-level access or custom kernel settings."),
@@ -376,9 +376,9 @@ export const deepDiveEFlashcards: Flashcard[] = [
   fc("secrets-manager-vs-parameter-store", 2, 4, "Security, Identity, and Compliance", "Parameter Store tiers?", "Standard: free, 4 KB. Advanced: 8 KB, parameter policies such as expiration, paid. SecureString uses KMS."),
   fc("secrets-manager-vs-parameter-store", 3, 2, "Security, Identity, and Compliance", "How to get a secret into a DR Region?", "Use Secrets Manager multi-Region secret replication."),
 
-  fc("direct-connect-vpn-resilience", 1, 2, "Networking", "Direct Connect vs Site-to-Site VPN?", "Direct Connect: dedicated, consistent, weeks to provision, not encrypted by default. VPN: IPsec over internet, minutes to set up, two tunnels per connection."),
-  fc("direct-connect-vpn-resilience", 2, 2, "Networking", "Direct Connect resilience levels?", "High: connections at two locations. Maximum: two connections at each of two locations. VPN is a low-cost backup."),
-  fc("direct-connect-vpn-resilience", 3, 1, "Networking", "Direct Connect VIF types?", "Private (to VPCs), public (to public AWS services) and transit (to a Transit Gateway). Direct Connect Gateway reaches multiple Regions."),
+  fc("direct-connect-vpn-resilience", 1, 2, "Networking and Content Delivery", "Direct Connect vs Site-to-Site VPN?", "Direct Connect: dedicated, consistent, weeks to provision, not encrypted by default. VPN: IPsec over internet, minutes to set up, two tunnels per connection."),
+  fc("direct-connect-vpn-resilience", 2, 2, "Networking and Content Delivery", "Direct Connect resilience levels?", "High: connections at two locations. Maximum: two connections at each of two locations. VPN is a low-cost backup."),
+  fc("direct-connect-vpn-resilience", 3, 1, "Networking and Content Delivery", "Direct Connect VIF types?", "Private (to VPCs), public (to public AWS services) and transit (to a Transit Gateway). Direct Connect Gateway reaches multiple Regions."),
 
   fc("api-gateway-types-throttling", 1, 3, "Front-End Web and Mobile", "REST vs HTTP vs WebSocket API?", "REST: full features (caching, usage plans, WAF). HTTP: cheaper and faster with fewer features. WebSocket: persistent two-way connections."),
   fc("api-gateway-types-throttling", 2, 3, "Front-End Web and Mobile", "Key API Gateway defaults?", "Throttle 10,000 requests per second with 5,000 burst per Region, cache TTL 300 seconds, integration timeout 29 seconds."),

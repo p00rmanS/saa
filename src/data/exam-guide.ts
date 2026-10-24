@@ -34,6 +34,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-directory-service",
       "aws-resource-access-manager",
       "aws-global-infrastructure",
+      "iam-policy-conditions-abac",
+      "organizations-scp-control-tower-design",
     ],
   },
   {
@@ -74,6 +76,8 @@ export const taskStatements: TaskStatement[] = [
       "waf-shield-ddos-resilience",
       "systems-manager-capabilities",
       "cloudtrail-config-event-types",
+      "vpc-endpoint-types-and-policies",
+      "route-53-resolver-hybrid-dns",
     ],
   },
   {
@@ -107,6 +111,7 @@ export const taskStatements: TaskStatement[] = [
       "encryption-in-transit-patterns",
       "aws-backup-vault-lock-policies",
       "cloudtrail-config-event-types",
+      "s3-events-access-points-static-hosting",
     ],
   },
   {
@@ -149,6 +154,8 @@ export const taskStatements: TaskStatement[] = [
       "database-decision-framework",
       "event-driven-service-selection",
       "step-functions-workflow-types",
+      "lambda-event-sources-versions-aliases",
+      "elastic-beanstalk-deployment-policies",
     ],
   },
   {
@@ -185,6 +192,9 @@ export const taskStatements: TaskStatement[] = [
       "systems-manager-capabilities",
       "aws-backup-vault-lock-policies",
       "rds-backup-restore-encryption",
+      "dr-implementation-patterns-on-aws",
+      "rds-storage-performance-insights-maintenance",
+      "ec2-networking-eni-eip-efa",
     ],
   },
   {
@@ -237,6 +247,8 @@ export const taskStatements: TaskStatement[] = [
       "containers-ecs-eks-fargate-decision",
       "amazon-sqs",
       "amazon-sns",
+      "lambda-event-sources-versions-aliases",
+      "ec2-networking-eni-eip-efa",
     ],
   },
   {
@@ -270,6 +282,8 @@ export const taskStatements: TaskStatement[] = [
       "amazon-qldb",
       "aws-dms",
       "database-migration-homogeneous-heterogeneous",
+      "dynamodb-data-modeling-access-patterns",
+      "rds-storage-performance-insights-maintenance",
     ],
   },
   {
@@ -300,6 +314,8 @@ export const taskStatements: TaskStatement[] = [
       "amazon-route-53",
       "route-53-routing-policies",
       "transit-gateway-hybrid-routing",
+      "route-53-resolver-hybrid-dns",
+      "vpc-endpoint-types-and-policies",
     ],
   },
   {
@@ -367,6 +383,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-budgets",
       "aws-cost-and-usage-report",
       "aws-backup-vault-lock-policies",
+      "cost-optimization-playbook-by-workload",
+      "s3-events-access-points-static-hosting",
     ],
   },
   {
@@ -397,6 +415,8 @@ export const taskStatements: TaskStatement[] = [
       "cost-allocation-tags-consolidated-billing",
       "aws-cost-thinking",
       "amazon-cloudfront",
+      "cost-optimization-playbook-by-workload",
+      "ec2-networking-eni-eip-efa",
     ],
   },
   {
@@ -426,6 +446,8 @@ export const taskStatements: TaskStatement[] = [
       "cost-allocation-tags-consolidated-billing",
       "rds-backup-restore-encryption",
       "analytics-service-selection-redshift-emr",
+      "cost-optimization-playbook-by-workload",
+      "dynamodb-data-modeling-access-patterns",
     ],
   },
   {
@@ -457,6 +479,8 @@ export const taskStatements: TaskStatement[] = [
       "api-gateway-types-throttling",
       "cost-allocation-tags-consolidated-billing",
       "transit-gateway-hybrid-routing",
+      "cost-optimization-playbook-by-workload",
+      "vpc-endpoint-types-and-policies",
     ],
   },
 ];

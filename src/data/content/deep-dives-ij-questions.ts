@@ -567,9 +567,9 @@ export const deepDiveIJFlashcards: Flashcard[] = [
   fc("systems-manager-capabilities", 2, 1, "Management and Governance", "Why Session Manager?", "Shell access with no inbound ports, no bastion and no SSH keys, with session logging to S3 or CloudWatch."),
   fc("systems-manager-capabilities", 3, 2, "Management and Governance", "Patch Manager essentials?", "Patch baselines choose patches, maintenance windows schedule them, and it reports compliance."),
 
-  fc("rds-backup-restore-encryption", 1, 2, "Databases", "RDS automated backup retention?", "1 to 35 days, enabling point-in-time recovery. 0 disables them. Manual snapshots persist until deleted."),
-  fc("rds-backup-restore-encryption", 2, 2, "Databases", "What does an RDS restore produce?", "A new DB instance with a new endpoint. It never overwrites the existing instance."),
-  fc("rds-backup-restore-encryption", 3, 1, "Databases", "Encrypting an existing RDS database?", "Snapshot it, copy the snapshot with encryption enabled and restore from the copy. To share an encrypted snapshot, use a customer managed KMS key and share the key."),
+  fc("rds-backup-restore-encryption", 1, 2, "Database", "RDS automated backup retention?", "1 to 35 days, enabling point-in-time recovery. 0 disables them. Manual snapshots persist until deleted."),
+  fc("rds-backup-restore-encryption", 2, 2, "Database", "What does an RDS restore produce?", "A new DB instance with a new endpoint. It never overwrites the existing instance."),
+  fc("rds-backup-restore-encryption", 3, 1, "Database", "Encrypting an existing RDS database?", "Snapshot it, copy the snapshot with encryption enabled and restore from the copy. To share an encrypted snapshot, use a customer managed KMS key and share the key."),
 
   fc("encryption-in-transit-patterns", 1, 1, "Security, Identity, and Compliance", "ACM certificate Region rules?", "CloudFront needs certificates in us-east-1. Load balancer certificates must be in the load balancer's Region."),
   fc("encryption-in-transit-patterns", 2, 1, "Security, Identity, and Compliance", "End-to-end encryption through an ALB?", "Use an HTTPS listener and an HTTPS target group with certificates on the instances (re-encrypt)."),
@@ -579,9 +579,9 @@ export const deepDiveIJFlashcards: Flashcard[] = [
   fc("analytics-service-selection-redshift-emr", 2, 4, "Analytics", "Cheapest EMR pattern?", "Transient clusters that terminate after the job, data in S3, and Spot instances for task nodes (which hold no data)."),
   fc("analytics-service-selection-redshift-emr", 3, 4, "Analytics", "Redshift cost levers?", "RA3 separates compute and storage, Serverless pays for compute used, concurrency scaling handles bursts, and pausing avoids idle cost."),
 
-  fc("transit-gateway-hybrid-routing", 1, 3, "Networking", "Transit Gateway vs VPC peering?", "TGW: regional hub, transitive routing, segmentation by route tables, per-attachment cost. Peering: one-to-one, non-transitive, no hourly charge."),
-  fc("transit-gateway-hybrid-routing", 2, 1, "Networking", "How to isolate environments on a TGW?", "Use separate TGW route tables and control association and propagation."),
-  fc("transit-gateway-hybrid-routing", 3, 4, "Networking", "Increasing VPN bandwidth to AWS?", "Use ECMP across multiple VPN tunnels on a Transit Gateway."),
+  fc("transit-gateway-hybrid-routing", 1, 3, "Networking and Content Delivery", "Transit Gateway vs VPC peering?", "TGW: regional hub, transitive routing, segmentation by route tables, per-attachment cost. Peering: one-to-one, non-transitive, no hourly charge."),
+  fc("transit-gateway-hybrid-routing", 2, 1, "Networking and Content Delivery", "How to isolate environments on a TGW?", "Use separate TGW route tables and control association and propagation."),
+  fc("transit-gateway-hybrid-routing", 3, 4, "Networking and Content Delivery", "Increasing VPN bandwidth to AWS?", "Use ECMP across multiple VPN tunnels on a Transit Gateway."),
 
   fc("aws-backup-vault-lock-policies", 1, 1, "Storage", "Vault Lock modes?", "Governance mode: privileged users can remove the lock. Compliance mode: immutable after a cooling-off period of at least three days."),
   fc("aws-backup-vault-lock-policies", 2, 4, "Storage", "AWS Backup cold storage rule?", "Recovery points moved to cold storage must stay at least 90 days, and not all resource types support it."),

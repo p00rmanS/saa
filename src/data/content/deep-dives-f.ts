@@ -149,7 +149,7 @@ export const deepDivesF: Lesson[] = [
   {
     id: "amazon-qldb",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "Amazon QLDB (Quantum Ledger Database)",
     shortName: "QLDB",
     tier: 3,
@@ -220,7 +220,7 @@ export const deepDivesF: Lesson[] = [
   {
     id: "amazon-timestream",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "Time Series and Columnar Databases: Timestream and Redshift",
     shortName: "Time series & columnar",
     tier: 2,

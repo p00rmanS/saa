@@ -324,9 +324,9 @@ export const deepDiveDFlashcards: Flashcard[] = [
   fc("sqs-fifo-dlq-visibility", 2, 3, "Application Integration", "Default visibility timeout and its range?", "30 seconds by default, up to 12 hours. Set it longer than your processing time to avoid duplicate processing."),
   fc("sqs-fifo-dlq-visibility", 3, 2, "Application Integration", "What triggers a message to move to a DLQ?", "It is received more than maxReceiveCount times without being deleted. A FIFO queue needs a FIFO DLQ."),
 
-  fc("elasticache-redis-vs-memcached", 1, 3, "Databases", "Redis vs Memcached?", "Redis: rich data types, persistence, replication, Multi-AZ failover, backup. Memcached: simple, multi-threaded, sharding only, no durability."),
-  fc("elasticache-redis-vs-memcached", 2, 3, "Databases", "Lazy loading vs write-through?", "Lazy loading caches on a miss, so data can be stale. Write-through updates the cache on every write, so it is fresh but may hold unread data."),
-  fc("elasticache-redis-vs-memcached", 3, 3, "Databases", "ElastiCache vs DAX?", "ElastiCache is general purpose and needs application cache logic. DAX is a DynamoDB-specific drop-in cache."),
+  fc("elasticache-redis-vs-memcached", 1, 3, "Database", "Redis vs Memcached?", "Redis: rich data types, persistence, replication, Multi-AZ failover, backup. Memcached: simple, multi-threaded, sharding only, no durability."),
+  fc("elasticache-redis-vs-memcached", 2, 3, "Database", "Lazy loading vs write-through?", "Lazy loading caches on a miss, so data can be stale. Write-through updates the cache on every write, so it is fresh but may hold unread data."),
+  fc("elasticache-redis-vs-memcached", 3, 3, "Database", "ElastiCache vs DAX?", "ElastiCache is general purpose and needs application cache logic. DAX is a DynamoDB-specific drop-in cache."),
 
   fc("kms-envelope-encryption-key-types", 1, 1, "Security, Identity, and Compliance", "KMS key ownership types?", "AWS owned (invisible), AWS managed (service-created, auto-rotated, policy not editable), customer managed (you control policy, rotation, deletion)."),
   fc("kms-envelope-encryption-key-types", 2, 1, "Security, Identity, and Compliance", "Why envelope encryption?", "KMS Encrypt handles only 4 KB. GenerateDataKey returns a data key to encrypt bulk data locally, and the encrypted data key is stored with the data."),
@@ -336,7 +336,7 @@ export const deepDiveDFlashcards: Flashcard[] = [
   fc("s3-replication-performance", 2, 3, "Storage", "S3 request rate per prefix?", "At least 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix."),
   fc("s3-replication-performance", 3, 3, "Storage", "Multipart upload thresholds?", "Recommended above 100 MB, required above 5 GB, up to 10,000 parts, parts uploaded in parallel and retried independently."),
 
-  fc("vpc-nat-egress-only-ipv6", 1, 2, "Networking", "How to make NAT highly available?", "One NAT gateway per AZ, with each AZ's private subnets routing to their local gateway."),
-  fc("vpc-nat-egress-only-ipv6", 2, 1, "Networking", "IPv6 outbound-only from private subnets?", "Use an egress-only internet gateway. NAT gateways handle IPv4 only."),
-  fc("vpc-nat-egress-only-ipv6", 3, 1, "Networking", "Why Session Manager over a bastion host?", "No inbound ports, no keys, IAM-controlled, and sessions can be logged to CloudWatch or S3."),
+  fc("vpc-nat-egress-only-ipv6", 1, 2, "Networking and Content Delivery", "How to make NAT highly available?", "One NAT gateway per AZ, with each AZ's private subnets routing to their local gateway."),
+  fc("vpc-nat-egress-only-ipv6", 2, 1, "Networking and Content Delivery", "IPv6 outbound-only from private subnets?", "Use an egress-only internet gateway. NAT gateways handle IPv4 only."),
+  fc("vpc-nat-egress-only-ipv6", 3, 1, "Networking and Content Delivery", "Why Session Manager over a bastion host?", "No inbound ports, no keys, IAM-controlled, and sessions can be logged to CloudWatch or S3."),
 ];

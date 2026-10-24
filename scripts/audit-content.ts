@@ -241,6 +241,20 @@ for (const f of allFlashcards) {
   if (f.domain && ![1, 2, 3, 4].includes(f.domain)) err("flashcard", where, `invalid domain ${f.domain}`);
 }
 
+// ---------- Category consistency (drives the Services and Flashcards filter chips) ----------
+const LESSON_CATEGORIES = new Set([
+  "Analytics", "Application Integration", "AWS Cost Management", "Compute", "Containers", "Database", "Exam Mastery",
+  "Front-End Web and Mobile", "Machine Learning", "Management and Governance", "Media Services", "Migration and Transfer",
+  "Networking and Content Delivery", "Orientation", "Resilience", "Security, Identity, and Compliance", "Serverless", "Storage",
+]);
+const CARD_CATEGORIES = new Set([...LESSON_CATEGORIES, "Cost Management", "Developer Tools"]);
+for (const l of allLessons) {
+  if (!LESSON_CATEGORIES.has(l.category)) err("lesson", l.id, `unknown category "${l.category}" (would split a filter chip)`);
+}
+for (const f of allFlashcards) {
+  if (!CARD_CATEGORIES.has(f.category)) err("flashcard", f.id, `unknown category "${f.category}" (would split a filter chip)`);
+}
+
 // ---------- Official exam guide coverage ----------
 for (const t of taskStatements) {
   if (t.lessonIds.length < 3) err("exam-guide", t.id, `task statement maps to only ${t.lessonIds.length} lessons`);
