@@ -168,7 +168,7 @@ export const deepDivesG: Lesson[] = [
   {
     id: "scaling-statelessness-multi-tier",
     moduleId: "phase-12-resilience",
-    category: "Architecture Principles",
+    category: "Resilience",
     title: "Horizontal vs Vertical Scaling, Stateless Design and Multi-Tier Architecture",
     shortName: "Scaling & tiers",
     tier: 1,
@@ -254,7 +254,7 @@ export const deepDivesG: Lesson[] = [
   {
     id: "microservices-event-driven-resilience-patterns",
     moduleId: "phase-12-resilience",
-    category: "Architecture Principles",
+    category: "Resilience",
     title: "Microservices, Event-Driven Design, Distributed Patterns and Immutable Infrastructure",
     shortName: "Design patterns",
     tier: 1,
@@ -434,7 +434,7 @@ Hibernate: RAM -> encrypted EBS root volume -> instance stopped (no compute char
   {
     id: "cost-allocation-tags-consolidated-billing",
     moduleId: "phase-13-cost",
-    category: "Cost Management",
+    category: "AWS Cost Management",
     title: "Cost Allocation Tags, Consolidated Billing and Cost Visibility",
     shortName: "Tags & billing",
     tier: 1,

@@ -91,7 +91,7 @@ export const deepDivesE: Lesson[] = [
   {
     id: "aurora-features-endpoints",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "Aurora Features: Replicas, Endpoints, Backtrack and Cloning",
     shortName: "Aurora features",
     tier: 1,
@@ -440,7 +440,7 @@ Both: encrypted with KMS, audited by CloudTrail`,
   {
     id: "direct-connect-vpn-resilience",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "Direct Connect and VPN: Design for Resilience",
     shortName: "DX & VPN design",
     tier: 1,

@@ -584,13 +584,13 @@ export const deepDiveFFlashcards: Flashcard[] = [
   fc("aws-data-pipeline", 2, 3, "Analytics", "Modern replacements for Data Pipeline?", "Glue for serverless ETL, Step Functions for workflows, EventBridge Scheduler for scheduled triggers."),
   fc("aws-data-pipeline", 3, 3, "Analytics", "Data Pipeline building blocks?", "Data nodes, activities, resources (EC2 or EMR) and preconditions."),
 
-  fc("amazon-qldb", 1, 1, "Databases", "QLDB vs blockchain?", "QLDB has one central trusted authority and an immutable verifiable journal. Managed Blockchain is for multiple untrusted parties."),
-  fc("amazon-qldb", 2, 1, "Databases", "How does a ledger database prove history is intact?", "Each journal block is hash-chained with SHA-256 so any change is detectable, and you can verify a digest."),
-  fc("amazon-qldb", 3, 1, "Databases", "QLDB status today?", "AWS ended support on July 31, 2025 and recommends Aurora PostgreSQL for ledger-style needs. It is still in the exam guide v1.1."),
+  fc("amazon-qldb", 1, 1, "Database", "QLDB vs blockchain?", "QLDB has one central trusted authority and an immutable verifiable journal. Managed Blockchain is for multiple untrusted parties."),
+  fc("amazon-qldb", 2, 1, "Database", "How does a ledger database prove history is intact?", "Each journal block is hash-chained with SHA-256 so any change is detectable, and you can verify a digest."),
+  fc("amazon-qldb", 3, 1, "Database", "QLDB status today?", "AWS ended support on July 31, 2025 and recommends Aurora PostgreSQL for ledger-style needs. It is still in the exam guide v1.1."),
 
-  fc("amazon-timestream", 1, 3, "Databases", "When to choose a time series database?", "Timestamped measurements arriving continuously and queried over time windows, such as IoT and metrics. Timestream is AWS's service."),
-  fc("amazon-timestream", 2, 4, "Databases", "Why Parquet instead of CSV for Athena?", "Parquet is columnar and compressed, so queries read only needed columns and scan less data, lowering cost."),
-  fc("amazon-timestream", 3, 3, "Databases", "Row vs columnar stores?", "Row stores (RDS, Aurora) suit OLTP on whole records. Columnar stores (Redshift, Parquet) suit analytic scans over few columns."),
+  fc("amazon-timestream", 1, 3, "Database", "When to choose a time series database?", "Timestamped measurements arriving continuously and queried over time windows, such as IoT and metrics. Timestream is AWS's service."),
+  fc("amazon-timestream", 2, 4, "Database", "Why Parquet instead of CSV for Athena?", "Parquet is columnar and compressed, so queries read only needed columns and scan less data, lowering cost."),
+  fc("amazon-timestream", 3, 3, "Database", "Row vs columnar stores?", "Row stores (RDS, Aurora) suit OLTP on whole records. Columnar stores (Redshift, Parquet) suit analytic scans over few columns."),
 
   fc("amazon-pinpoint", 1, 3, "Front-End Web and Mobile", "Pinpoint vs SNS vs SES?", "Pinpoint: segmented multichannel campaigns with analytics. SNS: simple pub/sub notifications. SES: bulk and transactional email."),
   fc("amazon-pinpoint", 2, 3, "Front-End Web and Mobile", "Pinpoint channels?", "Email, SMS, push, voice and in-app messages."),

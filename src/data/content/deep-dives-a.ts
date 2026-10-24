@@ -367,7 +367,7 @@ export const deepDivesA: Lesson[] = [
   {
     id: "vpc-peering",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "VPC Peering",
     shortName: "VPC peering",
     tier: 2,
@@ -452,7 +452,7 @@ Route table A: 10.1.0.0/16 -> pcx-AB         Route table B: 10.0.0.0/16 -> pcx-A
   {
     id: "route-53-routing-policies",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "Route 53 Routing Policies and Health Checks",
     shortName: "Route 53 policies",
     tier: 1,

@@ -4,7 +4,7 @@ export const deepDivesB: Lesson[] = [
   {
     id: "rds-multi-az-read-replicas",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "RDS Multi-AZ vs Read Replicas",
     shortName: "Multi-AZ vs replicas",
     tier: 1,
@@ -91,7 +91,7 @@ export const deepDivesB: Lesson[] = [
   {
     id: "dynamodb-capacity-dax-global-tables",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "DynamoDB Capacity, DAX and Global Tables",
     shortName: "DynamoDB deep dive",
     tier: 1,
@@ -267,7 +267,7 @@ export const deepDivesB: Lesson[] = [
   {
     id: "cloudfront-origins-security",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "CloudFront Origins, Signed Access and Edge Compute",
     shortName: "CloudFront in depth",
     tier: 2,
@@ -357,7 +357,7 @@ export const deepDivesB: Lesson[] = [
   {
     id: "rds-proxy-aurora-global-database",
     moduleId: "phase-5-databases",
-    category: "Databases",
+    category: "Database",
     title: "RDS Proxy and Aurora Global Database",
     shortName: "RDS Proxy & Aurora Global",
     tier: 2,
@@ -443,7 +443,7 @@ Lambda x N --> [RDS Proxy] --> [Aurora writer]  --storage replication--> [Aurora
   {
     id: "vpc-flow-logs",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "VPC Flow Logs",
     shortName: "VPC Flow Logs",
     tier: 2,

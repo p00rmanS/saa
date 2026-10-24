@@ -540,13 +540,13 @@ export const deepDiveGHFlashcards: Flashcard[] = [
   fc("well-architected-framework-pillars", 2, 2, "Orientation", "Exam domains vs pillars?", "Secure = Security. Resilient = Reliability. High-performing = Performance Efficiency. Cost-optimized = Cost Optimization."),
   fc("well-architected-framework-pillars", 3, 2, "Orientation", "Well-Architected Tool vs Trusted Advisor?", "The Tool reviews a workload against pillars and gives an improvement plan. Trusted Advisor checks account-level best practices automatically."),
 
-  fc("scaling-statelessness-multi-tier", 1, 2, "Architecture Principles", "Horizontal vs vertical scaling?", "Horizontal: more instances behind a load balancer, needs stateless design. Vertical: bigger instance, usually a restart, has a ceiling and a single point of failure."),
-  fc("scaling-statelessness-multi-tier", 2, 2, "Architecture Principles", "Where does state go in a stateless design?", "Sessions in ElastiCache or DynamoDB, files in S3 or EFS, configuration in Parameter Store, logs in CloudWatch."),
-  fc("scaling-statelessness-multi-tier", 3, 1, "Architecture Principles", "Three-tier subnet layout?", "Load balancer in public subnets, app servers in private subnets, databases in isolated subnets, with security groups chained between tiers."),
+  fc("scaling-statelessness-multi-tier", 1, 2, "Resilience", "Horizontal vs vertical scaling?", "Horizontal: more instances behind a load balancer, needs stateless design. Vertical: bigger instance, usually a restart, has a ceiling and a single point of failure."),
+  fc("scaling-statelessness-multi-tier", 2, 2, "Resilience", "Where does state go in a stateless design?", "Sessions in ElastiCache or DynamoDB, files in S3 or EFS, configuration in Parameter Store, logs in CloudWatch."),
+  fc("scaling-statelessness-multi-tier", 3, 1, "Resilience", "Three-tier subnet layout?", "Load balancer in public subnets, app servers in private subnets, databases in isolated subnets, with security groups chained between tiers."),
 
-  fc("microservices-event-driven-resilience-patterns", 1, 2, "Architecture Principles", "Why must consumers be idempotent?", "Queues deliver at least once and retries repeat work, so repeating an operation must have the same effect as doing it once."),
-  fc("microservices-event-driven-resilience-patterns", 2, 2, "Architecture Principles", "Resilience patterns for distributed systems?", "Retries with exponential backoff and jitter, timeouts, idempotency, dead-letter queues, circuit breakers, throttling, saga pattern."),
-  fc("microservices-event-driven-resilience-patterns", 3, 2, "Architecture Principles", "What is immutable infrastructure?", "Never modify running servers. Build a new image, launch new instances and terminate the old ones, often with blue/green deployment."),
+  fc("microservices-event-driven-resilience-patterns", 1, 2, "Resilience", "Why must consumers be idempotent?", "Queues deliver at least once and retries repeat work, so repeating an operation must have the same effect as doing it once."),
+  fc("microservices-event-driven-resilience-patterns", 2, 2, "Resilience", "Resilience patterns for distributed systems?", "Retries with exponential backoff and jitter, timeouts, idempotency, dead-letter queues, circuit breakers, throttling, saga pattern."),
+  fc("microservices-event-driven-resilience-patterns", 3, 2, "Resilience", "What is immutable infrastructure?", "Never modify running servers. Build a new image, launch new instances and terminate the old ones, often with blue/green deployment."),
 
   fc("ec2-instance-families-hibernation", 1, 3, "Compute", "EC2 families at a glance?", "General purpose M/T, compute C, memory R/X, storage I/D, accelerated P/G/Inf/Trn. A trailing g means Graviton (Arm)."),
   fc("ec2-instance-families-hibernation", 2, 4, "Compute", "How does EC2 hibernation work?", "RAM is saved to the encrypted EBS root volume and the instance stops. You pay for EBS and Elastic IP, not compute. Resume restores processes."),
@@ -576,7 +576,7 @@ export const deepDiveGHFlashcards: Flashcard[] = [
   fc("availability-metrics-quotas-legacy-reliability", 2, 2, "Resilience", "Service quotas and DR?", "Quotas are per Region and per account and are not copied to the standby Region. Request increases in advance."),
   fc("availability-metrics-quotas-legacy-reliability", 3, 2, "Resilience", "Making an unchangeable legacy app reliable?", "ASG with min=max=1, EC2 auto recovery, load balancer or Route 53 failover, RDS Multi-AZ, EFS/FSx, AWS Backup, Elastic Disaster Recovery."),
 
-  fc("network-cidr-subnets-routing", 1, 1, "Networking", "What makes a subnet public?", "Its route table sends 0.0.0.0/0 to an internet gateway. Private uses a NAT gateway. Isolated has no route out."),
-  fc("network-cidr-subnets-routing", 2, 3, "Networking", "Usable addresses in a subnet?", "AWS reserves 5 per subnet, so a /24 has 251 usable. VPC CIDR ranges from /16 to /28."),
-  fc("network-cidr-subnets-routing", 3, 1, "Networking", "How are route conflicts resolved?", "The most specific matching route wins. The local VPC route always exists, and security groups are stateful while NACLs are stateless."),
+  fc("network-cidr-subnets-routing", 1, 1, "Networking and Content Delivery", "What makes a subnet public?", "Its route table sends 0.0.0.0/0 to an internet gateway. Private uses a NAT gateway. Isolated has no route out."),
+  fc("network-cidr-subnets-routing", 2, 3, "Networking and Content Delivery", "Usable addresses in a subnet?", "AWS reserves 5 per subnet, so a /24 has 251 usable. VPC CIDR ranges from /16 to /28."),
+  fc("network-cidr-subnets-routing", 3, 1, "Networking and Content Delivery", "How are route conflicts resolved?", "The most specific matching route wins. The local VPC route always exists, and security groups are stateful while NACLs are stateless."),
 ];

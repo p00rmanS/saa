@@ -4,7 +4,7 @@ export const deepDivesH: Lesson[] = [
   {
     id: "data-transfer-cost-optimization",
     moduleId: "phase-13-cost",
-    category: "Cost Management",
+    category: "AWS Cost Management",
     title: "Data Transfer Costs and Network Cost Optimization",
     shortName: "Data transfer costs",
     tier: 1,
@@ -435,7 +435,7 @@ Legacy single server:  [ALB] -> [ASG min=1 max=1, auto-replace] -> [RDS Multi-AZ
   {
     id: "network-cidr-subnets-routing",
     moduleId: "phase-4-networking",
-    category: "Networking",
+    category: "Networking and Content Delivery",
     title: "Network Design: CIDR Planning, Subnet Tiers and Route Tables",
     shortName: "CIDR & routing",
     tier: 1,

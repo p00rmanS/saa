@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { allQuestions } from "@/data";
-import { CheckpointQuiz } from "@/components/quiz/checkpoint-quiz";
+import { DomainPractice } from "@/components/quiz/domain-practice";
 import { DOMAIN_TITLES, DOMAIN_WEIGHTS } from "@/lib/readiness";
 import type { ExamDomainId } from "@/lib/types";
-
-const DIFFICULTY_ORDER = { easy: 0, medium: 1, hard: 2, exam: 3 } as const;
 
 export function generateStaticParams() {
   return [{ domainId: "1" }, { domainId: "2" }, { domainId: "3" }, { domainId: "4" }];
@@ -23,9 +21,7 @@ export default async function DomainQuizPage(props: PageProps<"/quizzes/domain/[
   if (![1, 2, 3, 4].includes(d)) notFound();
   const domain = d as ExamDomainId;
 
-  const questions = allQuestions
-    .filter((q) => q.domain === domain)
-    .sort((a, b) => DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty]);
+  const questionCount = allQuestions.filter((q) => q.domain === domain).length;
 
   return (
     <div>
@@ -36,13 +32,11 @@ export default async function DomainQuizPage(props: PageProps<"/quizzes/domain/[
         Domain {domain}: {DOMAIN_TITLES[domain]}
       </h1>
       <p className="mt-2 text-muted-foreground">
-        {DOMAIN_WEIGHTS[domain]}% of the real exam · {questions.length} questions in this practice set
+        {DOMAIN_WEIGHTS[domain]}% of the real exam · {questionCount} questions in this practice set, ten at a time
       </p>
 
-      <div className="mt-6 flex flex-col gap-3">
-        {questions.map((q, i) => (
-          <CheckpointQuiz key={q.id} question={q} index={i} />
-        ))}
+      <div className="mt-6">
+        <DomainPractice domain={domain} />
       </div>
     </div>
   );
