@@ -61,6 +61,9 @@ import { deepDivesI } from "./content/deep-dives-i";
 import { deepDivesJ } from "./content/deep-dives-j";
 import { deepDivesK } from "./content/deep-dives-k";
 import { deepDivesL } from "./content/deep-dives-l";
+import { deepDivesM } from "./content/deep-dives-m";
+import { deepDivesN } from "./content/deep-dives-n";
+import { deepDiveMNQuestions, deepDiveMNFlashcards } from "./content/deep-dives-mn-questions";
 import { deepDiveKLQuestions, deepDiveKLFlashcards } from "./content/deep-dives-kl-questions";
 import { deepDiveIJQuestions, deepDiveIJFlashcards } from "./content/deep-dives-ij-questions";
 import { deepDiveGHQuestions, deepDiveGHFlashcards } from "./content/deep-dives-gh-questions";
@@ -94,6 +97,8 @@ export const allLessons: Lesson[] = [
   ...deepDivesJ,
   ...deepDivesK,
   ...deepDivesL,
+  ...deepDivesM,
+  ...deepDivesN,
   ...examMasteryLessons,
 ];
 
@@ -117,6 +122,7 @@ export const allQuestions: Question[] = withFifthOptions([
   ...deepDiveGHQuestions,
   ...deepDiveIJQuestions,
   ...deepDiveKLQuestions,
+  ...deepDiveMNQuestions,
   ...examMasteryQuestions,
 ]);
 
@@ -140,6 +146,7 @@ export const allFlashcards: Flashcard[] = [
   ...deepDiveGHFlashcards,
   ...deepDiveIJFlashcards,
   ...deepDiveKLFlashcards,
+  ...deepDiveMNFlashcards,
   ...examMasteryFlashcards,
 ];
 
