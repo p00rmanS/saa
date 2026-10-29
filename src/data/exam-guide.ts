@@ -36,6 +36,7 @@ export const taskStatements: TaskStatement[] = [
       "aws-global-infrastructure",
       "iam-policy-conditions-abac",
       "organizations-scp-control-tower-design",
+      "identity-service-decision-guide",
     ],
   },
   {
@@ -78,6 +79,8 @@ export const taskStatements: TaskStatement[] = [
       "cloudtrail-config-event-types",
       "vpc-endpoint-types-and-policies",
       "route-53-resolver-hybrid-dns",
+      "ec2-imdsv2-user-data-instance-hardening",
+      "network-troubleshooting-reachability-lattice",
     ],
   },
   {
@@ -156,6 +159,8 @@ export const taskStatements: TaskStatement[] = [
       "step-functions-workflow-types",
       "lambda-event-sources-versions-aliases",
       "elastic-beanstalk-deployment-policies",
+      "compute-service-decision-guide",
+      "eventbridge-pipes-scheduler-event-bus",
     ],
   },
   {
@@ -195,6 +200,9 @@ export const taskStatements: TaskStatement[] = [
       "dr-implementation-patterns-on-aws",
       "rds-storage-performance-insights-maintenance",
       "ec2-networking-eni-eip-efa",
+      "support-plans-trusted-advisor-health",
+      "cloudwatch-observability-synthetics-rum-insights",
+      "rds-custom-blue-green-aurora-io-optimized",
     ],
   },
   {
@@ -218,6 +226,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-storage-gateway",
       "storage-gateway-types",
       "s3-replication-performance",
+      "storage-service-decision-guide",
+      "s3-express-one-zone-mountpoint-performance",
     ],
   },
   {
@@ -249,6 +259,7 @@ export const taskStatements: TaskStatement[] = [
       "amazon-sns",
       "lambda-event-sources-versions-aliases",
       "ec2-networking-eni-eip-efa",
+      "compute-service-decision-guide",
     ],
   },
   {
@@ -284,6 +295,8 @@ export const taskStatements: TaskStatement[] = [
       "database-migration-homogeneous-heterogeneous",
       "dynamodb-data-modeling-access-patterns",
       "rds-storage-performance-insights-maintenance",
+      "caching-and-edge-decision-guide",
+      "rds-custom-blue-green-aurora-io-optimized",
     ],
   },
   {
@@ -316,6 +329,8 @@ export const taskStatements: TaskStatement[] = [
       "transit-gateway-hybrid-routing",
       "route-53-resolver-hybrid-dns",
       "vpc-endpoint-types-and-policies",
+      "caching-and-edge-decision-guide",
+      "network-troubleshooting-reachability-lattice",
     ],
   },
   {
@@ -349,6 +364,7 @@ export const taskStatements: TaskStatement[] = [
       "data-ingestion-transfer-sizing",
       "amazon-appflow",
       "analytics-service-selection-redshift-emr",
+      "streaming-etl-flink-glue-databrew",
     ],
   },
   {
@@ -385,6 +401,7 @@ export const taskStatements: TaskStatement[] = [
       "aws-backup-vault-lock-policies",
       "cost-optimization-playbook-by-workload",
       "s3-events-access-points-static-hosting",
+      "storage-service-decision-guide",
     ],
   },
   {
@@ -417,6 +434,9 @@ export const taskStatements: TaskStatement[] = [
       "amazon-cloudfront",
       "cost-optimization-playbook-by-workload",
       "ec2-networking-eni-eip-efa",
+      "spot-reserved-capacity-strategies",
+      "compute-service-decision-guide",
+      "support-plans-trusted-advisor-health",
     ],
   },
   {
@@ -448,6 +468,7 @@ export const taskStatements: TaskStatement[] = [
       "analytics-service-selection-redshift-emr",
       "cost-optimization-playbook-by-workload",
       "dynamodb-data-modeling-access-patterns",
+      "rds-custom-blue-green-aurora-io-optimized",
     ],
   },
   {
@@ -481,6 +502,7 @@ export const taskStatements: TaskStatement[] = [
       "transit-gateway-hybrid-routing",
       "cost-optimization-playbook-by-workload",
       "vpc-endpoint-types-and-policies",
+      "caching-and-edge-decision-guide",
     ],
   },
 ];
