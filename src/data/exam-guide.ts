@@ -37,6 +37,8 @@ export const taskStatements: TaskStatement[] = [
       "iam-policy-conditions-abac",
       "organizations-scp-control-tower-design",
       "identity-service-decision-guide",
+      "scenario-drill-domain-1",
+      "vpc-sharing-ram-multi-account-networking",
     ],
   },
   {
@@ -81,6 +83,8 @@ export const taskStatements: TaskStatement[] = [
       "route-53-resolver-hybrid-dns",
       "ec2-imdsv2-user-data-instance-hardening",
       "network-troubleshooting-reachability-lattice",
+      "vpc-sharing-ram-multi-account-networking",
+      "scenario-drill-domain-1",
     ],
   },
   {
@@ -115,6 +119,8 @@ export const taskStatements: TaskStatement[] = [
       "aws-backup-vault-lock-policies",
       "cloudtrail-config-event-types",
       "s3-events-access-points-static-hosting",
+      "scenario-drill-domain-1",
+      "tagging-governance-tag-policies-resource-groups",
     ],
   },
   {
@@ -161,6 +167,7 @@ export const taskStatements: TaskStatement[] = [
       "elastic-beanstalk-deployment-policies",
       "compute-service-decision-guide",
       "eventbridge-pipes-scheduler-event-bus",
+      "scenario-drill-domain-2",
     ],
   },
   {
@@ -203,6 +210,9 @@ export const taskStatements: TaskStatement[] = [
       "support-plans-trusted-advisor-health",
       "cloudwatch-observability-synthetics-rum-insights",
       "rds-custom-blue-green-aurora-io-optimized",
+      "scenario-drill-domain-2",
+      "ecs-networking-scaling-service-connect",
+      "golden-ami-image-builder-pipelines",
     ],
   },
   {
@@ -228,6 +238,7 @@ export const taskStatements: TaskStatement[] = [
       "s3-replication-performance",
       "storage-service-decision-guide",
       "s3-express-one-zone-mountpoint-performance",
+      "scenario-drill-domain-3",
     ],
   },
   {
@@ -260,6 +271,8 @@ export const taskStatements: TaskStatement[] = [
       "lambda-event-sources-versions-aliases",
       "ec2-networking-eni-eip-efa",
       "compute-service-decision-guide",
+      "scenario-drill-domain-3",
+      "ecs-networking-scaling-service-connect",
     ],
   },
   {
@@ -297,6 +310,7 @@ export const taskStatements: TaskStatement[] = [
       "rds-storage-performance-insights-maintenance",
       "caching-and-edge-decision-guide",
       "rds-custom-blue-green-aurora-io-optimized",
+      "scenario-drill-domain-3",
     ],
   },
   {
@@ -365,6 +379,7 @@ export const taskStatements: TaskStatement[] = [
       "amazon-appflow",
       "analytics-service-selection-redshift-emr",
       "streaming-etl-flink-glue-databrew",
+      "scenario-drill-domain-3",
     ],
   },
   {
@@ -402,6 +417,8 @@ export const taskStatements: TaskStatement[] = [
       "cost-optimization-playbook-by-workload",
       "s3-events-access-points-static-hosting",
       "storage-service-decision-guide",
+      "scenario-drill-domain-4",
+      "tagging-governance-tag-policies-resource-groups",
     ],
   },
   {
@@ -437,6 +454,8 @@ export const taskStatements: TaskStatement[] = [
       "spot-reserved-capacity-strategies",
       "compute-service-decision-guide",
       "support-plans-trusted-advisor-health",
+      "scenario-drill-domain-4",
+      "golden-ami-image-builder-pipelines",
     ],
   },
   {
@@ -469,6 +488,8 @@ export const taskStatements: TaskStatement[] = [
       "cost-optimization-playbook-by-workload",
       "dynamodb-data-modeling-access-patterns",
       "rds-custom-blue-green-aurora-io-optimized",
+      "scenario-drill-domain-4",
+      "ecs-networking-scaling-service-connect",
     ],
   },
   {
@@ -503,6 +524,8 @@ export const taskStatements: TaskStatement[] = [
       "cost-optimization-playbook-by-workload",
       "vpc-endpoint-types-and-policies",
       "caching-and-edge-decision-guide",
+      "scenario-drill-domain-4",
+      "vpc-sharing-ram-multi-account-networking",
     ],
   },
 ];
