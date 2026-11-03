@@ -1,6 +1,7 @@
 import {
   LayoutDashboard,
   GraduationCap,
+  Route,
   Layers,
   Network,
   FlaskConical,
@@ -25,6 +26,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Your readiness at a glance" },
   { href: "/course", label: "Learn", icon: GraduationCap, description: "Phases, modules, and lessons" },
+  { href: "/paths", label: "Study Paths", icon: Route, description: "Routes by goal and weak domain" },
   { href: "/services", label: "Services", icon: Layers, description: "Every AWS service, one page each" },
   { href: "/architectures", label: "Architectures", icon: Network, description: "Diagrams, patterns, what-if mode" },
   { href: "/labs", label: "Labs", icon: FlaskConical, description: "Hands-on guided practice" },
