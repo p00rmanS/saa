@@ -39,6 +39,7 @@ export const taskStatements: TaskStatement[] = [
       "identity-service-decision-guide",
       "scenario-drill-domain-1",
       "vpc-sharing-ram-multi-account-networking",
+      "aws-account-first-steps-root-user-mfa",
     ],
   },
   {
@@ -121,6 +122,7 @@ export const taskStatements: TaskStatement[] = [
       "s3-events-access-points-static-hosting",
       "scenario-drill-domain-1",
       "tagging-governance-tag-policies-resource-groups",
+      "aws-service-map-quick-reference",
     ],
   },
   {
@@ -168,6 +170,8 @@ export const taskStatements: TaskStatement[] = [
       "compute-service-decision-guide",
       "eventbridge-pipes-scheduler-event-bus",
       "scenario-drill-domain-2",
+      "regions-edge-local-zones-wavelength-outposts",
+      "cloud-computing-fundamentals-ccp",
     ],
   },
   {
@@ -419,6 +423,7 @@ export const taskStatements: TaskStatement[] = [
       "storage-service-decision-guide",
       "scenario-drill-domain-4",
       "tagging-governance-tag-policies-resource-groups",
+      "aws-pricing-fundamentals-free-tier-tco",
     ],
   },
   {
@@ -526,6 +531,7 @@ export const taskStatements: TaskStatement[] = [
       "caching-and-edge-decision-guide",
       "scenario-drill-domain-4",
       "vpc-sharing-ram-multi-account-networking",
+      "cloud-adoption-framework-ccp",
     ],
   },
 ];

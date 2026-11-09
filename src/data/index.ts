@@ -3,6 +3,8 @@ import type { Flashcard, Lesson, Question } from "@/lib/types";
 import { orientationLessons } from "./content/orientation";
 import { orientationQuestions } from "./content/orientation-questions";
 import { orientationFlashcards } from "./content/orientation-flashcards";
+import { ccpRefresherLessons } from "./content/ccp-refresher";
+import { ccpRefresherQuestions, ccpRefresherFlashcards } from "./content/ccp-refresher-questions";
 
 import { iamLessons } from "./content/iam";
 import { iamQuestions } from "./content/iam-questions";
@@ -78,6 +80,7 @@ import { deepDiveQuestions, deepDiveFlashcards } from "./content/deep-dives-ques
 
 export const allLessons: Lesson[] = [
   ...orientationLessons,
+  ...ccpRefresherLessons,
   ...iamLessons,
   ...computeLessons,
   ...storageLessons,
@@ -109,6 +112,7 @@ export const allLessons: Lesson[] = [
 
 export const allQuestions: Question[] = withFifthOptions([
   ...orientationQuestions,
+  ...ccpRefresherQuestions,
   ...iamQuestions,
   ...computeQuestions,
   ...storageQuestions,
@@ -134,6 +138,7 @@ export const allQuestions: Question[] = withFifthOptions([
 
 export const allFlashcards: Flashcard[] = [
   ...orientationFlashcards,
+  ...ccpRefresherFlashcards,
   ...iamFlashcards,
   ...computeFlashcards,
   ...storageFlashcards,
