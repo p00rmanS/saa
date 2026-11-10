@@ -1355,6 +1355,7 @@ export const miscLessons: Lesson[] = [
       "Billed per minute of output media transcoded, with pricing varying by output resolution/definition (SD vs HD vs 4K) — check current AWS pricing for exact rates.",
     examKeywords: ["transcode/convert video files -> Elastic Transcoder", "batch video format conversion -> Elastic Transcoder"],
     examTraps: [
+      "Elastic Transcoder is no longer available to use (AWS ended access in November 2025). AWS Elemental MediaConvert is the current service for file-based video transcoding, so choose MediaConvert in new designs.",
       "Don't confuse Elastic Transcoder (batch conversion of existing files) with Kinesis Video Streams (ingesting live video) — 'convert/transcode a file' points here; 'ingest a live camera feed' points to Kinesis Video Streams.",
     ],
     architectureDiagram:

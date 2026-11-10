@@ -413,4 +413,130 @@ export const labs: Lab[] = [
     whyItMatters: "This mini project ties together the entire serverless story: event-driven compute, object storage, and NoSQL — exactly the shape of Project 2 in the course spec.",
     commonErrors: ["IAM permissions missing on either the S3 read side or the DynamoDB write side", "S3 event notification misconfigured (wrong event type or prefix filter)"],
   },
+  {
+    "id": "image-builder-pipeline-lab",
+    "title": "Build a Golden AMI with EC2 Image Builder",
+    "relatedLessonIds": [
+      "golden-ami-image-builder-pipelines",
+      "amazon-ec2"
+    ],
+    "goal": "Create an automated pipeline that builds a patched AMI on a schedule and tests it.",
+    "architecture": "Base AMI + components -> Image Builder pipeline -> test -> new AMI -> launch template",
+    "estimatedTime": "35 minutes",
+    "prerequisites": [
+      "An AWS account",
+      "Permission to create IAM roles and EC2 instances"
+    ],
+    "steps": [
+      "Open EC2 Image Builder and create an image recipe from an Amazon Linux base image",
+      "Add a build component such as update-linux and one custom component that installs a package",
+      "Add a test component that checks the package is present",
+      "Create an infrastructure configuration (instance type, instance profile, subnet) and a distribution setting",
+      "Create the pipeline, set a schedule, and run it once manually",
+      "When the build finishes, launch an instance from the new AMI and confirm the package exists",
+      "Create a launch template that references the AMI"
+    ],
+    "expectedResult": "A tested AMI appears automatically and an instance launched from it contains your changes.",
+    "cleanup": [
+      "Delete the pipeline, recipe, AMI and its snapshots, and any test instances"
+    ],
+    "whyItMatters": "Golden AMI pipelines are the standard answer for fast, consistent, secure launches.",
+    "commonErrors": [
+      "Instance profile missing Image Builder permissions",
+      "Forgetting that deleting an AMI leaves its snapshots"
+    ]
+  },
+  {
+    "id": "ecs-circuit-breaker-lab",
+    "title": "Roll Back a Bad ECS Deployment Automatically",
+    "relatedLessonIds": [
+      "ecs-networking-scaling-service-connect",
+      "amazon-ecs"
+    ],
+    "goal": "See the deployment circuit breaker detect a failing release and roll back to the last good version.",
+    "architecture": "ECS service (Fargate, awsvpc) -> ALB -> tasks; new task definition fails health check -> rollback",
+    "estimatedTime": "40 minutes",
+    "prerequisites": [
+      "A VPC with two public subnets",
+      "Basic Docker image such as nginx"
+    ],
+    "steps": [
+      "Create an ECS cluster and a Fargate task definition that runs nginx with awsvpc networking",
+      "Create a service with two tasks behind an Application Load Balancer and enable the deployment circuit breaker with rollback",
+      "Confirm the service is steady and the load balancer returns a page",
+      "Register a new task definition revision with a bad image tag and update the service",
+      "Watch the deployment fail and roll back to the previous revision",
+      "Check the service events for the circuit breaker message"
+    ],
+    "expectedResult": "The failed deployment is stopped and the service returns to the working task definition without manual action.",
+    "cleanup": [
+      "Delete the service, cluster, ALB and target group"
+    ],
+    "whyItMatters": "Safe, automatic rollbacks are a common resilience and operational-excellence exam theme.",
+    "commonErrors": [
+      "Security group blocking the ALB from reaching tasks",
+      "Health check path returning a non-200 code on the good image"
+    ]
+  },
+  {
+    "id": "vpc-sharing-ram-lab",
+    "title": "Share a Subnet Between Two Accounts with RAM",
+    "relatedLessonIds": [
+      "vpc-sharing-ram-multi-account-networking"
+    ],
+    "goal": "Share a subnet from one account to another in the same organization and launch an instance into it.",
+    "architecture": "Owner account VPC subnet --RAM share--> Participant account EC2 instance",
+    "estimatedTime": "30 minutes",
+    "prerequisites": [
+      "Two accounts in the same AWS Organization",
+      "RAM sharing with Organizations enabled"
+    ],
+    "steps": [
+      "In the owner account, create a VPC with one subnet",
+      "Enable sharing with AWS Organizations in Resource Access Manager",
+      "Create a resource share containing the subnet and add the participant account as a principal",
+      "In the participant account, open the EC2 launch wizard and choose the shared VPC and subnet",
+      "Launch an instance and note it gets a private IP from the owner's subnet CIDR",
+      "From the owner account, confirm you cannot modify the participant's instance"
+    ],
+    "expectedResult": "The participant's instance runs inside the owner's subnet while each account manages only its own resources.",
+    "cleanup": [
+      "Terminate the instance, delete the resource share, delete the VPC"
+    ],
+    "whyItMatters": "VPC sharing is the alternative to peering and Transit Gateway for central network teams.",
+    "commonErrors": [
+      "RAM sharing with Organizations not enabled",
+      "Using AZ names instead of AZ IDs when comparing zones across accounts"
+    ]
+  },
+  {
+    "id": "tag-enforcement-lab",
+    "title": "Require Tags at Creation with an IAM Condition",
+    "relatedLessonIds": [
+      "tagging-governance-tag-policies-resource-groups"
+    ],
+    "goal": "Block EC2 launches that do not include a CostCenter tag, then verify with and without the tag.",
+    "architecture": "IAM policy (Deny RunInstances unless aws:RequestTag/CostCenter) -> user attempts launch",
+    "estimatedTime": "25 minutes",
+    "prerequisites": [
+      "An AWS account",
+      "An IAM test user or role"
+    ],
+    "steps": [
+      "Create an IAM policy that denies ec2:RunInstances when the aws:RequestTag/CostCenter condition key does not exist",
+      "Attach it to a test user together with permissions to launch instances",
+      "Try to launch an instance without a tag and observe the explicit deny",
+      "Launch again with a CostCenter tag and confirm it succeeds",
+      "Activate CostCenter as a cost allocation tag in the Billing console"
+    ],
+    "expectedResult": "Untagged launches are denied and tagged launches succeed.",
+    "cleanup": [
+      "Terminate the instance and remove the test user and policy"
+    ],
+    "whyItMatters": "The exam separates standardising tags (tag policy), requiring tags (IAM or SCP condition) and auditing tags (Config).",
+    "commonErrors": [
+      "Tagging at creation needs ec2:CreateTags permission too",
+      "Expecting a tag policy alone to require tags"
+    ]
+  },
 ];

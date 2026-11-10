@@ -137,6 +137,7 @@ export const deepDivesF: Lesson[] = [
       "You paid per pipeline according to activity frequency, plus the EC2 or EMR resources used.",
     examKeywords: ["scheduled data movement", "legacy ETL", "preconditions", "data nodes", "predates Glue"],
     examTraps: [
+      "AWS Data Pipeline is in maintenance mode and is not offered to new customers. For new scheduled ETL, think AWS Glue, Step Functions or Amazon MWAA.",
       "If a modern serverless ETL is wanted, the answer is Glue, not Data Pipeline.",
       "Data Pipeline is not for real-time streaming. That is Kinesis.",
     ],

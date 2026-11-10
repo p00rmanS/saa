@@ -19,6 +19,10 @@ export function CheckpointQuiz({ question, index }: { question: Question; index?
   const [selected, setSelected] = React.useState<string[]>([]);
   const [submitted, setSubmitted] = React.useState(false);
   const recordAnswer = useProgressStore((s) => s.recordAnswer);
+  const taglishMode = useProgressStore((s) => s.settings.taglishMode);
+  // The feedback only renders after the user submits, so it never needs a pre-hydration fallback.
+  const showEnglish = taglishMode !== "taglish" || !question.taglishExplanation;
+  const showTaglish = taglishMode !== "english";
 
   const isCorrect = arraysEqualAsSets(selected, question.correctAnswers);
 
@@ -70,7 +74,13 @@ export function CheckpointQuiz({ question, index }: { question: Question; index?
             <p className={cn("mb-1 font-medium", isCorrect ? "text-success" : "text-danger")}>
               {isCorrect ? "Correct!" : "Not quite."}
             </p>
-            <p className="text-muted-foreground">{question.explanation}</p>
+            {showEnglish && <p className="text-muted-foreground">{question.explanation}</p>}
+            {showTaglish && question.taglishExplanation && (
+              <p className={cn("text-muted-foreground", showEnglish && "mt-2 border-t border-border/60 pt-2")}>
+                <span className="font-medium text-foreground">Sa Taglish: </span>
+                {question.taglishExplanation}
+              </p>
+            )}
           </div>
 
           {question.examKeywordHint && (
