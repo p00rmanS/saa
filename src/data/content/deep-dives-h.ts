@@ -240,6 +240,7 @@ Source --DMS CDC (ongoing changes)--> Target  --> cut over when caught up`,
       "lowest cost transfer",
     ],
     examTraps: [
+      "AWS has moved the Snowball Edge devices to maintenance and closed them to new customers (announced late 2025), so the exam concept of offline bulk transfer still applies but check the AWS product lifecycle page for current availability. Network-based options such as DataSync and Direct Connect are the usual alternatives.",
       "Compute the transfer time. If it takes more than about a week, Snow is usually the answer.",
       "Firehose is near real time and has no replay. Data Streams supports custom consumers and replay.",
       "Storage Gateway is for ongoing hybrid access. A one-time bulk migration is DataSync or Snow.",

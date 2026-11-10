@@ -188,7 +188,7 @@ export const analyticsLessons: Lesson[] = [
       "Kinesis Data Streams is like a fast-moving conveyor belt at a factory that never stops: items (data records) keep arriving continuously, and you station workers (consumer applications) along the belt to inspect, process, or route each item as it passes — rather than waiting for a full truckload to accumulate before doing anything with it.",
     whyItExists:
       "Many real-world signals — user clicks, application logs, sensor readings — lose value if you wait hours to analyze them in a batch. Kinesis exists to let applications react to data within seconds of it being generated, enabling real-time dashboards, alerting, and streaming analytics instead of only next-day batch reports.",
-    flow: "Producers (web/app servers, IoT devices) -> Kinesis Data Stream (shards) -> Consumers (Lambda, EC2, Kinesis Data Analytics) -> Real-time dashboards / downstream storage",
+    flow: "Producers (web/app servers, IoT devices) -> Kinesis Data Stream (shards) -> Consumers (Lambda, EC2, Managed Service for Apache Flink (formerly Kinesis Data Analytics)) -> Real-time dashboards / downstream storage",
     withoutIt: [
       "Data would need to be collected and processed in batches, delaying insights by hours instead of seconds",
       "You would need to build your own reliable, scalable ingestion pipeline for streaming data",
@@ -209,14 +209,14 @@ export const analyticsLessons: Lesson[] = [
     alternatives: [
       { need: "Fully managed delivery of streaming data straight to S3/Redshift/OpenSearch, no consumer code", choose: "Amazon Data Firehose" },
       { need: "A team specifically needs Apache Kafka API compatibility", choose: "Amazon MSK" },
-      { need: "Run SQL-style analytics directly on a Kinesis stream", choose: "Amazon Kinesis Data Analytics" },
+      { need: "Run SQL-style analytics directly on a Kinesis stream", choose: "Amazon Managed Service for Apache Flink (formerly Kinesis Data Analytics)" },
       { need: "Batch processing of data already stored, not live streaming ingestion", choose: "AWS Glue / Amazon EMR" },
     ],
     keyFeatures: [
       "Shard-based architecture controlling throughput and parallel read/write capacity",
       "Configurable data retention window, allowing replay of recent records",
       "Multiple independent consumers can read the same stream concurrently",
-      "Integrates with Lambda, Kinesis Data Analytics, and custom consumer apps (KCL)",
+      "Integrates with Lambda, Managed Service for Apache Flink (formerly Kinesis Data Analytics), and custom consumer apps (KCL)",
       "On-demand or provisioned capacity modes for shard scaling",
     ],
     availability:

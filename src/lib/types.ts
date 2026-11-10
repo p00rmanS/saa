@@ -65,6 +65,7 @@ export interface Question {
   options: QuestionOption[];
   correctAnswers: string[]; // option ids
   explanation: string; // overall "why the correct answer is correct"
+  taglishExplanation?: string; // same explanation in Taglish, shown per the Taglish setting
   optionExplanations: Record<string, string>; // per-option why right/wrong
   examKeywordHint?: string;
   mentorTip?: string;

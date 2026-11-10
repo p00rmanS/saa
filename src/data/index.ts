@@ -69,6 +69,9 @@ import { deepDiveMNQuestions, deepDiveMNFlashcards } from "./content/deep-dives-
 import { deepDivesO } from "./content/deep-dives-o";
 import { deepDivesP } from "./content/deep-dives-p";
 import { deepDiveOPQuestions, deepDiveOPFlashcards } from "./content/deep-dives-op-questions";
+import { hardScenarioQuestions } from "./content/hard-scenarios-questions";
+import { studySkillsLessons, studySkillsQuestions, studySkillsFlashcards } from "./content/study-skills";
+import { withTaglish } from "./question-taglish";
 import { deepDiveKLQuestions, deepDiveKLFlashcards } from "./content/deep-dives-kl-questions";
 import { deepDiveIJQuestions, deepDiveIJFlashcards } from "./content/deep-dives-ij-questions";
 import { deepDiveGHQuestions, deepDiveGHFlashcards } from "./content/deep-dives-gh-questions";
@@ -107,10 +110,11 @@ export const allLessons: Lesson[] = [
   ...deepDivesN,
   ...deepDivesO,
   ...deepDivesP,
+  ...studySkillsLessons,
   ...examMasteryLessons,
 ];
 
-export const allQuestions: Question[] = withFifthOptions([
+export const allQuestions: Question[] = withTaglish(withFifthOptions([
   ...orientationQuestions,
   ...ccpRefresherQuestions,
   ...iamQuestions,
@@ -133,8 +137,10 @@ export const allQuestions: Question[] = withFifthOptions([
   ...deepDiveKLQuestions,
   ...deepDiveMNQuestions,
   ...deepDiveOPQuestions,
+  ...hardScenarioQuestions,
+  ...studySkillsQuestions,
   ...examMasteryQuestions,
-]);
+]));
 
 export const allFlashcards: Flashcard[] = [
   ...orientationFlashcards,
@@ -159,6 +165,7 @@ export const allFlashcards: Flashcard[] = [
   ...deepDiveKLFlashcards,
   ...deepDiveMNFlashcards,
   ...deepDiveOPFlashcards,
+  ...studySkillsFlashcards,
   ...examMasteryFlashcards,
 ];
 
