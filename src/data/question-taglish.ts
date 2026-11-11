@@ -48,6 +48,25 @@ const TAGLISH: Record<string, string> = {
   "q-scenario-drill-domain-4-1": "Compute Savings Plan para sa steady na baseline at flexible sa family at Region; On-Demand o Spot para sa variable na dagdag.",
   "q-scenario-drill-domain-4-2": "Ang gateway VPC endpoint para sa S3 ay walang bayad at lumalampas sa NAT, kaya nawawala ang NAT processing charge.",
   "q-scenario-drill-domain-4-3": "Kung alam ang pattern ng pagtanda ng data, lifecycle rules ang gamitin para awtomatikong ilipat sa mas murang class; puwede pang makuha sa loob ng ilang oras ang Glacier classes.",
+  // Batch Q lessons
+  "q-eks-operations-scaling-networking-irsa-1": "Gamitin ang IRSA o EKS Pod Identity para bawat pod ay may sariling role sa pamamagitan ng service account. Kapag sa node role, lahat ng pod sa node ay magmamana ng access.",
+  "q-eks-operations-scaling-networking-irsa-2": "Pods lang ang sine-scale ng HPA. Kailangan ding mag-scale ng nodes, kaya Karpenter o Cluster Autoscaler ang nagdaragdag ng node kapag hindi ma-schedule ang pods.",
+  "q-eks-operations-scaling-networking-irsa-3": "Sa VPC CNI, bawat pod ay may VPC IP, kaya maliit na subnet ang unang nauubusan. Gumamit ng mas malalaking subnet o dagdag na secondary CIDR.",
+  "q-ai-ml-service-selection-decision-guide-1": "Ang Textract ang kumukuha ng text, form fields at tables mula sa scanned documents. Ang Rekognition ay para sa image at video, Transcribe sa speech, Polly sa text-to-speech.",
+  "q-ai-ml-service-selection-decision-guide-2": "Para sa generative AI na kaunti ang imprastraktura, Bedrock: API sa foundation models at knowledge base para sa sarili mong dokumento. Hindi praktikal ang pagsasanay ng model mula sa simula.",
+  "q-ai-ml-service-selection-decision-guide-3": "Kapag custom model sa sariling data at walang prebuilt na service, SageMaker ang may managed notebooks, training at deployment.",
+  "q-serverless-architecture-patterns-api-queue-events-1": "Mga 29 segundo ang default na timeout ng API Gateway integration, kaya gawing asynchronous: ibalik agad ang job ID, ilagay sa SQS ang trabaho, at hayaang mag-poll o ma-notify ang client.",
+  "q-serverless-architecture-patterns-api-queue-events-2": "Para sa isang event na may maraming independent na consumer, SNS fan-out papunta sa hiwalay na SQS queues, kaya hindi nahaharangan ng isang pumalya ang iba.",
+  "q-serverless-architecture-patterns-api-queue-events-3": "Para sa poison message: partial batch response para mga pumalyang mensahe lang ang uulitin, at DLQ na may maximum receive count para ilayo ang sirang mensahe.",
+  "q-ses-sns-email-notification-selection-1": "Ang SES ang para sa transactional at bulk email ng application sa customers mula sa sarili mong domain, may bounce tracking. Ang SNS email ay para sa notifications sa confirmed subscribers.",
+  "q-ses-sns-email-notification-selection-2": "Ang bagong SES account ay nasa sandbox na limitado ang puwedeng padalhan. Humingi ng production access para alisin ang limit.",
+  "q-ses-sns-email-notification-selection-3": "Para maprotektahan ang sender reputation, i-publish ang bounce at complaint events sa SNS sa pamamagitan ng configuration set at tanggalin ang mga address na iyon sa listahan.",
+  "q-iam-access-denied-troubleshooting-playbook-1": "Kapag admin pero denied pa rin, hanapin ang SCP o explicit deny. Nililimitahan ng SCP ang account kahit admin, kaya Region-restricting SCP ang malamang.",
+  "q-iam-access-denied-troubleshooting-playbook-2": "Sa cross-account, kailangang pumayag ang dalawang panig: identity policy ng caller at bucket policy sa account ng may-ari na nagtitiwala sa caller.",
+  "q-iam-access-denied-troubleshooting-playbook-3": "Ang IAM Access Analyzer ay makakabuo ng least-privilege policy mula sa aktuwal na aktibidad sa CloudTrail.",
+  "q-performance-bottleneck-diagnosis-playbook-1": "Kapag naubos ang CPU credits ng burstable T instance, bumabagal ito sa baseline. Para sa tuloy-tuloy na load, fixed-performance family o unlimited mode.",
+  "q-performance-bottleneck-diagnosis-playbook-2": "Ang throttling kahit mababa ang kabuuang gamit ay hot partition key. Pagandahin ang key distribution o magdagdag ng DAX para sa read-heavy na keys.",
+  "q-performance-bottleneck-diagnosis-playbook-3": "Per prefix ang request rate ng S3, kaya ikalat ang keys sa maraming prefix para tumaas ang kabuuang throughput.",
 };
 
 export function withTaglish(questions: Question[]): Question[] {
