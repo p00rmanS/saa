@@ -594,7 +594,7 @@ export const deepDiveFFlashcards: Flashcard[] = [
 
   fc("amazon-pinpoint", 1, 3, "Front-End Web and Mobile", "Pinpoint vs SNS vs SES?", "Pinpoint: segmented multichannel campaigns with analytics. SNS: simple pub/sub notifications. SES: bulk and transactional email."),
   fc("amazon-pinpoint", 2, 3, "Front-End Web and Mobile", "Pinpoint channels?", "Email, SMS, push, voice and in-app messages."),
-  fc("amazon-pinpoint", 3, 3, "Front-End Web and Mobile", "Pinpoint status today?", "Closed to new customers since May 20, 2025 and support ends October 30, 2026. Email moves to SES, SMS/voice/push to End User Messaging, campaigns to Amazon Connect. Still in the exam guide."),
+  fc("amazon-pinpoint", 3, 3, "Front-End Web and Mobile", "Pinpoint status today?", "Closed to new customers since May 20, 2025 and support ended on October 30, 2026. Email moves to SES, SMS/voice/push to End User Messaging, campaigns to Amazon Connect. Still in the exam guide."),
 
   fc("amazon-forecast", 1, 3, "Machine Learning", "What does Amazon Forecast do?", "Managed ML time-series forecasting, such as demand, with probabilistic forecasts at quantiles like P10, P50 and P90."),
   fc("amazon-forecast", 2, 3, "Machine Learning", "Forecast vs SageMaker?", "Forecast: purpose-built, no ML expertise. SageMaker: build and tune custom models."),

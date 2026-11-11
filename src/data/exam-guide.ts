@@ -40,6 +40,7 @@ export const taskStatements: TaskStatement[] = [
       "scenario-drill-domain-1",
       "vpc-sharing-ram-multi-account-networking",
       "aws-account-first-steps-root-user-mfa",
+      "iam-access-denied-troubleshooting-playbook",
     ],
   },
   {
@@ -172,6 +173,8 @@ export const taskStatements: TaskStatement[] = [
       "scenario-drill-domain-2",
       "regions-edge-local-zones-wavelength-outposts",
       "cloud-computing-fundamentals-ccp",
+      "serverless-architecture-patterns-api-queue-events",
+      "ses-sns-email-notification-selection",
     ],
   },
   {
@@ -277,6 +280,8 @@ export const taskStatements: TaskStatement[] = [
       "compute-service-decision-guide",
       "scenario-drill-domain-3",
       "ecs-networking-scaling-service-connect",
+      "eks-operations-scaling-networking-irsa",
+      "performance-bottleneck-diagnosis-playbook",
     ],
   },
   {
@@ -384,6 +389,7 @@ export const taskStatements: TaskStatement[] = [
       "analytics-service-selection-redshift-emr",
       "streaming-etl-flink-glue-databrew",
       "scenario-drill-domain-3",
+      "ai-ml-service-selection-decision-guide",
     ],
   },
   {
