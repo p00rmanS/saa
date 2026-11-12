@@ -45,7 +45,93 @@ export function domainPath(domain: ExamDomainId): StudyPath {
   };
 }
 
+/**
+ * Lessons that double as Cloud Practitioner (CLF-C02) refreshers, grouped by the four CCP domains.
+ * Ids that no longer exist are skipped, so the list can be edited without breaking the build.
+ */
+const CCP_REFRESHER_IDS = [
+  // Domain 1: cloud concepts
+  "cloud-computing-fundamentals-ccp",
+  "aws-global-infrastructure",
+  "regions-edge-local-zones-wavelength-outposts",
+  "cloud-adoption-framework-ccp",
+  "well-architected-framework-pillars",
+  "aws-well-architected-tool",
+  // Domain 2: security and compliance
+  "aws-account-first-steps-root-user-mfa",
+  "shared-responsibility-account-security",
+  "ccp-security-compliance-refresher",
+  "iam-core",
+  "iam-identity-center",
+  "aws-kms",
+  "aws-secrets-manager",
+  "aws-waf",
+  "aws-shield",
+  "amazon-guardduty",
+  "amazon-inspector",
+  "amazon-macie",
+  "aws-security-hub",
+  "aws-artifact",
+  "aws-audit-manager",
+  "aws-cloudtrail",
+  "aws-config",
+  // Domain 3: cloud technology and services
+  "aws-service-map-quick-reference",
+  "aws-management-console",
+  "aws-cli",
+  "amazon-ec2",
+  "aws-lambda",
+  "amazon-ecs",
+  "amazon-eks",
+  "amazon-s3",
+  "amazon-ebs",
+  "amazon-efs",
+  "amazon-rds",
+  "amazon-aurora",
+  "amazon-dynamodb",
+  "amazon-vpc",
+  "amazon-route-53",
+  "amazon-cloudfront",
+  "elastic-load-balancing",
+  "ec2-auto-scaling",
+  "amazon-sqs",
+  "amazon-sns",
+  "amazon-cloudwatch",
+  "aws-cloudformation",
+  "aws-direct-connect",
+  "aws-site-to-site-vpn",
+  "amazon-redshift",
+  "amazon-athena",
+  "amazon-sagemaker-ai",
+  // Domain 4: billing, pricing and support
+  "aws-pricing-fundamentals-free-tier-tco",
+  "ccp-billing-pricing-support-refresher",
+  "aws-cost-thinking",
+  "aws-budgets",
+  "aws-cost-explorer",
+  "aws-cost-and-usage-report",
+  "savings-plans-reserved-spot",
+  "cost-allocation-tags-consolidated-billing",
+  "aws-organizations-control-tower-service-catalog",
+  "aws-trusted-advisor",
+  "support-plans-trusted-advisor-health",
+  "aws-health-dashboard",
+  // Bridge to the associate exam
+  "ccp-to-saa-bridge-how-to-think",
+];
+
+const ccpLessonIdSet = new Set(CCP_REFRESHER_IDS);
+export const isCcpRefresher = (lessonId: string) => ccpLessonIdSet.has(lessonId);
+
 export const studyPaths: StudyPath[] = [
+  {
+    id: "ccp-refresher",
+    title: "Cloud Practitioner (CCP) refresher",
+    audience: "You passed or studied CLF-C02 a while ago and the basics have faded. Start here before the associate material.",
+    summary:
+      "The four CCP domains in order (cloud concepts, security, technology, billing and support), at refresher depth, ending with the bridge to SAA-C03 thinking.",
+    lessons: CCP_REFRESHER_IDS.map((id) => allLessons.find((l) => l.id === id)).filter((l): l is Lesson => Boolean(l)),
+  },
   {
     id: "foundations",
     title: "Foundations first",

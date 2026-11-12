@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 export default function PathsPage() {
   const mounted = useHasMounted();
   const progress = useProgressStore((s) => s.lessons);
-  const [activeId, setActiveId] = useState(studyPaths[1].id);
+  const [activeId, setActiveId] = useState(studyPaths.find((p) => p.id === "exam-essentials")?.id ?? studyPaths[0].id);
   const active = studyPaths.find((p) => p.id === activeId) ?? studyPaths[0];
   const done = mounted ? active.lessons.filter((l) => progress[l.id]?.completed).length : 0;
   const next = mounted ? active.lessons.find((l) => !progress[l.id]?.completed) : active.lessons[0];
