@@ -41,6 +41,7 @@ export const taskStatements: TaskStatement[] = [
       "vpc-sharing-ram-multi-account-networking",
       "aws-account-first-steps-root-user-mfa",
       "iam-access-denied-troubleshooting-playbook",
+      "ccp-security-compliance-refresher",
     ],
   },
   {
@@ -175,6 +176,7 @@ export const taskStatements: TaskStatement[] = [
       "cloud-computing-fundamentals-ccp",
       "serverless-architecture-patterns-api-queue-events",
       "ses-sns-email-notification-selection",
+      "ccp-to-saa-bridge-how-to-think",
     ],
   },
   {
@@ -430,6 +432,7 @@ export const taskStatements: TaskStatement[] = [
       "scenario-drill-domain-4",
       "tagging-governance-tag-policies-resource-groups",
       "aws-pricing-fundamentals-free-tier-tco",
+      "ccp-billing-pricing-support-refresher",
     ],
   },
   {

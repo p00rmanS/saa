@@ -11,6 +11,8 @@ import { TIER_LABEL } from "@/components/badges";
 import { useProgressStore, DEFAULT_SETTINGS } from "@/lib/store";
 import { useHasMounted } from "@/lib/use-has-mounted";
 import { DOMAIN_SHORT_TITLES } from "@/lib/readiness";
+import { labs } from "@/data/labs";
+import { isCcpRefresher } from "@/lib/paths";
 import type { Lesson, Question } from "@/lib/types";
 import { cn } from "cn";
 
@@ -158,6 +160,9 @@ export function LessonView({
     </div>
   );
 
+  const relatedLabs = labs.filter((l) => l.relatedLessonIds.includes(lesson.id));
+  const ccp = isCcpRefresher(lesson.id);
+
   const outline: { id: string; title: string }[] = [
     { id: "overview", title: "Overview" },
     { id: "why", title: "Why it exists" },
@@ -166,6 +171,8 @@ export function LessonView({
     { id: "operations", title: "Availability, security, cost" },
     { id: "exam", title: "On the exam" },
     { id: "architecture", title: "Example architecture" },
+    ...(relatedLabs.length > 0 ? [{ id: "hands-on", title: "Hands-on" }] : []),
+    { id: "recap", title: "Recap and teach-back" },
     ...(questions.length > 0 ? [{ id: "check", title: "Check yourself" }] : []),
   ];
 
@@ -185,6 +192,7 @@ export function LessonView({
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{lesson.oneLiner}</p>
         <p className="mt-4 text-sm text-muted-foreground">
           {tierLabel} · {readingMinutes(lesson)} min read · Exam domain {domainText}
+          {ccp && <> · <span className="font-medium text-foreground">CCP refresher</span></>}
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-2">
           <Button
@@ -278,6 +286,47 @@ export function LessonView({
 
           <Section id="architecture" title="Example architecture">
             <ArchitectureDiagram diagram={lesson.architectureDiagram} caption={lesson.architectureCaption} />
+          </Section>
+
+          {relatedLabs.length > 0 && (
+            <Section id="hands-on" title="Hands-on">
+              <p className="max-w-[68ch] leading-relaxed text-foreground/90">
+                Reading gets you recognition. Doing it once gets you recall. Try a guided lab for this topic.
+              </p>
+              <ul className="mt-3 flex max-w-[68ch] flex-col gap-2">
+                {relatedLabs.map((lab) => (
+                  <li key={lab.id}>
+                    <Link href={`/labs/${lab.id}`} className="font-medium underline underline-offset-4 hover:text-primary">
+                      {lab.title}
+                    </Link>
+                    <span className="text-sm text-muted-foreground"> · {lab.estimatedTime}</span>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          )}
+
+          <Section id="recap" title="Recap and teach-back">
+            <div className="max-w-[68ch] rounded-lg border border-border bg-card p-5">
+              <p className="text-sm font-semibold">The 30-second recap</p>
+              <p className="mt-2 leading-relaxed text-foreground/90">{lesson.oneLiner}</p>
+              <ul className="mt-3 list-disc space-y-1 pl-5 leading-relaxed marker:text-muted-foreground">
+                {lesson.keyFeatures.slice(0, 4).map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
+              {lesson.examTraps[0] && (
+                <p className="mt-3 text-sm leading-relaxed text-foreground/90">
+                  <span className="font-semibold text-warning">Watch for: </span>
+                  {lesson.examTraps[0]}
+                </p>
+              )}
+            </div>
+            <p className="mt-5 max-w-[68ch] leading-relaxed text-foreground/90">
+              <span className="font-semibold">Teach it back.</span> Close this page and explain {lesson.shortName ?? lesson.title} out
+              loud in three sentences: what it is, when you would choose it, and the one trap to avoid. You can do it in
+              English or Taglish. If you get stuck, that is the part to reread.
+            </p>
           </Section>
 
           {questions.length > 0 && (

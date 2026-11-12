@@ -67,6 +67,16 @@ const TAGLISH: Record<string, string> = {
   "q-performance-bottleneck-diagnosis-playbook-1": "Kapag naubos ang CPU credits ng burstable T instance, bumabagal ito sa baseline. Para sa tuloy-tuloy na load, fixed-performance family o unlimited mode.",
   "q-performance-bottleneck-diagnosis-playbook-2": "Ang throttling kahit mababa ang kabuuang gamit ay hot partition key. Pagandahin ang key distribution o magdagdag ng DAX para sa read-heavy na keys.",
   "q-performance-bottleneck-diagnosis-playbook-3": "Per prefix ang request rate ng S3, kaya ikalat ang keys sa maraming prefix para tumaas ang kabuuang throughput.",
+  // CCP refreshers and bridge
+  "q-ccp-security-compliance-refresher-1": "Sa EC2, ang customer ang nagpa-patch ng guest OS at ng database software. Ang physical security, hypervisor at network hardware ay trabaho ng AWS.",
+  "q-ccp-security-compliance-refresher-2": "Ang Macie ang naghahanap at nag-uuri ng sensitive data gaya ng PII sa S3. Ang GuardDuty ay para sa threats, Shield sa DDoS, Artifact sa compliance reports.",
+  "q-ccp-security-compliance-refresher-3": "Ang AWS Artifact ang portal para i-download ang AWS compliance reports gaya ng SOC at ISO certifications.",
+  "q-ccp-billing-pricing-support-refresher-1": "Ang AWS Budgets ang nagse-set ng cost at usage threshold at nagpapadala ng alert, kasama ang forecasted na gastos.",
+  "q-ccp-billing-pricing-support-refresher-2": "Ang consolidated billing sa AWS Organizations ay nagsasama ng mga account sa isang bill at nagbabahagi ng volume discounts at commitment benefits.",
+  "q-ccp-billing-pricing-support-refresher-3": "Kailangang i-activate ang cost allocation tags sa billing console, at para lang sa usage pagkatapos ng activation. Hindi ito retroactive.",
+  "q-ccp-to-saa-bridge-how-to-think-1": "Kapag dalawang option ang pasok sa availability, ang stated na 'least operational overhead' ang tie-breaker: piliin ang managed option.",
+  "q-ccp-to-saa-bridge-how-to-think-2": "Una, i-underline ang goal, limiting phrases at hard facts, tapos alisin ang mga option na lumalabag. Mas maaasahan ito kaysa pumili ng pamilyar na pangalan.",
+  "q-ccp-to-saa-bridge-how-to-think-3": "Ang hard limit gaya ng 15-minutong maximum ng Lambda ay nag-eeliminate ng option kahit maganda ang iba pang bahagi nito.",
 };
 
 export function withTaglish(questions: Question[]): Question[] {
