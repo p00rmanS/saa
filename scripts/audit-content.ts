@@ -1,6 +1,7 @@
 import { allLessons, allQuestions, allFlashcards } from "../src/data";
 import { modules } from "../src/data/modules";
 import { taskStatements, inScopeServices } from "../src/data/exam-guide";
+import { teacherNoteIds } from "../src/data/teacher-notes";
 import type { Lesson, Question, Flashcard } from "../src/lib/types";
 
 type Issue = { severity: "error" | "warn"; area: string; id: string; message: string };
@@ -12,6 +13,13 @@ const warn = (area: string, id: string, message: string) => issues.push({ severi
 const lessonIdCounts = new Map<string, number>();
 for (const l of allLessons) lessonIdCounts.set(l.id, (lessonIdCounts.get(l.id) ?? 0) + 1);
 for (const [id, count] of lessonIdCounts) if (count > 1) err("lesson", id, `duplicate lesson id used ${count} times`);
+
+// Every teacher note must attach to a real lesson, otherwise it silently never renders.
+for (const id of teacherNoteIds) if (!allLessons.some((l) => l.id === id)) err("teacher-notes", id, "teacher note refers to a lesson that does not exist");
+for (const l of allLessons) {
+  const t = l.teacherNotes;
+  if (t && (!t.english.trim() || !t.taglish.trim() || t.proTips.length < 2)) err("teacher-notes", l.id, "teacher note needs english, taglish and at least 2 pro tips");
+}
 
 const CONCEPTUAL_MODULES = new Set(["phase-0-orientation", "phase-15-exam-mastery"]);
 const moduleIds = new Set(modules.map((m) => m.id));
