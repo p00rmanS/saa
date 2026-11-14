@@ -165,6 +165,7 @@ export function LessonView({
 
   const outline: { id: string; title: string }[] = [
     { id: "overview", title: "Overview" },
+    ...(lesson.teacherNotes ? [{ id: "teacher", title: "Teacher's notes" }] : []),
     { id: "why", title: "Why it exists" },
     { id: "when", title: "When to use it" },
     { id: "features", title: "How it works" },
@@ -223,6 +224,22 @@ export function LessonView({
               overview
             )}
           </Section>
+
+          {lesson.teacherNotes && (
+            <Section id="teacher" title="Teacher's notes">
+              <div className="max-w-[68ch] rounded-lg border border-border bg-card p-5">
+                {showEnglish && <p className="leading-relaxed text-foreground/90">{lesson.teacherNotes.english}</p>}
+                {showTaglish && (
+                  <p className={cn("leading-relaxed text-foreground/90", showEnglish && "mt-4 border-t border-border/60 pt-4")}>
+                    {showEnglish && <span className="font-semibold">Sa Taglish: </span>}
+                    {lesson.teacherNotes.taglish}
+                  </p>
+                )}
+              </div>
+              <h3 className="mb-2 mt-6 text-lg font-semibold">Pro tips</h3>
+              <BulletList items={lesson.teacherNotes.proTips} className="marker:text-primary" />
+            </Section>
+          )}
 
           <Section id="why" title="Why it exists">
             <Prose text={lesson.whyItExists} />

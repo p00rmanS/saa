@@ -17,6 +17,13 @@ export interface AlternativeRow {
   choose: string;
 }
 
+/** Extra teaching layer added on top of a lesson: a walkthrough in English and Taglish plus pro tips. */
+export interface TeacherNotes {
+  english: string;
+  taglish: string;
+  proTips: string[];
+}
+
 export interface Lesson {
   id: string; // kebab-case, stable, used as slug e.g. "amazon-s3"
   moduleId: string; // groups lessons under a Module (course structure)
@@ -46,6 +53,7 @@ export interface Lesson {
   architectureDiagram: string; // 6.18 ascii diagram
   architectureCaption?: string;
   mentorTip: string; // 6.19
+  teacherNotes?: TeacherNotes; // optional teacher walkthrough and pro tips (see data/teacher-notes.ts)
   questionIds: string[]; // 6.20 checkpoint quiz + 6.21 scenario -> pulled from question bank
 }
 

@@ -75,6 +75,7 @@ import { deepDiveQQuestions, deepDiveQQFlashcards } from "./content/deep-dives-q
 import { hardScenarioQuestions } from "./content/hard-scenarios-questions";
 import { studySkillsLessons, studySkillsQuestions, studySkillsFlashcards } from "./content/study-skills";
 import { withTaglish } from "./question-taglish";
+import { withTeacherNotes } from "./teacher-notes";
 import { deepDiveKLQuestions, deepDiveKLFlashcards } from "./content/deep-dives-kl-questions";
 import { deepDiveIJQuestions, deepDiveIJFlashcards } from "./content/deep-dives-ij-questions";
 import { deepDiveGHQuestions, deepDiveGHFlashcards } from "./content/deep-dives-gh-questions";
@@ -84,7 +85,7 @@ import { deepDiveDQuestions, deepDiveDFlashcards } from "./content/deep-dives-d-
 import { deepDiveCQuestions, deepDiveCFlashcards } from "./content/deep-dives-c-questions";
 import { deepDiveQuestions, deepDiveFlashcards } from "./content/deep-dives-questions";
 
-export const allLessons: Lesson[] = [
+export const allLessons: Lesson[] = withTeacherNotes([
   ...orientationLessons,
   ...ccpRefresherLessons,
   ...ccpBridgeLessons,
@@ -117,7 +118,7 @@ export const allLessons: Lesson[] = [
   ...deepDivesQ,
   ...studySkillsLessons,
   ...examMasteryLessons,
-];
+]);
 
 export const allQuestions: Question[] = withTaglish(withFifthOptions([
   ...orientationQuestions,
