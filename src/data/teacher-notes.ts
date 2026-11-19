@@ -355,6 +355,325 @@ const NOTES: Record<string, TeacherNotes> = {
       "Move data automatically with lifecycle rules instead of by hand.",
     ],
   },
+  "amazon-athena": {
+    english:
+      "Athena runs standard SQL directly on files in S3, with no servers to manage, and you pay per amount of data scanned. So the exam levers are cost and speed: store data in a columnar format such as Parquet, compress it and partition it so each query scans less. Pair it with the Glue Data Catalog for table definitions.",
+    taglish:
+      "Ang Athena ay nagpapatakbo ng standard SQL diretso sa files sa S3, walang server na aasikasuhin, at binabayaran mo ang dami ng data na na-scan. Kaya ang sagot sa exam ay cost at bilis: gumamit ng columnar format gaya ng Parquet, i-compress, at i-partition para mas kaunti ang scan. Gamitin kasama ang Glue Data Catalog para sa table definitions.",
+    proTips: [
+      "Ad hoc SQL on data in S3 without loading it anywhere is Athena.",
+      "To cut Athena cost: Parquet or ORC, compression and partitioning.",
+      "Heavy repeated warehouse workloads with many joins point to Redshift instead.",
+    ],
+  },
+  "aws-glue": {
+    english:
+      "Glue is serverless ETL and data cataloging. Crawlers discover schemas and fill the Glue Data Catalog, and Glue jobs transform data between sources. The catalog is the shared table metadata that Athena, Redshift Spectrum and EMR can all read.",
+    taglish:
+      "Ang Glue ay serverless ETL at data cataloging. Ang crawlers ang humahanap ng schema at pumupuno sa Glue Data Catalog, at ang Glue jobs ang nagta-transform ng data. Ang catalog ang shared na table metadata na nababasa ng Athena, Redshift Spectrum at EMR.",
+    proTips: [
+      "Serverless ETL or a central metadata catalog points to Glue.",
+      "A crawler discovers the schema. A job transforms the data.",
+      "Do not pick Glue for real-time streaming ingestion. That is Kinesis.",
+    ],
+  },
+  "amazon-redshift": {
+    english:
+      "Redshift is the managed data warehouse for analytics over large structured datasets, using columnar storage and parallel processing. Choose it for complex SQL and joins across huge data, and choose RDS for transactional workloads. Redshift Spectrum lets it query data left in S3.",
+    taglish:
+      "Ang Redshift ay managed data warehouse para sa analytics ng malalaking structured data, gamit ang columnar storage at parallel processing. Piliin ito para sa komplikadong SQL at joins sa napakalaking data, at RDS para sa transactional workloads. Ang Redshift Spectrum ay nagku-query ng data na nasa S3.",
+    proTips: [
+      "Data warehouse, BI and petabyte-scale analytics point to Redshift.",
+      "Query S3 data without loading it into the cluster is Redshift Spectrum.",
+      "Redshift is for analytics (OLAP), not for high-volume small transactions (OLTP).",
+    ],
+  },
+  "amazon-elasticache": {
+    english:
+      "ElastiCache puts an in-memory cache in front of a slower data store to cut latency and database load. Redis adds persistence, replication, Multi-AZ failover and richer data types. Memcached is simple and multi-threaded but has no persistence or replication. Caching read-heavy, repeated queries is the classic use.",
+    taglish:
+      "Ang ElastiCache ay in-memory cache sa harap ng mas mabagal na data store para bumilis at gumaan ang database. Ang Redis ay may persistence, replication, Multi-AZ failover at mas maraming data types. Ang Memcached ay simple at multi-threaded pero walang persistence o replication. Klasikong gamit ang read-heavy na paulit-ulit na queries.",
+    proTips: [
+      "Needing persistence, replication or failover points to Redis.",
+      "Sub-millisecond reads for repeated queries means a cache in front of the database.",
+      "For a DynamoDB-specific cache, DAX is the purpose-built answer.",
+    ],
+  },
+  "aws-waf": {
+    english:
+      "WAF is a web application firewall that filters HTTP and HTTPS requests at layer 7. You attach a web ACL to CloudFront, an Application Load Balancer, API Gateway or AppSync, and add rules for SQL injection, cross-site scripting, IP sets, geo blocking and rate limits. It does not protect plain TCP traffic.",
+    taglish:
+      "Ang WAF ay web application firewall na nagfi-filter ng HTTP at HTTPS requests sa layer 7. Ikakabit mo ang web ACL sa CloudFront, Application Load Balancer, API Gateway o AppSync, at maglalagay ng rules para sa SQL injection, XSS, IP sets, geo blocking at rate limits. Hindi nito pinoprotektahan ang plain TCP traffic.",
+    proTips: [
+      "SQL injection or cross-site scripting points to WAF.",
+      "Block a country or throttle abusive IPs is a WAF rule, often a rate-based rule.",
+      "DDoS at the network layers is Shield, not WAF.",
+    ],
+  },
+  "aws-shield": {
+    english:
+      "Shield protects against DDoS attacks. Shield Standard is automatic and free for all customers against common network and transport layer attacks. Shield Advanced is paid and adds larger-attack protection, near-real-time visibility, access to the response team and cost protection for scaling during an attack.",
+    taglish:
+      "Ang Shield ay proteksyon laban sa DDoS. Ang Shield Standard ay awtomatiko at libre sa lahat ng customer laban sa karaniwang network at transport layer attacks. Ang Shield Advanced ay bayad at may dagdag na proteksyon, near-real-time visibility, access sa response team, at cost protection sa pag-scale habang inaatake.",
+    proTips: [
+      "DDoS protection with no extra work is Shield Standard, already on.",
+      "Response team access and DDoS cost protection point to Shield Advanced.",
+      "Pair Shield with CloudFront and Route 53 to absorb attacks at the edge.",
+    ],
+  },
+  "amazon-guardduty": {
+    english:
+      "GuardDuty is managed threat detection. It analyses CloudTrail events, VPC Flow Logs and DNS logs with machine learning and threat intelligence to flag things like compromised instances or unusual API calls. You turn it on without agents. It detects and reports. It does not block.",
+    taglish:
+      "Ang GuardDuty ay managed threat detection. Sinusuri nito ang CloudTrail events, VPC Flow Logs at DNS logs gamit ang machine learning at threat intelligence para ituro ang compromised na instance o kakaibang API calls. Walang agent na ilalagay. Nagde-detect at nagre-report lang ito, hindi nagba-block.",
+    proTips: [
+      "Detect compromised instances or suspicious activity without agents is GuardDuty.",
+      "Automate the response by sending findings to EventBridge, then Lambda.",
+      "Scanning for software vulnerabilities is Inspector, not GuardDuty.",
+    ],
+  },
+  "aws-secrets-manager": {
+    english:
+      "Secrets Manager stores secrets such as database credentials and rotates them automatically on a schedule, with native rotation for RDS. Applications fetch the value at runtime through the API, so no password sits in code or config. It is encrypted with KMS.",
+    taglish:
+      "Ang Secrets Manager ay nag-iimbak ng secrets gaya ng database credentials at awtomatikong nagro-rotate ayon sa schedule, may native rotation para sa RDS. Kinukuha ng application ang value sa runtime gamit ang API kaya walang password sa code o config. Naka-encrypt ito gamit ang KMS.",
+    proTips: [
+      "Automatic rotation of database credentials points to Secrets Manager.",
+      "Plain configuration values or cheap secret storage can use Parameter Store.",
+      "Never hard-code credentials in code, AMIs or environment files.",
+    ],
+  },
+  "aws-systems-manager": {
+    english:
+      "Systems Manager is the operations hub for your fleet. Session Manager gives shell access without opening port 22 or keeping SSH keys. Patch Manager automates patching, Run Command runs commands at scale and Parameter Store holds configuration. Instances need the SSM Agent and an instance profile with permission.",
+    taglish:
+      "Ang Systems Manager ang operations hub ng fleet mo. Ang Session Manager ay shell access nang hindi nagbubukas ng port 22 o nag-iingat ng SSH keys. Ang Patch Manager ay awtomatikong patching, ang Run Command ay nagpapatakbo ng utos sa maraming instance, at ang Parameter Store ay para sa configuration. Kailangan ng SSM Agent at instance profile.",
+    proTips: [
+      "Remote access with no inbound ports and no bastion points to Session Manager.",
+      "Patch many instances on a schedule is Patch Manager.",
+      "Managed instances need the SSM Agent plus the right instance profile.",
+    ],
+  },
+  "aws-step-functions": {
+    english:
+      "Step Functions coordinates several services into a workflow using a visual state machine, with built-in retries, error handling, branching and waiting. Use Standard workflows for long-running, auditable flows and Express workflows for high-volume, short ones. Reach for it when the exam describes multi-step orchestration, not a single function.",
+    taglish:
+      "Ang Step Functions ay nag-oorkestra ng ilang services bilang workflow gamit ang visual state machine, may built-in retries, error handling, branching at paghihintay. Standard para sa long-running at auditable na flow, Express para sa high-volume at maikli. Gamitin kapag multi-step orchestration ang inilalarawan, hindi isang function lang.",
+    proTips: [
+      "Orchestrate multiple Lambda functions with retries and branching is Step Functions.",
+      "A workflow that needs a human approval step fits Step Functions.",
+      "Decoupling producers and consumers is a queue, not a workflow.",
+    ],
+  },
+  "amazon-eventbridge": {
+    english:
+      "EventBridge routes events from AWS services, your own applications and SaaS partners to targets using rules, and can also run scheduled rules. It is the event bus for loosely coupled, event-driven designs. Use SNS for simple fan-out and EventBridge when you need content-based filtering or many sources.",
+    taglish:
+      "Ang EventBridge ay nagru-route ng events mula sa AWS services, sarili mong apps at SaaS partners papunta sa targets gamit ang rules, at kaya ring magpatakbo ng scheduled rules. Ito ang event bus ng loosely coupled na disenyo. SNS para sa simpleng fan-out, EventBridge kapag kailangan ng content-based filtering o maraming source.",
+    proTips: [
+      "React to an AWS service event, such as an instance state change, with EventBridge.",
+      "A cron-style schedule to trigger a Lambda is an EventBridge scheduled rule.",
+      "SaaS partner events point to EventBridge.",
+    ],
+  },
+  "aws-dms": {
+    english:
+      "Database Migration Service moves databases with minimal downtime, keeping the source live and replicating ongoing changes until cutover. It handles homogeneous moves and, with the Schema Conversion Tool, heterogeneous ones such as Oracle to Aurora PostgreSQL. A replication instance does the work.",
+    taglish:
+      "Ang Database Migration Service ay naglilipat ng database na kaunti lang ang downtime, nananatiling buhay ang source at nire-replicate ang mga pagbabago hanggang cutover. Kaya ang homogeneous na lipat at, kasama ang Schema Conversion Tool, ang heterogeneous gaya ng Oracle papuntang Aurora PostgreSQL. Replication instance ang gumagawa ng trabaho.",
+    proTips: [
+      "Different engine on each side needs the Schema Conversion Tool plus DMS.",
+      "Keep the source online during migration is DMS with ongoing replication (CDC).",
+      "Moving files or objects is DataSync or Snow, not DMS.",
+    ],
+  },
+  "aws-datasync": {
+    english:
+      "DataSync is an agent-based service that copies large amounts of data online between on-premises storage (NFS, SMB) or other clouds and AWS storage such as S3, EFS and FSx, with scheduling, encryption and integrity checks. Use it for one-off or scheduled transfers over the network.",
+    taglish:
+      "Ang DataSync ay agent-based na service na nagkokopya ng malaking data online mula on-premises (NFS, SMB) o ibang cloud papuntang S3, EFS at FSx, may scheduling, encryption at integrity checks. Gamitin sa isang beses o naka-schedule na paglipat sa network.",
+    proTips: [
+      "Automated online transfer from on-premises file servers into AWS points to DataSync.",
+      "Ongoing hybrid file access with local caching is Storage Gateway instead.",
+      "Network too slow for the volume leads to a Snow device, not DataSync.",
+    ],
+  },
+  "aws-storage-gateway": {
+    english:
+      "Storage Gateway connects on-premises applications to AWS storage with local caching. S3 File Gateway presents NFS or SMB backed by S3, FSx File Gateway fronts FSx for Windows, Volume Gateway gives iSCSI block volumes and Tape Gateway replaces a physical tape library. Pick by the protocol the application already speaks.",
+    taglish:
+      "Ang Storage Gateway ay nag-uugnay ng on-premises apps sa AWS storage na may local caching. S3 File Gateway ay NFS o SMB na naka-back sa S3, FSx File Gateway para sa FSx for Windows, Volume Gateway ay iSCSI block volumes, at Tape Gateway ang pamalit sa physical tape library. Piliin ayon sa protocol na gamit ng app.",
+    proTips: [
+      "Replace backup tapes with no change to the backup software is Tape Gateway.",
+      "On-premises apps that need file access to S3 point to File Gateway.",
+      "Hybrid with low-latency local access to frequently used data means gateway cache.",
+    ],
+  },
+  "amazon-eks": {
+    english:
+      "EKS is managed Kubernetes. AWS runs the control plane and you run worker nodes on managed node groups, self-managed EC2 or Fargate. Choose it when the team already uses Kubernetes or needs portability, and choose ECS when the goal is the simplest AWS-native container platform.",
+    taglish:
+      "Ang EKS ay managed Kubernetes. Ang AWS ang may hawak ng control plane at ikaw ang may worker nodes sa managed node groups, self-managed EC2 o Fargate. Piliin kapag Kubernetes na ang gamit ng team o kailangan ng portability, at ECS kapag pinakasimpleng AWS-native na container platform ang hanap.",
+    proTips: [
+      "Existing Kubernetes skills or manifests point to EKS.",
+      "No node management for pods is EKS on Fargate.",
+      "Simplest AWS-native choice with no Kubernetes requirement is ECS.",
+    ],
+  },
+  "amazon-cognito": {
+    english:
+      "Cognito handles sign-up and sign-in for your application users. User pools are the user directory that issues tokens and supports social and SAML sign-in. Identity pools exchange a token for temporary AWS credentials so a user can reach AWS resources directly. Remember: user pools authenticate, identity pools authorize access to AWS.",
+    taglish:
+      "Ang Cognito ang humahawak ng sign-up at sign-in ng users ng app mo. Ang user pools ay user directory na nag-iisyu ng tokens at sumusuporta sa social at SAML sign-in. Ang identity pools ay nagpapalit ng token sa temporary AWS credentials para direktang maabot ng user ang AWS resources. Tandaan: user pools ay authenticate, identity pools ay access sa AWS.",
+    proTips: [
+      "Web or mobile app sign-up with social login points to a user pool.",
+      "Letting app users upload straight to S3 points to an identity pool.",
+      "Workforce staff sign-in to AWS accounts is IAM Identity Center, not Cognito.",
+    ],
+  },
+  "aws-config": {
+    english:
+      "Config records the configuration of your resources over time and evaluates them against rules. It answers what did this resource look like last month and is it compliant right now. It can trigger automatic remediation. CloudTrail tells you who made an API call, and Config tells you what the resource became.",
+    taglish:
+      "Ang Config ay nagre-record ng configuration ng resources sa paglipas ng panahon at sinusuri laban sa rules. Sinasagot nito kung ano ang itsura ng resource noong nakaraang buwan at compliant ba ito ngayon. Kaya rin ng automatic remediation. Sinasabi ng CloudTrail kung sino ang tumawag ng API, at ng Config kung ano ang naging resource.",
+    proTips: [
+      "Check that all volumes are encrypted or flag a public bucket is a Config rule.",
+      "Configuration history and compliance over time point to Config.",
+      "Who did it is CloudTrail. What changed and is it compliant is Config.",
+    ],
+  },
+  "aws-backup": {
+    english:
+      "AWS Backup centralises backup policy across many services such as EBS, RDS, DynamoDB, EFS and more, with schedules, retention, cross-Region and cross-account copies, and Vault Lock for immutability. Use it when the question wants one managed place to define and prove backups.",
+    taglish:
+      "Ang AWS Backup ay sentralisadong backup policy sa maraming services gaya ng EBS, RDS, DynamoDB, EFS at iba pa, may schedules, retention, cross-Region at cross-account copies, at Vault Lock para sa immutability. Gamitin kapag isang managed na lugar ang gusto para magtakda at mag-patunay ng backups.",
+    proTips: [
+      "Centralised, policy-based backup across services points to AWS Backup.",
+      "Backups that cannot be deleted, even by admins, need Backup Vault Lock.",
+      "Copy backups to another Region or account for disaster recovery.",
+    ],
+  },
+  "aws-transit-gateway": {
+    english:
+      "Transit Gateway is a regional hub that connects many VPCs and on-premises networks through one gateway, so you avoid a mesh of peering connections. It supports route tables for segmentation, VPN and Direct Connect attachments and inter-Region peering. Peering does not allow transitive routing, and Transit Gateway solves exactly that.",
+    taglish:
+      "Ang Transit Gateway ay regional hub na nag-uugnay ng maraming VPC at on-premises network sa iisang gateway, kaya hindi na kailangan ng gusot na peering. May route tables para sa segmentation, VPN at Direct Connect attachments, at inter-Region peering. Hindi transitive ang peering, at ito mismo ang sinosolusyunan ng Transit Gateway.",
+    proTips: [
+      "Many VPCs plus on-premises needing to talk points to Transit Gateway.",
+      "VPC peering is not transitive. Two VPCs only is fine with peering.",
+      "Overlapping CIDR ranges cannot be peered or routed together.",
+    ],
+  },
+  "aws-direct-connect": {
+    english:
+      "Direct Connect is a dedicated private network link from your site to AWS. It gives consistent latency and higher throughput than the internet but takes weeks to provision and is not encrypted by default. For resilience, use two connections in separate locations, or a VPN as backup. Add a VPN over it when you need encryption.",
+    taglish:
+      "Ang Direct Connect ay dedicated na private na network link mula sa site mo papuntang AWS. Consistent ang latency at mas mataas ang throughput kaysa internet pero ilang linggo bago ma-provision at hindi naka-encrypt by default. Para sa resilience, dalawang connection sa magkaibang lokasyon, o VPN bilang backup. Magdagdag ng VPN sa ibabaw kapag kailangan ng encryption.",
+    proTips: [
+      "Consistent, predictable bandwidth and latency points to Direct Connect.",
+      "Needed quickly or as a cheap backup path points to Site-to-Site VPN.",
+      "Encrypted Direct Connect means running an IPsec VPN over it.",
+    ],
+  },
+  "aws-site-to-site-vpn": {
+    english:
+      "Site-to-Site VPN builds encrypted IPsec tunnels over the internet between your network and a virtual private gateway or Transit Gateway. It sets up in minutes, and each connection has two tunnels for redundancy. Its performance depends on the internet, so use Direct Connect when you need steady throughput.",
+    taglish:
+      "Ang Site-to-Site VPN ay gumagawa ng naka-encrypt na IPsec tunnels sa internet sa pagitan ng network mo at ng virtual private gateway o Transit Gateway. Ilang minuto lang ang setup, at may dalawang tunnel ang bawat connection para sa redundancy. Nakadepende sa internet ang performance, kaya Direct Connect kung kailangan ng steady na throughput.",
+    proTips: [
+      "Quick, encrypted hybrid connectivity points to Site-to-Site VPN.",
+      "Each VPN connection has two tunnels. Use both for redundancy.",
+      "A VPN as the backup for Direct Connect is a common resilient design.",
+    ],
+  },
+  "aws-global-accelerator": {
+    english:
+      "Global Accelerator gives your application two static anycast IP addresses and routes users over the AWS global network to the nearest healthy endpoint. It suits TCP and UDP workloads, fast regional failover and cases where clients need fixed IPs. CloudFront caches HTTP content, and Global Accelerator does not cache.",
+    taglish:
+      "Ang Global Accelerator ay nagbibigay ng dalawang static anycast IP address at nagru-route ng users sa AWS global network papunta sa pinakamalapit na healthy endpoint. Bagay sa TCP at UDP, mabilis na regional failover, at kapag kailangan ng fixed IP ang clients. Ang CloudFront ay nagka-cache ng HTTP content, ang Global Accelerator ay hindi.",
+    proTips: [
+      "Static IPs plus global performance for non-HTTP traffic points to Global Accelerator.",
+      "Caching static or dynamic web content points to CloudFront.",
+      "Allow-listing two fixed IPs on a customer firewall is a Global Accelerator hint.",
+    ],
+  },
+  "amazon-fsx": {
+    english:
+      "FSx offers managed file systems for specific needs. FSx for Windows File Server gives SMB shares with Active Directory. FSx for Lustre is high-performance storage for HPC and machine learning that links to S3. FSx for NetApp ONTAP and FSx for OpenZFS cover those specific ecosystems. EFS is for Linux NFS, not Windows.",
+    taglish:
+      "Ang FSx ay managed file systems para sa partikular na pangangailangan. FSx for Windows File Server ay SMB shares na may Active Directory. FSx for Lustre ay high-performance storage para sa HPC at machine learning na naka-link sa S3. FSx for NetApp ONTAP at OpenZFS para sa mga partikular na ecosystem. Ang EFS ay para sa Linux NFS, hindi Windows.",
+    proTips: [
+      "Windows shares, SMB or Active Directory points to FSx for Windows.",
+      "HPC, machine learning or fast scratch space linked to S3 points to FSx for Lustre.",
+      "Shared Linux file storage is EFS.",
+    ],
+  },
+  "iam-identity-center": {
+    english:
+      "IAM Identity Center is the recommended way to give your workforce single sign-on across many AWS accounts and applications. You connect an identity source such as its built-in directory or an external provider, then assign permission sets to users and groups per account. It replaces creating IAM users in every account.",
+    taglish:
+      "Ang IAM Identity Center ang inirerekomendang paraan para sa single sign-on ng workforce sa maraming AWS account at application. Ikokonekta mo ang identity source gaya ng built-in directory o external provider, saka magtatalaga ng permission sets sa users at groups kada account. Pamalit ito sa paggawa ng IAM users sa bawat account.",
+    proTips: [
+      "Workforce SSO across many accounts points to IAM Identity Center.",
+      "Customer-facing app sign-in is Cognito, not Identity Center.",
+      "Permission sets define what a user can do in each assigned account.",
+    ],
+  },
+  "aws-certificate-manager": {
+    english:
+      "ACM provisions, manages and automatically renews public TLS certificates, which are free when used with integrated services such as CloudFront, Application Load Balancers and API Gateway. You cannot install an ACM public certificate directly on an EC2 instance. A CloudFront certificate must be requested in us-east-1.",
+    taglish:
+      "Ang ACM ay nagpo-provision, nangangasiwa at awtomatikong nagre-renew ng public TLS certificates, libre kapag ginamit sa integrated services gaya ng CloudFront, Application Load Balancer at API Gateway. Hindi mo mailalagay ang ACM public certificate diretso sa EC2 instance. Ang certificate para sa CloudFront ay dapat hilingin sa us-east-1.",
+    proTips: [
+      "HTTPS on an ALB or CloudFront with automatic renewal is ACM.",
+      "A certificate for CloudFront must live in us-east-1.",
+      "ACM certificates cannot be exported for use on EC2.",
+    ],
+  },
+  "well-architected-framework-pillars": {
+    english:
+      "The Well-Architected Framework describes six pillars: operational excellence, security, reliability, performance efficiency, cost optimization and sustainability. Exam scenarios usually hide one pillar in the wording, such as recover from failure for reliability or right-size for cost. Name the pillar first, and the right answer usually follows.",
+    taglish:
+      "Ang Well-Architected Framework ay may anim na pillars: operational excellence, security, reliability, performance efficiency, cost optimization at sustainability. Madalas nakatago ang isang pillar sa salita ng tanong, gaya ng recover from failure para sa reliability o right-size para sa cost. Pangalanan muna ang pillar, kadalasan susunod na ang tamang sagot.",
+    proTips: [
+      "Six pillars today. Sustainability is the newest.",
+      "Review workloads against the pillars with the Well-Architected Tool.",
+      "Design principles repeat: automate, stay stateless, expect failure.",
+    ],
+  },
+  "aws-elastic-beanstalk": {
+    english:
+      "Elastic Beanstalk lets you upload application code and have AWS provision and manage the environment, including EC2, load balancing, scaling and health monitoring. You keep control of the underlying resources. It suits teams that want to deploy a web app quickly without writing infrastructure templates.",
+    taglish:
+      "Hinahayaan ka ng Elastic Beanstalk na mag-upload ng code at ang AWS na ang magpo-provision at mangangasiwa ng environment, kasama ang EC2, load balancing, scaling at health monitoring. May kontrol ka pa rin sa mga resources. Bagay sa team na gustong mabilis mag-deploy ng web app nang hindi sumusulat ng infrastructure templates.",
+    proTips: [
+      "Deploy a web app and not manage infrastructure details points to Beanstalk.",
+      "Blue/green on Beanstalk uses a CNAME swap between environments.",
+      "Full control over every resource and repeatable stacks is CloudFormation.",
+    ],
+  },
+  "amazon-inspector": {
+    english:
+      "Inspector continually scans EC2 instances, container images in ECR and Lambda functions for software vulnerabilities and unintended network exposure, and prioritises findings by risk. It scans the workload for known vulnerabilities, while GuardDuty watches for active threats.",
+    taglish:
+      "Ang Inspector ay tuloy-tuloy na nag-i-scan ng EC2 instances, container images sa ECR at Lambda functions para sa software vulnerabilities at hindi sinasadyang network exposure, at nire-rank ang findings ayon sa risk. Ini-scan nito ang workload para sa kilalang vulnerabilities, samantalang ang GuardDuty ay nagbabantay ng aktibong banta.",
+    proTips: [
+      "Vulnerability scanning of instances and container images is Inspector.",
+      "Active threat detection from logs is GuardDuty.",
+      "Instances need the SSM Agent for Inspector to scan them.",
+    ],
+  },
+  "amazon-macie": {
+    english:
+      "Macie uses machine learning and pattern matching to discover and classify sensitive data such as personally identifiable information in S3, and it flags publicly accessible or unencrypted buckets. It is specific to S3. Use it when the question is about finding PII.",
+    taglish:
+      "Ang Macie ay gumagamit ng machine learning at pattern matching para hanapin at i-classify ang sensitibong data gaya ng PII sa S3, at nagbababala sa public o hindi naka-encrypt na buckets. Para lang ito sa S3. Gamitin kapag ang tanong ay paghahanap ng PII.",
+    proTips: [
+      "Find personally identifiable information in S3 is Macie.",
+      "Macie works on S3 only, not on databases or EBS.",
+      "Findings can flow to EventBridge for automated response.",
+    ],
+  },
 };
 
 export function withTeacherNotes(lessons: Lesson[]): Lesson[] {
